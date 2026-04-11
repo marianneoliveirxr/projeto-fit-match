@@ -2,9 +2,9 @@
 
 O **FitMatch** é uma aplicação web voltada para pessoas que desejam iniciar ou evoluir na academia de forma prática e personalizada.
 
-A proposta do sistema é simples: a partir de algumas informações fornecidas pelo usuário, como nível físico, tempo de treino e frequência semanal, o site gera uma sugestão de treino adaptada ao seu perfil.
+A plataforma permite que o usuário calcule seu IMC (Índice de Massa Corporal) e, além disso, preencha um formulário com informações como nível físico, tempo de treino e frequência semanal.
 
-Além disso, a plataforma também permite o cálculo do **IMC (Índice de Massa Corporal)**, auxiliando o usuário a compreender melhor sua condição física.
+Com base nesses dados, o sistema sugere um treino personalizado, adaptado ao perfil de cada pessoa — seja para iniciantes que estão começando agora ou para aqueles que já treinam e desejam evoluir.
 
 ---
 
@@ -16,7 +16,7 @@ Além disso, a plataforma também permite o cálculo do **IMC (Índice de Massa 
 * 📊 **Cálculo de IMC**
   Permite ao usuário avaliar sua condição corporal de forma simples e rápida.
 
-* 📝 **Formulário inteligente**
+* 📝 **Formulário**
   Coleta informações essenciais para adaptar o treino de forma mais adequada.
 
 ---
