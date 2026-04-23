@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,40 +8,234 @@
     <link rel="icon" href="img/halter-logo.png" type="image/png">
     <link rel="stylesheet" href="css/home.css">
 </head>
+
 <body>
     <header>
-        <div class="navbar">
+        <nav class="navbar">
             <div class="logo">
-                <img src="img/logo.png" alt="Fit Match Logo">
+                <img src="img/logo.png" alt="FitMatch Logo">
             </div>
-            <div class="links">
-                <a href="">Como funciona</a>
-                <a href="">Calcular IMC</a>
-                <a href="/login.html">Login</a>
-                <a href="/cadastro.html">Cadastro</a>
-            </div>
-        </div>
+
+            <ul class="nav-links">
+                <li><a href="#">Como funciona</a></li>
+                <li><a href="#">Calcular IMC</a></li>
+                <li><a href="/login.html">Entrar</a></li>
+                <li><a href="/cadastro.html" class="btn">Cadastre-se</a></li>
+            </ul>
+        </nav>
     </header>
-    <section>
-        <p>Treino personalizado para você</p>
-        <h1>Sua forma ideial a um <span>cálculo</span> de distância</h1>
-        <p>Descubra seu perfil físico, calcule seu IMC e receba um plano de treino e 
-            alimentação feito especialmente para os seus objetivos.</p>
-        <img src="img/academia.png" alt="homem pegando halter">
-        <button>Começar agora</button>
-        <button>Calcular IMC</button>
-    </section>
-    <section>
+
+<section class="section1">
+        <div class="hero-text">
+                <p class="subtitle">TREINO PERSONALIZADO PARA VOCÊ</p>
+                <h1>
+                    SUA FORMA <br>
+                    IDEAL A UM <br>
+                    <span>CÁLCULO</span> <br>
+                    DE DISTÂNCIA
+                </h1>
+                <p class="description">
+                    Descubra seu perfil físico, calcule seu IMC e receba um plano de treino e
+                    alimentação feito especialmente para os seus objetivos.
+                </p>
+            <div class="buttons">
+                <button class="btn-primary">COMEÇAR AGORA</button>
+                <button class="btn-secondary">CALCULAR IMC</button>
+        </div>
+    </div>
+
+        <div class="hero-image">
+            <img src="img/academia.png" alt="homem pegando halter">
+        </div>
+</section>
+
+<section class="section2">
+    <div class="container">
+        
         <div class="anuncio">
-            <p>Por que o FitMatch?</p>
-            <h2>Tudo que você precisa para <span>transformar seu corpo</span></h2>
-            <p>Seja seu objetivo ganhar músculo, perder gordura ou melhorar o condicionamento, 
-                o FitMatch entrega o plano certo para o seu perfil.</p>
+            <p class="subtitle">POR QUE O FITMATCH?</p>
+
+            <h2>
+                TUDO QUE VOCÊ PRECISA PARA <br>
+                <span>TRANSFORMAR SEU CORPO</span>
+            </h2>
+
+            <p class="description">
+                Seja seu objetivo ganhar músculo, perder gordura ou melhorar o condicionamento,
+                o FitMatch entrega o plano certo para o seu perfil.
+            </p>
         </div>
-        <div class="card">
-            <h3>Ganho de Massa</h3>
-            <p>Treinos de hipertrofia estruturados com volume e progressão adequados ao seu nível — do iniciante ao avançado.</p>
+
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon">
+                    <img src="img/halter-logo.png" alt="">
+                </div>
+                <h3>Ganho de Massa</h3>
+                <p>Treinos de hipertrofia estruturados com volume e progressão adequados ao seu nível.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <img src="img/fogo.png" alt="">
+                </div>
+                <h3>Emagrecimento</h3>
+                <p>Protocolos de treino e orientações nutricionais para queima de gordura.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <img src="img/maca.png" alt="">
+                </div>
+                <h3>Nutrição Aliada</h3>
+                <p>Dicas de alimentação com equilíbrio calórico e hábitos sustentáveis.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <img src="img/balanca.png" alt="">
+                </div>
+                <h3>Acompanhamento</h3>
+                <p>Monitore seu progresso e ajuste seu plano ao longo do tempo.</p>
+            </div>
         </div>
-    </section>
+
+    </div>
+</section>
+
+<section class="section3">
+    <div class="container">
+
+        <div class="top">
+            <p class="subtitle">SIMPLES ASSIM</p>
+            <h2>COMO <span>FUNCIONA</span></h2>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <span class="numero">01</span>
+                <h3>Faça seu cadastro</h3>
+                <p>Crie sua conta gratuitamente e preencha seus dados básicos como idade, altura e peso.</p>
+            </div>
+
+            <div class="step">
+                <span class="numero">02</span>
+                <h3>Escolha seu objetivo</h3>
+                <p>Emagrecer, ganhar massa, definir ou melhorar o condicionamento — você escolhe o foco.</p>
+            </div>
+
+            <div class="step">
+                <span class="numero">03</span>
+                <h3>Receba seu plano</h3>
+                <p>O FitMatch monta um plano de treino personalizado com base no seu perfil e objetivo.</p>
+            </div>
+
+            <div class="step">
+                <span class="numero">04</span>
+                <h3>Evolua e acompanhe</h3>
+                <p>Monitore seu IMC e seu progresso ao longo do tempo, adaptando o treino quando necessário.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="section4">
+    <div class="container">
+        <div class="top">
+            <p class="subtitle">FERRAMENTA GRATUITA</p>
+            <h2>CALCULE SEU <span>IMC</span></h2>
+            <p class="description">
+                O Índice de Massa Corporal é o primeiro passo para entender onde você está e traçar o caminho até onde quer chegar.
+            </p>
+        </div>
+
+        <div class="imc-box">
+            <div class="inputs">
+                <div class="input-group">
+                    <div class="label">
+                        <span>Altura</span>
+                        <strong>170 cm</strong>
+                    </div>
+                    <input type="range" min="140" max="210" value="170">
+                    <div class="range-labels">
+                        <span>140 cm</span>
+                        <span>210 cm</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="label">
+                        <span>Peso</span>
+                        <strong>70 kg</strong>
+                    </div>
+                    <input type="range" min="40" max="150" value="70">
+                    <div class="range-labels">
+                        <span>40 kg</span>
+                        <span>150 kg</span>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="resultado">
+                <div class="imc-valor">
+                    <p>SEU IMC</p>
+                    <h1>24.2</h1>
+                </div>
+
+                <div class="imc-info">
+                    <h3>Peso ideal</h3>
+                    <p>Ótimo! Mantenha com treinos de manutenção e boa alimentação.</p>
+                </div>
+            </div>
+
+            <div class="tabela">
+                <p class="subtitle">TABELA DE REFERÊNCIA</p>
+
+                <div class="faixas">
+                    <div class="faixa blue">
+                        <strong>&lt; 18,5</strong>
+                        <span>Abaixo do peso</span>
+                    </div>
+
+                    <div class="faixa green">
+                        <strong>18,5 - 24,9</strong>
+                        <span>Peso ideal</span>
+                    </div>
+
+                    <div class="faixa yellow">
+                        <strong>25 - 29,9</strong>
+                        <span>Sobrepeso</span>
+                    </div>
+
+                    <div class="faixa red">
+                        <strong>&ge; 30</strong>
+                        <span>Obesidade</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta">
+                <p>Quer um treino baseado no seu IMC?</p>
+                <button class="btn-primary">CRIAR MEU PLANO GRATUITO</button>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+    <footer>
+        <div class="logo-fit">
+            <img src="img/logo.png" alt="logo FitMatch">
+        </div>
+        <p>© 2026 FitMatch — Projeto acadêmico. Todos os direitos reservados.</p>
+        <div class="right">
+            <a href="">Como Funciona</a>
+            <a href="">IMC</a>
+            <a href="">Cadastro</a>
+        </div>
+    </footer>
 </body>
+
 </html>
