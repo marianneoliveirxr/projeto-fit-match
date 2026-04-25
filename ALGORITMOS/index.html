@@ -13,14 +13,14 @@
     <header>
         <nav class="navbar">
             <div class="logo">
-                <img src="img/logo.png" alt="FitMatch Logo">
+                <img src="img/fitmatch.png" alt="FitMatch Logo">
             </div>
 
             <ul class="nav-links">
-                <li><a href="#">Como funciona</a></li>
-                <li><a href="#">Calcular IMC</a></li>
-                <li><a href="/login.html">Entrar</a></li>
-                <li><a href="/cadastro.html" class="btn">Cadastre-se</a></li>
+                <li><a href="#comoFunciona">Como funciona</a></li>
+                <li><a href="#imc">Calcular IMC</a></li>
+                <li><a href="login.html">Entrar</a></li>
+                <li><a href="cadastro.html" class="btn">Cadastre-se</a></li>
             </ul>
         </nav>
     </header>
@@ -38,9 +38,14 @@
                     Descubra seu perfil físico, calcule seu IMC e receba um plano de treino e
                     alimentação feito especialmente para os seus objetivos.
                 </p>
-            <div class="buttons">
-                <button class="btn-primary">COMEÇAR AGORA</button>
+            <div class="buttons" href="#comoFunciona">
+                <a href="#comoFunciona">
+                    <button class="btn-primary" >COMEÇAR AGORA</button>
+                </a>
+            <a href="#imc">
                 <button class="btn-secondary">CALCULAR IMC</button>
+            </a>
+                
         </div>
     </div>
 
@@ -103,7 +108,7 @@
     </div>
 </section>
 
-<section class="section3">
+<section class="section3" id="comoFunciona">
     <div class="container">
 
         <div class="top">
@@ -140,7 +145,7 @@
     </div>
 </section>
 
-<section class="section4">
+<section class="section4" id="imc">
     <div class="container">
         <div class="top">
             <p class="subtitle">FERRAMENTA GRATUITA</p>
@@ -150,71 +155,60 @@
             </p>
         </div>
 
-        <div class="imc-box">
-            <div class="inputs">
-                <div class="input-group">
-                    <div class="label">
-                        <span>Altura</span>
-                        <strong>170 cm</strong>
-                    </div>
-                    <input type="range" min="140" max="210" value="170">
-                    <div class="range-labels">
-                        <span>140 cm</span>
-                        <span>210 cm</span>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <div class="label">
-                        <span>Peso</span>
-                        <strong>70 kg</strong>
-                    </div>
-                    <input type="range" min="40" max="150" value="70">
-                    <div class="range-labels">
-                        <span>40 kg</span>
-                        <span>150 kg</span>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="resultado">
-                <div class="imc-valor">
-                    <p>SEU IMC</p>
-                    <h1>24.2</h1>
-                </div>
-
-                <div class="imc-info">
-                    <h3>Peso ideal</h3>
-                    <p>Ótimo! Mantenha com treinos de manutenção e boa alimentação.</p>
+    <div class="imc-box">
+        <div class="inputs">
+        <div class="input-group">
+            <div class="label">
+                <span>Altura</span>
+                <div>
+                    <input id="alturaValor" type="number" value="170" min="140" max="210"
+                        oninput="atualizarAlturaInput()">
+                    
+                    <span>cm</span>
                 </div>
             </div>
 
-            <div class="tabela">
-                <p class="subtitle">TABELA DE REFERÊNCIA</p>
+            <input id="alturaRange" type="range" min="140" max="210" value="170"
+            oninput="atualizarAlturaRange()">
 
-                <div class="faixas">
-                    <div class="faixa blue">
-                        <strong>&lt; 18,5</strong>
-                        <span>Abaixo do peso</span>
-                    </div>
+            <div class="range-labels">
+                <span>140 cm</span>
+                <span>210 cm</span>
+            </div>
+        </div>
 
-                    <div class="faixa green">
-                        <strong>18,5 - 24,9</strong>
-                        <span>Peso ideal</span>
-                    </div>
-
-                    <div class="faixa yellow">
-                        <strong>25 - 29,9</strong>
-                        <span>Sobrepeso</span>
-                    </div>
-
-                    <div class="faixa red">
-                        <strong>&ge; 30</strong>
-                        <span>Obesidade</span>
-                    </div>
+        <div class="input-group">
+            <div class="label">
+                <span>Peso</span>
+                <div>
+                    <input id="pesoValor" type="number" value="70" min="40" max="150"
+                        oninput="atualizarPesoInput()">
+                    <span>kg</span>
                 </div>
             </div>
 
+            <input id="pesoRange" type="range" min="40" max="150" value="70"
+                oninput="atualizarPesoRange()">
+
+            <div class="range-labels">
+                <span>40 kg</span>
+                <span>150 kg</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="resultado" id="boxResultado">
+        <div class="imc-valor">
+            <p>SEU IMC</p>
+            <h1 id="imcNumero">--</h1>
+        </div>
+        <div class="imc-info">
+            <h3 id="imcTitulo"></h3>
+            <p id="imcDescricao">Preencha seus dados e clique no botão.</p>
+            <button onclick="calcularIMC()" class="btn-primary"> CALCULAR IMC</button>
+        </div>
+    </div>
             <div class="cta">
                 <p>Quer um treino baseado no seu IMC?</p>
                 <button class="btn-primary">CRIAR MEU PLANO GRATUITO</button>
@@ -224,18 +218,87 @@
 
     </div>
 </section>
-
-    <footer>
-        <div class="logo-fit">
-            <img src="img/logo.png" alt="logo FitMatch">
+    <footer> 
+        <div class="logo-fit"> 
+            <img src="img/fitmatch.png" alt="logo FitMatch"> 
         </div>
-        <p>© 2026 FitMatch — Projeto acadêmico. Todos os direitos reservados.</p>
-        <div class="right">
-            <a href="">Como Funciona</a>
-            <a href="">IMC</a>
-            <a href="">Cadastro</a>
-        </div>
-    </footer>
+        <div class="center"> 
+            <p>© 2026 FitMatch — Projeto acadêmico. Todos os direitos reservados.</p> 
+        </div> 
+        <div class="links"> 
+            <a href="">Como Funciona</a> 
+            <a href="">IMC</a> 
+            <a href="">Cadastro</a> 
+        </div> 
+    </footer> 
 </body>
-
 </html>
+<script>
+    function atualizarAlturaRange() {
+        alturaValor.value = alturaRange.value;
+    }
+
+    function atualizarPesoRange() {
+        pesoValor.value = pesoRange.value;
+    }
+
+    function atualizarAlturaInput(){
+        alturaRange.value = alturaValor.value;
+    }
+
+    function atualizarPesoInput() {
+        pesoRange.value = pesoValor.value;
+    }
+
+    function calcularIMC(){
+        boxResultado.style.display = "flex";
+
+        let alturaCm = Number(alturaValor.value);
+        let altura = alturaCm / 100;
+        
+        let peso = Number(pesoValor.value);
+
+        let imc = (peso / (altura * altura)).toFixed(1);
+        console.log(imc);
+
+        imcNumero.innerText = imc; //altera o que tem ali e substitui por outra coisa
+
+        imcNumero.style.color = "white";
+        imcTitulo.style.color = "white";
+
+        if (imc < 18.5){
+            imcTitulo.innerText = "Abaixo do Peso";
+            imcDescricao.innerText = "Foco em ganho de massa muscular e dieta hipercalórica supervisionada.";
+
+            imcNumero.style.color = "#3b82f6";
+            imcTitulo.style.color = "#3b82f6";
+            boxResultado.style.borderColor = "#3b82f6";
+        }
+        else if (imc < 24.9){
+            imcTitulo.innerText = "Peso Ideal";
+            imcDescricao.innerText = "Ótimo! Mantenha com treinos de manutenção e boa alimentação.";
+
+            imcNumero.style.color = "#22c55e";
+            imcTitulo.style.color = "#22c55e";
+            boxResultado.style.borderColor = "#22c55e";
+        }
+        else if (imc < 29.9){
+            imcTitulo.innerText = "SobrePeso";
+            imcDescricao.innerText = "Combine treino aeróbico com musculação e ajuste a dieta."
+
+            imcNumero.style.color = "#facc15";
+            imcTitulo.style.color = "#facc15";
+            boxResultado.style.borderColor = "#facc15";
+        }
+        else{
+            imcTitulo.innerText = "Obesidade";
+            imcDescricao.innerText = "Procure acompanhamento profissional. Treino e dieta controlada são essenciais.";
+
+            imcNumero.style.color = "#ef4444";
+            imcTitulo.style.color = "#ef4444";
+            boxResultado.style.borderColor = "#ef4444";
+        }
+        
+    }
+
+</script>

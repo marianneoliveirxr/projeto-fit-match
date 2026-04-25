@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -5,14 +6,14 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 60px;
+    padding: 25px 60px;
     background-color: #0b1220; 
     border-bottom: 1px solid #ded9d9;
 }
@@ -27,7 +28,7 @@ body {
 }
 
 .logo img {
-    width: 30px;
+    width: 120px;
 }
 
 .nav-links {
@@ -259,11 +260,29 @@ body {
     text-align: center;
 }
 
+.top{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.top .subtitle{
+    font-size: 14px;
+}
+
+.top h2{
+    font-size: 35px;
+}
+
+.top .description{
+    font-size: 18px;
+}
+
 .imc-box {
     margin-top: 40px;
     background-color: #0f2238;
     border-radius: 12px;
-    padding: 50px;
+    padding: 50px 90px;
     border: 1px solid #38bdf833;
     max-width: 800px;
     margin: 40px auto 0;
@@ -280,93 +299,157 @@ body {
     flex: 1;
 }
 
-.label {
+.label{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 10px;
+
 }
 
-.label strong {
-    font-size: 18px;
+.label span {
+    font-size: 20px;
+    color: #94a3b8;
+}
+
+.label div {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.label input {
+    font-size: 28px;
+    font-weight: 700;
+    background: transparent;
+    border: none;
+    color: white;
+    width: 70px;
+    text-align: right;
+}
+
+.label div span {
+    font-size: 14px;
+    color: #94a3b8;
 }
 
 input[type="range"] {
     width: 100%;
-    accent-color: #38bdf8;
 }
 
 .range-labels {
     display: flex;
     justify-content: space-between;
     font-size: 12px;
-    color: #94a3b8;
+    color: #64748b;
+    margin-top: 5px;
 }
 
-.resultado {
+.boxResultado{
+    display: none;
+}
+
+.resultado{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgba(56, 189, 248, 0.08);
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 30px;
+    background-color: #38bdf80d;
+    border: 1px solid #36b5ec0d;
+    border-radius: 12px;
+
+    padding: 25px 30px;
+    margin-bottom: 20px;
+
+    position: relative;
 }
 
-.imc-valor p {
+.resultado::before {
+    content: "";
+    width: 1px;
+    height: 60px;
+    background-color: #ffffff33;
+    position: absolute;
+    left: 35%;
+}
+
+.imc-valor p{
     font-size: 12px;
     color: #94a3b8;
+    margin-bottom: 5px;
+    
 }
 
 .imc-valor h1 {
-    font-size: 48px;
-    color: #34d399;
+    font-size: 64px;
+    font-weight: 800;
 }
 
 .imc-info {
-    text-align: left;
+    text-align:left;
     max-width: 300px;
+    margin-right: 40px;
 }
 
 .imc-info h3 {
-    color: #34d399;
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
-.tabela {
-    margin-bottom: 30px;
-}
-
-.faixas {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    margin-top: 15px;
-}
-
-.faixa {
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid;
-    font-size: 14px;
-}
-
-.faixa.blue {
-    border-color: #3b82f6;
-}
-
-.faixa.green {
-    border-color: #22c55e;
-}
-
-.faixa.yellow {
-    border-color: #facc15;
-}
-
-.faixa.red {
-    border-color: #ef4444;
-}
-
-.cta p {
-    margin-bottom: 15px;
+.imc-info p {
     color: #94a3b8;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.cta p{
+    color: #fbfbfb;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+
+footer{ 
+    display: flex; 
+    flex-direction: row; 
+    background-color: #0b1220; 
+    border-top: 1px solid #ffff; 
+    font-size: 15px; 
+    padding: 25px;
+        
+} 
+
+.logo-fit img{ 
+    width: 100px; 
+    margin-left: 4rem; 
+} 
+
+.center{ 
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    justify-content: center; 
+    color: #ffff; 
+    margin-left: 16%; 
+
+} 
+
+.links{ 
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    justify-content: right; 
+    gap: 10px;
+    margin-left: 10%;
+
+
+}
+
+.links a{ 
+    text-decoration: none; 
+    color: #ffffff; 
+
+} 
+
+.links a:hover{
+    color: #3b82f6;
 }
