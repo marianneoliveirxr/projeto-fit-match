@@ -3,9 +3,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/cadastro.css">
     <title>Cadastro</title>
 </head>
 <body>
-    
+    <div class="conteudo">
+    <div class="logo">
+            <img src="img/fitmatch.png" alt="FitMatch Logo">
+            <p class="logo-titulo">MONTE SEU PERFIL DE TREINO</p>
+        </div>
+        
+        <div class="cadastro-container">
+            <div class="card-cadastro">
+
+                <div class="principalText">
+                    <h1>Criar conta</h1>
+                    <p class="descricao">Preencha seus dados para receber seu plano personalizado</p>
+                </div>
+
+                <form id="formCadastro" onsubmit="return validar( nome.value, dt_nasc.value, email.value,
+                    senha.value, confirmarSenha.value, peso.value, altura.value, objetivo1.checked, objetivo2.checked,
+                    tempo1.checked, tempo2.checked, tempo3.checked, freq1.checked, freq2.checked, freq3.checked,
+                    sexo1.checked, sexo2.checked)">
+
+                    <p class="titulo">DADOS PESSOAIS</p>
+
+                    <div class="campo">
+                        <label for="nome">NOME COMPLETO</label>
+                        <input class="ipt" id="nome" name="nome" type="text" placeholder="Seu nome">
+                        <p id="erroNome" class="erro"></p>
+                    </div>
+
+                    <div class="campo">
+                        <label for="dt_nasc">DATA DE NASCIMENTO</label>
+                        <input id="dt_nasc" name="dt_nasc" type="date">
+                        <p id="erroDtNasc" class="erro"></p>
+                    </div>
+
+                    <div class="campo">
+                        <label for="email">E-MAIL</label>
+                        <input class="ipt" id="email" name="email" type="email" placeholder="seu@email.com">
+                        <p id="erroEmail" class="erro"></p>
+                    </div>
+
+                    <div class="campo">
+                        <label for="senha">Senha</label>
+                        <input id="senha" name="senha" type="password" placeholder="••••••">
+                        <p id="erroSenha" class="erro"></p>
+                    </div>
+
+                    <div class="campo">
+                        <label for="confirmarSenha">Confirmar senha</label>
+                        <input id="confirmarSenha" name="confirmarSenha" type="password" placeholder="••••••">
+                        <p id="erroConfirmar" class="erro"></p>
+                    </div>
+
+                    <div class="peso-altura">
+                        <div class="campo">
+                            <label for="peso">PESO (KG)</label>
+                            <input id="peso" name="peso" type="number" placeholder="70">
+                            <p id="erroPeso" class="erro"></p>
+                        </div>
+
+                        <div class="campo">
+                            <label for="altura">ALTURA (CM)</label>
+                            <input id="altura" name="altura" type="number" placeholder="170">
+                            <p id="erroAltura" class="erro"></p>
+                        </div>
+                    </div>
+
+                    <p class="titulo">PERFIL DE TREINO</p>
+
+                    <div class="campo-label">
+                        <p class="titulo-campo">Qual o seu objetivo principal?</p>
+                        
+                        <label class="option">
+                            <input id="objetivo1" type="radio" name="objetivo" value="emagrecimento">
+                            <span>Emagrecimento / Definição</span>
+                        </label>
+
+                        <label class="option">
+                            <input id="objetivo2" type="radio" name="objetivo" value="massa">
+                            <span>Ganho de massa muscular</span>
+                        </label>
+
+                        <p id="erroObjetivo" class="erro"></p>
+                    </div>
+
+                    <div class="campo-label">
+                        <p class="titulo-campo">Você treina há quanto tempo?</p>
+
+                        <label class="option">
+                            <input id="tempo1" type="radio" name="tempo" value="menos6">
+                            <span>Menos de 6 meses</span>
+                        </label>
+
+                        <label class="option">
+                            <input id="tempo2" type="radio" name="tempo" value="6a2anos">
+                            <span>Entre 6 meses e 2 anos</span>
+                        </label>
+
+                        <label class="option">
+                            <input id="tempo3" type="radio" name="tempo" value="mais2">
+                            <span>Mais de 2 anos</span>
+                        </label>
+
+                        <p id="erroTempo" class="erro"></p>
+                    </div>
+
+                    <div class="campo-label">
+                        <p class="titulo-campo">Com qual frequência você treina por semana?</p>
+
+                        <label class="option">
+                            <input id="freq1" type="radio" name="frequencia" value="2a3">
+                            <span>2 a 3 vezes</span>
+                        </label>
+
+                        <label class="option">
+                            <input id="freq2" type="radio" name="frequencia" value="4a5">
+                            <span>4 a 5 vezes</span>
+                        </label>
+
+                        <label class="option">
+                            <input id="freq3" type="radio" name="frequencia" value="todos">
+                            <span>6 a 7 vezes</span>
+                        </label>
+
+                        <p id="erroFrequencia" class="erro"></p>
+                    </div>
+
+                    <div class="campo-label">
+                        <p class="titulo-campo">Qual o seu sexo biológico?</p>
+
+                        <label class="option">
+                            <input id="sexo1" type="radio" name="sexo" value="feminino">
+                            <span>Feminino</span>
+                        </label>
+
+                        <label class="option">
+                            <input id="sexo2" type="radio" name="sexo" value="masculino">
+                            <span>Masculino</span>
+                        </label>
+
+                        <p id="erroSexo" class="erro"></p>
+                    </div>
+
+                    <button type="submit" class="btn-primary" onclick="validar()">CRIAR MEU PLANO →</button>
+
+                    <div class="links">
+                        <a href="index.html">Voltar ao início</a>
+                        <p>Já tem conta? <a href="login.html">Entrar</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
+<script>
+function validar(
+    nome, data, email, senha, confirmar,
+    peso, altura,
+    obj1, obj2,
+    t1, t2, t3,
+    f1, f2, f3,
+    s1, s2
+) {
+
+    let valido = true;
+
+    
+    erroNome.innerHTML = "";
+    erroDtNasc.innerHTML = "";
+    erroEmail.innerHTML = "";
+    erroSenha.innerHTML = "";
+    erroConfirmar.innerHTML = "";
+    erroPeso.innerHTML = "";
+    erroAltura.innerHTML = "";
+    erroObjetivo.innerHTML = "";
+    erroFrequencia.innerHTML = "";
+    erroTempo.innerHTML = "";
+    erroSexo.innerHTML = "";
+
+    
+    if (nome.length < 3) {
+        erroNome.innerText = "Digite um nome válido";
+        valido = false;
+    }
+
+    
+    if (data == "") {
+        erroDtNasc.innerText = "Informe a data";
+        valido = false;
+    } else {
+        let partes = data.split("-");
+        let ano = partes[0];
+        let mes = partes[1];
+        let dia = partes[2];
+
+        if (dia > 31 || mes > 12 || ano > 2026) {
+            erroDtNasc.innerHTML = "Data inválida";
+            valido = false;
+        }
+        else if (dia > 29 && mes == 2){
+            erroDtNasc.innerHTML = "Data inválida";
+            valido = false;
+        }
+    }
+
+    
+    if (!email.includes("@") || !email.includes(".com")) {
+        erroEmail.innerText = "Email inválido";
+        valido = false;
+    } else {
+        let partes = email.split("@");
+
+        if (partes[0].length < 3) {
+            erroEmail.innerHTML = "Poucos caracteres antes do @";
+            valido = false;
+        }
+
+        if (partes[1].length < 4) {
+            erroEmail.innerHTML = "Domínio inválido";
+            valido = false;
+        }
+    }
+
+    if (senha.length < 4) {
+        erroSenha.innerHTML = "Senha muito curta";
+        valido = false;
+    }
+
+    
+    else if (!senha.includes("!") && !senha.includes("@") && !senha.includes("#") && !senha.includes("$")) 
+    {
+        erroSenha.innerHTML = "Use um caractere especial (! @ # $)";
+        valido = false;
+    }
+
+    else if (senha != confirmar) {
+        erroConfirmar.innerHTML = "Senhas não coincidem";
+        valido = false;
+    }
+
+    else if (!obj1 && !obj2) {
+        erroObjetivo.innerHTML = "Escolha um objetivo";
+        valido = false;
+    }
+
+    else if (!t1 && !t2 && !t3) {
+       erroTempo.innerHTML = "Escolha o tempo de treino";
+        valido = false;
+    }
+
+    else if (!f1 && !f2 && !f3) {
+        erroFrequencia.innerHTML = "Escolha a frequência";
+        valido = false;
+    }
+
+    else if (!s1 && !s2) {
+        erroSexo.innerHTML = "Escolha o sexo";
+        valido = false;
+    }
+
+    return valido;
+}
+</script>

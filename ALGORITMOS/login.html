@@ -3,9 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login.css">
     <title>Login</title>
 </head>
 <body>
-    
+    <div class="conteudo">
+
+        <div class="logo">
+            <img src="img/fitmatch.png" alt="FitMatch Logo">
+            <p class="logo-titulo">FEITO PARA A SUA EVOLUÇÃO</p>
+        </div>
+
+        <div class="login-container">
+
+            <div class="card-login">
+                
+                <div class="principalText">
+                    <h1>Entrar na conta</h1>
+                    <p class="descricao">Acesse seu plano personalizado</p>
+                </div>
+
+                <form id="formLogin" onsubmit="return validar (email.value,
+                    senha.value)">
+                    <div class="campo">
+                        <label for="email">E-MAIL</label>
+                        <input id="email" type="text" placeholder="seu@email.com">
+                        <p id="erroEmail" class="erro"></p>
+                    </div>
+
+                    <div class="campo">
+                        <label for="senha">Senha</label>
+                        <input id="senha" name="senha" type="password" placeholder="••••••" >
+                        <p id="erroSenha" class="erro"></p>
+                    </div>
+
+                    <button class="btn-primary" onclick="validar()">ENTRAR</button>
+                </form>
+
+                <p class="link-cadastro">Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+
+            </div>
+
+            <p class="links"><a href="index.html">Voltar para o início</a></p>
+        </div>
+    </div>
 </body>
 </html>
+<script>
+function validar(email, senha){
+
+    let valido = true;
+
+    erroEmail.innerHTML = "";
+    erroSenha.innerHTML = "";
+
+    if (!email.includes("@") || !email.includes(".com")) {
+        erroEmail.innerHTML = "Email inválido";
+        valido = false;
+    } else {
+        let partes = email.split("@");
+
+        if (partes[0].length < 3) {
+            erroEmail.innerHTML = "Poucos caracteres antes do @";
+            valido = false;
+        }
+
+        if (partes[1].length < 4) {
+            erroEmail.innerHTML = "Domínio inválido";
+            valido = false;
+        }
+    }
+
+    if (senha.length < 4) {
+        erroSenha.innerHTML = "Senha muito curta";
+        valido = false;
+    } else if (
+        !senha.includes("!") &&
+        !senha.includes("@") &&
+        !senha.includes("#") &&
+        !senha.includes("$")
+    ) {
+        erroSenha.innerHTML = "Use um caractere especial (! @ # $)";
+        valido = false;
+    }
+
+    return valido; 
+}
+</script>
