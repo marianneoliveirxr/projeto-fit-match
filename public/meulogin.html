@@ -27,17 +27,17 @@
                     senha.value)">
                     <div class="campo">
                         <label for="email">E-MAIL</label>
-                        <input id="email" type="text" placeholder="seu@email.com">
+                        <input id="ipt_email" type="text" placeholder="seu@email.com">
                         <p id="erroEmail" class="erro"></p>
                     </div>
 
                     <div class="campo">
                         <label for="senha">Senha</label>
-                        <input id="senha" name="senha" type="password" placeholder="••••••" >
+                        <input id="ipt_senha" name="senha" type="password" placeholder="••••••" >
                         <p id="erroSenha" class="erro"></p>
                     </div>
 
-                    <button class="btn-primary" onclick="validar()">ENTRAR</button>
+                    <button class="btn-primary" onclick="entrar()">ENTRAR</button>
                 </form>
 
                 <p class="link-cadastro">Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
@@ -50,18 +50,22 @@
 </body>
 </html>
 <script>
-function validar(email, senha){
 
+function entrar() {
     let valido = true;
+
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
 
     erroEmail.innerHTML = "";
     erroSenha.innerHTML = "";
 
-    if (!email.includes("@") || !email.includes(".com")) {
+    if (!emailVar.includes("@") || !emailVar.includes(".com")) {
         erroEmail.innerHTML = "Email inválido";
         valido = false;
-    } else {
-        let partes = email.split("@");
+    } 
+    else {
+        let partes = emailVar.split("@");
 
         if (partes[0].length < 3) {
             erroEmail.innerHTML = "Poucos caracteres antes do @";
@@ -74,19 +78,70 @@ function validar(email, senha){
         }
     }
 
-    if (senha.length < 4) {
+    if (senhaVar.length < 4) {
         erroSenha.innerHTML = "Senha muito curta";
         valido = false;
     } else if (
-        !senha.includes("!") &&
-        !senha.includes("@") &&
-        !senha.includes("#") &&
-        !senha.includes("$")
+        !senhaVar.includes("!") &&
+        !senhaVar.includes("@") &&
+        !senhaVar.includes("#") &&
+        !senhaVar.includes("$")
     ) {
         erroSenha.innerHTML = "Use um caractere especial (! @ # $)";
         valido = false;
     }
 
-    return valido; 
-}
+
+    if (valido){
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/cards.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+    }
+        
+
 </script>
