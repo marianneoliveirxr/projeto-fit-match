@@ -20,8 +20,8 @@
                     <p class="descricao">Preencha seus dados para receber seu plano personalizado</p>
                 </div>
 
-                <form id="formCadastro" onsubmit="return validar( nome.value, dt_nasc.value, email.value,
-                    senha.value, confirmarSenha.value, peso.value, altura.value, objetivo1.checked, objetivo2.checked,
+                <form id="formCadastro" onsubmit="return validar( ipt_nome.value, ipt_dt_nasc.value, ipt_email.value,
+                    ipt_senha.value, ipt_confirmar.value, peso.value, altura.value, objetivo1.checked, objetivo2.checked,
                     tempo1.checked, tempo2.checked, tempo3.checked, freq1.checked, freq2.checked, freq3.checked,
                     sexo1.checked, sexo2.checked)">
 
@@ -29,31 +29,31 @@
 
                     <div class="campo">
                         <label for="nome">NOME COMPLETO</label>
-                        <input class="ipt" id="nome" name="nome" type="text" placeholder="Seu nome">
+                        <input class="ipt" id="ipt_nome" name="nome" type="text" placeholder="Seu nome">
                         <p id="erroNome" class="erro"></p>
                     </div>
 
                     <div class="campo">
                         <label for="dt_nasc">DATA DE NASCIMENTO</label>
-                        <input id="dt_nasc" name="dt_nasc" type="date">
+                        <input id="ipt_dt_nasc" name="dt_nasc" type="date">
                         <p id="erroDtNasc" class="erro"></p>
                     </div>
 
                     <div class="campo">
                         <label for="email">E-MAIL</label>
-                        <input class="ipt" id="email" name="email" type="email" placeholder="seu@email.com">
+                        <input class="ipt" id="ipt_email" name="email" type="email" placeholder="seu@email.com">
                         <p id="erroEmail" class="erro"></p>
                     </div>
 
                     <div class="campo">
                         <label for="senha">Senha</label>
-                        <input id="senha" name="senha" type="password" placeholder="••••••">
+                        <input id="senha" name="ipt_senha" type="password" placeholder="••••••">
                         <p id="erroSenha" class="erro"></p>
                     </div>
 
                     <div class="campo">
                         <label for="confirmarSenha">Confirmar senha</label>
-                        <input id="confirmarSenha" name="confirmarSenha" type="password" placeholder="••••••">
+                        <input id="ipt_confirmar" name="confirmarSenha" type="password" placeholder="••••••">
                         <p id="erroConfirmar" class="erro"></p>
                     </div>
 
@@ -147,8 +147,10 @@
                         <p id="erroSexo" class="erro"></p>
                     </div>
 
-                    <button type="submit" class="btn-primary" onclick="validar()">CRIAR MEU PLANO →</button>
+                    <button type="submit" class="btn-primary" onclick="cadastrar()">CRIAR MEU PLANO →</button>
 
+                    <div id="mensagem_erro"></div>
+                    
                     <div class="links">
                         <a href="index.html">Voltar ao início</a>
                         <p>Já tem conta? <a href="login.html">Entrar</a></p>
@@ -160,14 +162,14 @@
 </body>
 </html>
 <script>
-function validar(
+function cadastrar(
     nome, data, email, senha, confirmar,
     peso, altura,
     obj1, obj2,
     t1, t2, t3,
     f1, f2, f3,
     s1, s2
-) {
+){
 
     let valido = true;
 
@@ -266,53 +268,14 @@ function validar(
     }
 
     return valido;
-}
 
-// Array para armazenar empresas cadastradas para validação de código de ativação 
-  let listaEmpresasCadastradas = [];
-
-  function cadastrar() {
-    // aguardar();
-
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
-    var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = codigo_input.value;
-    var idEmpresaVincular
-
-    // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      codigoVar == ""
-    ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
-      finalizarAguardar();
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
-
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
-        console.log("Código de ativação válido.");
-        break;
-      } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
-      }
-    }
+    if (valido){
+      //Recupere o valor da nova input pelo nome do id
+      // Agora vá para o método fetch logo abaixo
+      var nomeVar = ipt_nome.value;
+      var emailVar = ipt_email.value;
+      var senhaVar = ipt_senha.value;
+      var confirmacaoSenhaVar = ipt_confirmar.value;
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -326,7 +289,6 @@ function validar(
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
-        idEmpresaVincularServer: idEmpresaVincular
       }),
     })
       .then(function (resposta) {
@@ -356,28 +318,6 @@ function validar(
     return false;
   }
 
-  // Listando empresas cadastradas 
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
-
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }
-
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
+}
 
 </script>

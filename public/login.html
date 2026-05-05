@@ -1,108 +1,98 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>AquaTech | Login</title>
-
-    <script src="./js/sessao.js"></script>
-
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="css/login.css">
+    <title>Login</title>
 </head>
-
 <body>
+    <div class="conteudo">
 
-    <!--Header-->
-
-    <div class="header">
-        <div class="container">
-            <h1 class="titulo">AquaTech</h1>
-            <ul class="navbar">
-                <li>
-                    <a href="index.html">Inicial</a>
-                </li>
-                <li>
-                    <a href="simulador.html">Simulador</a>
-                </li>
-                <li>|</li>
-                <li class="agora">
-                    <a href="#">Login</a>
-                </li>
-                <li>
-                    <a href="cadastro.html">Cadastro</a>
-                </li>
-            </ul>
+        <div class="logo">
+            <img src="../assets/imgs/fitmatch.png" alt="FitMatch Logo">
+            <p class="logo-titulo">FEITO PARA A SUA EVOLUÇÃO</p>
         </div>
-    </div>
 
+        <div class="login-container">
 
-    <div class="login">
-        <div class="alerta_erro">
-            <div class="card_erro" id="cardErro">
-                <span id="mensagem_erro"></span>
-            </div>
-        </div>
-        <div class="container">
-            <div class="card card-login">
-                <h2>Olá de volta!</h2>
-                <div class="formulario">
-                    <div class="campo">
-                        <span>E-mail:</span>
-                        <input id="email_input" type="text" placeholder="Login">
-                    </div>
-                    <div class="campo">
-                        <span>Senha:</span>
-                        <input id="senha_input" type="password" placeholder="******">
-                    </div>
-                    <button class="botao" onclick="entrar()">Entrar</button>
+            <div class="card-login">
+                
+                <div class="principalText">
+                    <h1>Entrar na conta</h1>
+                    <p class="descricao">Acesse seu plano personalizado</p>
                 </div>
 
-                <div id="div_aguardar" class="loading-div">
-                    <img src="./assets/circle-loading.gif" id="loading-gif">
-                </div>
+                <form id="formLogin" onsubmit="return validar (email.value,
+                    senha.value)">
+                    <div class="campo">
+                        <label for="email">E-MAIL</label>
+                        <input id="ipt_email" type="text" placeholder="seu@email.com">
+                        <p id="erroEmail" class="erro"></p>
+                    </div>
 
-                <div id="div_erros_login"></div>
+                    <div class="campo">
+                        <label for="senha">Senha</label>
+                        <input id="ipt_senha" name="senha" type="password" placeholder="••••••" >
+                        <p id="erroSenha" class="erro"></p>
+                    </div>
+
+                    <button class="btn-primary" onclick="entrar()">ENTRAR</button>
+                </form>
+
+                <p class="link-cadastro">Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+
             </div>
+
+            <p class="links"><a href="index.html">Voltar para o início</a></p>
         </div>
     </div>
-
-    <!--footer inicio-->
-    <div class="footer">
-        <div class="container">
-            <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-            <span class="version">v1.0.0</span>
-        </div>
-    </div>
-    <!--footer fim-->
-
 </body>
-
 </html>
-
 <script>
 
+function entrar() {
+    let valido = true;
 
-    function entrar() {
-        aguardar();
+    var emailVar = ipt_email.value;
+    var senhaVar = ipt_senha.value;
 
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+    erroEmail.innerHTML = "";
+    erroSenha.innerHTML = "";
 
-        if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            finalizarAguardar();
-            return false;
+    if (!emailVar.includes("@") || !emailVar.includes(".com")) {
+        erroEmail.innerHTML = "Email inválido";
+        valido = false;
+    } 
+    else {
+        let partes = emailVar.split("@");
+
+        if (partes[0].length < 3) {
+            erroEmail.innerHTML = "Poucos caracteres antes do @";
+            valido = false;
         }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
 
+        if (partes[1].length < 4) {
+            erroEmail.innerHTML = "Domínio inválido";
+            valido = false;
+        }
+    }
+
+    if (senhaVar.length < 4) {
+        erroSenha.innerHTML = "Senha muito curta";
+        valido = false;
+    } else if (
+        !senhaVar.includes("!") &&
+        !senhaVar.includes("@") &&
+        !senhaVar.includes("#") &&
+        !senhaVar.includes("$")
+    ) {
+        erroSenha.innerHTML = "Use um caractere especial (! @ # $)";
+        valido = false;
+    }
+
+
+    if (valido){
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
 
@@ -151,9 +141,7 @@
 
         return false;
     }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none"
     }
+        
 
 </script>
