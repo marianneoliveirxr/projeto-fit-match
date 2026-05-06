@@ -20,10 +20,7 @@
                     <p class="descricao">Preencha seus dados para receber seu plano personalizado</p>
                 </div>
 
-                <form id="formCadastro" onsubmit="return validar( ipt_nome.value, ipt_dt_nasc.value, ipt_email.value,
-                    ipt_senha.value, ipt_confirmar.value, peso.value, altura.value, objetivo1.checked, objetivo2.checked,
-                    tempo1.checked, tempo2.checked, tempo3.checked, freq1.checked, freq2.checked, freq3.checked,
-                    sexo1.checked, sexo2.checked)">
+                <form id="formCadastro">
 
                     <p class="titulo">DADOS PESSOAIS</p>
 
@@ -56,105 +53,14 @@
                         <input id="ipt_confirmar" name="confirmarSenha" type="password" placeholder="••••••">
                         <p id="erroConfirmar" class="erro"></p>
                     </div>
-
-                    <div class="peso-altura">
-                        <div class="campo">
-                            <label for="peso">PESO (KG)</label>
-                            <input id="peso" name="peso" type="number" placeholder="70">
-                            <p id="erroPeso" class="erro"></p>
-                        </div>
-
-                        <div class="campo">
-                            <label for="altura">ALTURA (CM)</label>
-                            <input id="altura" name="altura" type="number" placeholder="170">
-                            <p id="erroAltura" class="erro"></p>
-                        </div>
-                    </div>
-
-                    <p class="titulo">PERFIL DE TREINO</p>
-
-                    <div class="campo-label">
-                        <p class="titulo-campo">Qual o seu objetivo principal?</p>
-                        
-                        <label class="option">
-                            <input id="objetivo1" type="radio" name="objetivo" value="emagrecimento">
-                            <span>Emagrecimento / Definição</span>
-                        </label>
-
-                        <label class="option">
-                            <input id="objetivo2" type="radio" name="objetivo" value="massa">
-                            <span>Ganho de massa muscular</span>
-                        </label>
-
-                        <p id="erroObjetivo" class="erro"></p>
-                    </div>
-
-                    <div class="campo-label">
-                        <p class="titulo-campo">Você treina há quanto tempo?</p>
-
-                        <label class="option">
-                            <input id="tempo1" type="radio" name="tempo" value="menos6">
-                            <span>Menos de 6 meses</span>
-                        </label>
-
-                        <label class="option">
-                            <input id="tempo2" type="radio" name="tempo" value="6a2anos">
-                            <span>Entre 6 meses e 2 anos</span>
-                        </label>
-
-                        <label class="option">
-                            <input id="tempo3" type="radio" name="tempo" value="mais2">
-                            <span>Mais de 2 anos</span>
-                        </label>
-
-                        <p id="erroTempo" class="erro"></p>
-                    </div>
-
-                    <div class="campo-label">
-                        <p class="titulo-campo">Com qual frequência você treina por semana?</p>
-
-                        <label class="option">
-                            <input id="freq1" type="radio" name="frequencia" value="2a3">
-                            <span>2 a 3 vezes</span>
-                        </label>
-
-                        <label class="option">
-                            <input id="freq2" type="radio" name="frequencia" value="4a5">
-                            <span>4 a 5 vezes</span>
-                        </label>
-
-                        <label class="option">
-                            <input id="freq3" type="radio" name="frequencia" value="todos">
-                            <span>6 a 7 vezes</span>
-                        </label>
-
-                        <p id="erroFrequencia" class="erro"></p>
-                    </div>
-
-                    <div class="campo-label">
-                        <p class="titulo-campo">Qual o seu sexo biológico?</p>
-
-                        <label class="option">
-                            <input id="sexo1" type="radio" name="sexo" value="feminino">
-                            <span>Feminino</span>
-                        </label>
-
-                        <label class="option">
-                            <input id="sexo2" type="radio" name="sexo" value="masculino">
-                            <span>Masculino</span>
-                        </label>
-
-                        <p id="erroSexo" class="erro"></p>
-                    </div>
-
                     <button type="submit" class="btn-primary" onclick="cadastrar()">CRIAR MEU PLANO →</button>
-
-                    <div id="mensagem_erro"></div>
-                    
                     <div class="links">
                         <a href="index.html">Voltar ao início</a>
                         <p>Já tem conta? <a href="login.html">Entrar</a></p>
                     </div>
+
+                    </div>
+                    <div id="mensagem_erro"></div>
                 </form>
             </div>
         </div>
@@ -162,42 +68,33 @@
 </body>
 </html>
 <script>
-function cadastrar(
-    nome, data, email, senha, confirmar,
-    peso, altura,
-    obj1, obj2,
-    t1, t2, t3,
-    f1, f2, f3,
-    s1, s2
-){
+function cadastrar(){
+
+    var nomeVar = ipt_nome.value;
+    var emailVar = ipt_email.value;
+    var dtNascVar = ipt_dt_nasc.value;
+    var senhaVar = ipt_senha.value;
+    var confirmarVar = ipt_confirmar.value;
 
     let valido = true;
 
-    
     erroNome.innerHTML = "";
     erroDtNasc.innerHTML = "";
     erroEmail.innerHTML = "";
     erroSenha.innerHTML = "";
     erroConfirmar.innerHTML = "";
-    erroPeso.innerHTML = "";
-    erroAltura.innerHTML = "";
-    erroObjetivo.innerHTML = "";
-    erroFrequencia.innerHTML = "";
-    erroTempo.innerHTML = "";
-    erroSexo.innerHTML = "";
-
     
-    if (nome.length < 3) {
+    if (nomeVar.length < 3) {
         erroNome.innerText = "Digite um nome válido";
         valido = false;
     }
 
     
-    if (data == "") {
+    if (dtNascVar == "") {
         erroDtNasc.innerText = "Informe a data";
         valido = false;
     } else {
-        let partes = data.split("-");
+        let partes = dtNascVar.split("-");
         let ano = partes[0];
         let mes = partes[1];
         let dia = partes[2];
@@ -213,11 +110,11 @@ function cadastrar(
     }
 
     
-    if (!email.includes("@") || !email.includes(".com")) {
+    if (!emailVar.includes("@") || !emailVar.includes(".com")) {
         erroEmail.innerText = "Email inválido";
         valido = false;
     } else {
-        let partes = email.split("@");
+        let partes = emailVar.split("@");
 
         if (partes[0].length < 3) {
             erroEmail.innerHTML = "Poucos caracteres antes do @";
@@ -230,94 +127,56 @@ function cadastrar(
         }
     }
 
-    if (senha.length < 4) {
+    if (senhaVar.length < 4) {
         erroSenha.innerHTML = "Senha muito curta";
         valido = false;
     }
 
     
-    else if (!senha.includes("!") && !senha.includes("@") && !senha.includes("#") && !senha.includes("$")) 
+    else if (!senhaVar.includes("!") && !senhaVar.includes("@") && !senhaVar.includes("#") && !senhaVar.includes("$")) 
     {
         erroSenha.innerHTML = "Use um caractere especial (! @ # $)";
         valido = false;
     }
 
-    else if (senha != confirmar) {
+    else if (senhaVar != confirmarVar) {
         erroConfirmar.innerHTML = "Senhas não coincidem";
         valido = false;
     }
 
-    else if (!obj1 && !obj2) {
-        erroObjetivo.innerHTML = "Escolha um objetivo";
-        valido = false;
-    }
-
-    else if (!t1 && !t2 && !t3) {
-       erroTempo.innerHTML = "Escolha o tempo de treino";
-        valido = false;
-    }
-
-    else if (!f1 && !f2 && !f3) {
-        erroFrequencia.innerHTML = "Escolha a frequência";
-        valido = false;
-    }
-
-    else if (!s1 && !s2) {
-        erroSexo.innerHTML = "Escolha o sexo";
-        valido = false;
-    }
-
-    return valido;
-
     if (valido){
       //Recupere o valor da nova input pelo nome do id
       // Agora vá para o método fetch logo abaixo
-      var nomeVar = ipt_nome.value;
-      var emailVar = ipt_email.value;
-      var senhaVar = ipt_senha.value;
-      var confirmacaoSenhaVar = ipt_confirmar.value;
 
     // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-      }),
+    fetch("/usuarios/cadastrarCompleto", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            nomeServer: nomeVar,
+            emailServer: emailVar,
+            dtNascServer: dtNascVar,
+            senhaServer: senhaVar,
+            confirmarServer: confirmarVar
+        })
     })
-      .then(function (resposta) {
+    .then(function (resposta) {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
-
-          limparFormulario();
-          finalizarAguardar();
+            alert("Cadastro realizado com sucesso!");
         } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
+            throw ("Erro no cadastro");
         }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
-      });
+    })
+    .catch(function (erro) {
+        console.log(erro);
+    });
 
     return false;
-  }
-
+}
 }
 
 </script>

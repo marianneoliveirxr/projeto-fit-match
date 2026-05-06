@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/plano.css">
+    <title>Criar plano</title>
+</head>
+<body>
+    <div class="conteudo">
+        <div class="logo">
+            <img src="assets/img/fitmatch.png" alt="FitMatch Logo">
+            <p class="logo-titulo">MONTE SEU PERFIL DE TREINO</p>
+        </div>
+        <div class="plano-container">
+            <div class="card-plano">
+                <div class="principalText">
+                    <h1>PERFIL DE TREINO</h1>
+                    <p class="descricao">Preencha seus dados para receber seu plano personalizado</p>
+                </div>
+
+                <div class="peso-altura">
+                        <div class="campo">
+                            <label for="peso">PESO (KG)</label>
+                            <input id="peso" name="peso" type="number" placeholder="70">
+                            <p id="erroPeso" class="erro"></p>
+                        </div>
+
+                        <div class="campo">
+                            <label for="altura">ALTURA (CM)</label>
+                            <input id="altura" name="altura" type="number" placeholder="170">
+                            <p id="erroAltura" class="erro"></p>
+                        </div>
+                </div>
+
+                <div class="campo-label">
+                        <p class="titulo-campo">Qual o seu objetivo principal?</p>
+                        
+                        <label class="option">
+                            <input id="objetivo1" type="radio" name="objetivo" value="emagrecimento">
+                            <span>Emagrecimento / Definição</span>
+                        </label>
+
+                        <label class="option">
+                            <input id="objetivo2" type="radio" name="objetivo" value="massa">
+                            <span>Ganho de massa muscular</span>
+                        </label>
+
+                        <p id="erroObjetivo" class="erro"></p>
+                    </div>
+
+                    <div class="campo-label">
+                        <p class="titulo-campo">Você treina há quanto tempo?</p>
+
+                        <label class="option">
+                            <input id="tempo1" type="radio" name="tempo" value="menos6">
+                            <span>Menos de 6 meses</span>
+                        </label>
+
+                        <label class="option">
+                            <input id="tempo2" type="radio" name="tempo" value="6a2anos">
+                            <span>Entre 6 meses e 2 anos</span>
+                        </label>
+
+                        <label class="option">
+                            <input id="tempo3" type="radio" name="tempo" value="mais2">
+                            <span>Mais de 2 anos</span>
+                        </label>
+
+                        <p id="erroTempo" class="erro"></p>
+                    </div>
+
+                    <div class="campo-label">
+                        <p class="titulo-campo">Com qual frequência você treina por semana?</p>
+
+                        <label class="option">
+                            <input id="freq1" type="radio" name="frequencia" value="2a3">
+                            <span>2 a 3 vezes</span>
+                        </label>
+
+                        <label class="option">
+                            <input id="freq2" type="radio" name="frequencia" value="4a5">
+                            <span>4 a 5 vezes</span>
+                        </label>
+
+                        <label class="option">
+                            <input id="freq3" type="radio" name="frequencia" value="todos">
+                            <span>6 a 7 vezes</span>
+                        </label>
+
+                        <p id="erroFrequencia" class="erro"></p>
+                    </div>
+
+                    <div class="campo-label">
+                        <p class="titulo-campo">Qual o seu sexo biológico?</p>
+
+                        <label class="option">
+                            <input id="sexo1" type="radio" name="sexo" value="feminino">
+                            <span>Feminino</span>
+                        </label>
+
+                        <label class="option">
+                            <input id="sexo2" type="radio" name="sexo" value="masculino">
+                            <span>Masculino</span>
+                        </label>
+
+                        <p id="erroSexo" class="erro"></p>
+                    </div>
+                    <button type="submit" class="btn-primary" onclick="criarPlano()">CRIAR MEU PLANO →</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    function criarPlano(){
+        erroPeso.innerHTML = "";
+        erroAltura.innerHTML = "";
+        erroObjetivo.innerHTML = "";
+        erroFrequencia.innerHTML = "";
+        erroTempo.innerHTML = "";
+        erroSexo.innerHTML = "";
+
+    
+        if (!obj1 && !obj2) {
+        erroObjetivo.innerHTML = "Escolha um objetivo";
+        valido = false;
+        }
+
+        else if (!t1 && !t2 && !t3) {
+        erroTempo.innerHTML = "Escolha o tempo de treino";
+            valido = false;
+        }
+
+        else if (!f1 && !f2 && !f3) {
+            erroFrequencia.innerHTML = "Escolha a frequência";
+            valido = false;
+        }
+
+        else if (!s1 && !s2) {
+            erroSexo.innerHTML = "Escolha o sexo";
+            valido = false;
+        }
+
+        return valido;
+
+    }
+</script>
