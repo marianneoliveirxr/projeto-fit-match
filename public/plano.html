@@ -95,12 +95,12 @@
                         <p class="titulo-campo">Qual o seu sexo biológico?</p>
 
                         <label class="option">
-                            <input id="sexo1" type="radio" name="sexo" value="feminino">
+                            <input id="fem" type="radio" name="sexo" value="feminino">
                             <span>Feminino</span>
                         </label>
 
                         <label class="option">
-                            <input id="sexo2" type="radio" name="sexo" value="masculino">
+                            <input id="masc" type="radio" name="sexo" value="masculino">
                             <span>Masculino</span>
                         </label>
 
@@ -121,7 +121,7 @@
         erroTempo.innerHTML = "";
         erroSexo.innerHTML = "";
 
-    
+        let sexo = ipt
         if (!obj1 && !obj2) {
         erroObjetivo.innerHTML = "Escolha um objetivo";
         valido = false;
