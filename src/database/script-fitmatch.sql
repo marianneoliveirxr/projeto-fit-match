@@ -5,11 +5,9 @@ CREATE TABLE perfil(
 	id INT PRIMARY KEY AUTO_INCREMENT,
     objetivo VARCHAR(45),
     nivelFisico VARCHAR(45),
-    freq VARCHAR(45),
     sexo VARCHAR(45),
     CONSTRAINT chk_objetivo CHECK (objetivo IN ('emagrecer', 'hipertrofia')),
     CONSTRAINT chk_nivelFisico CHECK (nivelFisico IN ('iniciante', 'intermediario', 'avancado')),
-	CONSTRAINT chk_freq CHECK (freq IN ('baixa', 'media', 'alta')),
     CONSTRAINT chk_sexo CHECK (sexo IN ('feminino', 'masculino'))
 );
 
