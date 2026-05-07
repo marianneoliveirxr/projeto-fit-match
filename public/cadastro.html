@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/cadastro.css">
 </head>
+
 <body>
     <div class="conteudo">
-    <div class="logo">
+        <div class="logo">
             <img src="assets/img/fitmatch.png" alt="FitMatch Logo">
             <p class="logo-titulo">MONTE SEU PERFIL DE TREINO</p>
         </div>
-        
+
         <div class="cadastro-container">
             <div class="card-cadastro">
 
@@ -54,129 +56,148 @@
                         <p id="erroConfirmar" class="erro"></p>
                     </div>
                     <button class="btn-primary" onclick="cadastrar()">CRIAR MEU PLANO →</button>
+                    <div id="mensagem_aguardar"></div>
                     <div class="links">
                         <a href="index.html">Voltar ao início</a>
                         <p>Já tem conta? <a href="login.html">Entrar</a></p>
                     </div>
 
-                    </div>
-                    <div id="mensagem_erro"></div>
                 </div>
+                <div id="mensagem_erro"></div>
             </div>
         </div>
     </div>
+    </div>
 </body>
+
 </html>
 <script>
-function cadastrar(){
-
-    var nomeVar = ipt_nome.value;
-    var dtNascVar = ipt_dt_nasc.value;
-    var emailVar = ipt_email.value;
-    var senhaVar = ipt_senha.value;
-    var confirmarVar = ipt_confirmar.value;
-
-    let valido = true;
-
-    erroNome.innerHTML = "";
-    erroDtNasc.innerHTML = "";
-    erroEmail.innerHTML = "";
-    erroSenha.innerHTML = "";
-    erroConfirmar.innerHTML = "";
-    
-    if (nomeVar.length < 3) {
-        erroNome.innerText = "Digite um nome válido";
-        valido = false;
+    function limparFormulario(){
+        ipt_nome.innerHTML = "";
+        ipt_dt_nasc.innerHTML = "";
+        ipt_email.innerHTML = "";
+        ipt_senha.innerHTML = "";
+        ipt_confirmar.innerHTML = "";
     }
+    function cadastrar() {
 
-    
-    if (!emailVar.includes("@") || !emailVar.includes(".com")) {
-        erroEmail.innerText = "Email inválido";
-        valido = false;
-    } else {
-        let partes = emailVar.split("@");
+        var nomeVar = ipt_nome.value;
+        var dtNascVar = ipt_dt_nasc.value;
+        var emailVar = ipt_email.value;
+        var senhaVar = ipt_senha.value;
+        var confirmarVar = ipt_confirmar.value;
 
-        if (partes[0].length < 3) {
-            erroEmail.innerHTML = "Poucos caracteres antes do @";
+        let valido = true;
+
+        erroNome.innerHTML = "";
+        erroDtNasc.innerHTML = "";
+        erroEmail.innerHTML = "";
+        erroSenha.innerHTML = "";
+        erroConfirmar.innerHTML = "";
+
+        if (nomeVar.length < 3) {
+            erroNome.innerText = "Digite um nome válido";
             valido = false;
         }
 
-        if (partes[1].length < 4) {
-            erroEmail.innerHTML = "Domínio inválido";
+
+        if (!emailVar.includes("@") || !emailVar.includes(".com")) {
+            erroEmail.innerText = "Email inválido";
             valido = false;
-        }
-    }
-
-    if (dtNascVar == "") {
-        erroDtNasc.innerText = "Informe a data";
-        valido = false;
-    } else {
-        let partes = dtNascVar.split("-");
-        let ano = partes[0];
-        let mes = partes[1];
-        let dia = partes[2];
-
-        if (dia > 31 || mes > 12 || ano > 2026) {
-            erroDtNasc.innerHTML = "Data inválida";
-            valido = false;
-        }
-        else if (dia > 31 || mes > 12 || ano > 2011) {
-            erroDtNasc.innerHTML = "Você precisa ter mais de 14 anos";
-            valido = false;
-        }
-        else if (dia > 29 && mes == 2){
-            erroDtNasc.innerHTML = "Data inválida";
-            valido = false;
-        }
-
-    if (senhaVar.length < 4) {
-        erroSenha.innerHTML = "Senha muito curta";
-        valido = false;
-    }
-
-    
-    else if (!senhaVar.includes("!") && !senhaVar.includes("@") && !senhaVar.includes("#") && !senhaVar.includes("$")) 
-    {
-        erroSenha.innerHTML = "Use um caractere especial (! @ # $)";
-        valido = false;
-    }
-
-    else if (senhaVar != confirmarVar) {
-        erroConfirmar.innerHTML = "Senhas não coincidem";
-        valido = false;
-    }
-
-    if (valido){
-      //Recupere o valor da nova input pelo nome do id
-      // Agora vá para o método fetch logo abaixo
-
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            nomeServer: nomeVar,
-            emailServer: emailVar,
-            senhaServer: senhaVar
-        })
-    })
-    .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-            alert("Cadastro realizado com sucesso!");
         } else {
-            throw ("Erro no cadastro");
-        }
-    })
-    .catch(function (erro) {
-        console.log(erro);
-    });
+            let partes = emailVar.split("@");
 
-    // return false;
-}
-}
-}
+            if (partes[0].length < 3) {
+                erroEmail.innerHTML = "Poucos caracteres antes do @";
+                valido = false;
+            }
+
+            if (partes[1].length < 4) {
+                erroEmail.innerHTML = "Domínio inválido";
+                valido = false;
+            }
+        }
+
+        if (dtNascVar == "") {
+            erroDtNasc.innerText = "Informe a data";
+            valido = false;
+        } else {
+            let partes = dtNascVar.split("-");
+            let ano = partes[0];
+            let mes = partes[1];
+            let dia = partes[2];
+
+            if (dia > 31 || mes > 12 || ano > 2026) {
+                erroDtNasc.innerHTML = "Data inválida";
+                valido = false;
+            }
+            else if (dia > 31 || mes > 12 || ano > 2011) {
+                erroDtNasc.innerHTML = "Você precisa ter mais de 14 anos";
+                valido = false;
+            }
+            else if (dia > 29 && mes == 2) {
+                erroDtNasc.innerHTML = "Data inválida";
+                valido = false;
+            }
+
+            if (senhaVar.length < 4) {
+                erroSenha.innerHTML = "Senha muito curta";
+                valido = false;
+            }
+
+
+            else if (!senhaVar.includes("!") && !senhaVar.includes("@") && !senhaVar.includes("#") && !senhaVar.includes("$")) {
+                erroSenha.innerHTML = "Use um caractere especial (! @ # $)";
+                valido = false;
+            }
+
+            else if (senhaVar != confirmarVar) {
+                erroConfirmar.innerHTML = "Senhas não coincidem";
+                valido = false;
+            }
+
+            if (valido) {
+                //Recupere o valor da nova input pelo nome do id
+                // Agora vá para o método fetch logo abaixo
+
+                // Enviando o valor da nova input
+                fetch("/usuarios/cadastrar", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        nomeServer: nomeVar,
+                        emailServer: emailVar,
+                        senhaServer: senhaVar
+                    })
+                })
+                    .then(function (resposta) {
+                        console.log("resposta: ", resposta);
+
+                        if (resposta.ok) {
+                            alert("Cadastro realizado com sucesso!");
+
+                            setTimeout(function () {
+                                window.location.href = "login.html";
+                            }, 3000);
+
+                            limparFormulario();
+
+                            setTimeout(
+                                mensagem_aguardar.innerHTML = 'Cadastro realizado! <br> Redirecionando para a tela de login'
+                            )
+
+                        } else {
+                            throw ("Erro no cadastro");
+                        }
+                    })
+                    .catch(function (erro) {
+                        console.log(erro);
+                    });
+
+                // return false;
+            }
+        }
+    }
 </script>

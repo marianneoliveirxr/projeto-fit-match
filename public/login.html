@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/login.css">
     <title>Login</title>
 </head>
+
 <body>
     <div class="conteudo">
 
@@ -17,7 +19,7 @@
         <div class="login-container">
 
             <div class="card-login">
-                
+
                 <div class="principalText">
                     <h1>Entrar na conta</h1>
                     <p class="descricao">Acesse seu plano personalizado</p>
@@ -32,8 +34,8 @@
 
                     <div class="campo">
                         <label for="senha">Senha</label>
-                        <input id="ipt_senha"  type="password" placeholder="••••••" >
-                        <p id="erroSenha" class="erro"></p>
+                        <input id="ipt_senha" type="password" placeholder="••••••">
+
                     </div>
 
                     <button class="btn-primary" onclick="entrar()">ENTRAR</button>
@@ -47,100 +49,93 @@
         </div>
     </div>
 </body>
+
 </html>
 <script>
 
-function entrar() {
-    let valido = true;
+    function entrar() {
+        let valido = true;
 
-    var emailVar = ipt_email.value;
-    var senhaVar = ipt_senha.value;
+        var emailVar = ipt_email.value.trim();
+        var senhaVar = ipt_senha.value.trim();
 
-    erroEmail.innerHTML = "";
-    erroSenha.innerHTML = "";
+        erroEmail.innerHTML = "";
 
-    if (!emailVar.includes("@") || !emailVar.includes(".com")) {
-        erroEmail.innerHTML = "Email inválido";
-        valido = false;
-    } 
-    else {
-        let partes = emailVar.split("@");
-
-        if (partes[0].length < 3) {
-            erroEmail.innerHTML = "Poucos caracteres antes do @";
+        if (!emailVar.includes("@") || !emailVar.includes(".com")) {
+            erroEmail.innerHTML = "Email inválido";
             valido = false;
         }
+        else {
+            let partes = emailVar.split("@");
 
-        if (partes[1].length < 4) {
-            erroEmail.innerHTML = "Domínio inválido";
-            valido = false;
-        }
-    }
-
-    if (senhaVar.length < 4) {
-        erroSenha.innerHTML = "Senha muito curta";
-        valido = false;
-    } else if (
-        !senhaVar.includes("!") &&
-        !senhaVar.includes("@") &&
-        !senhaVar.includes("#") &&
-        !senhaVar.includes("$")
-    ) {
-        erroSenha.innerHTML = "Use um caractere especial (! @ # $)";
-        valido = false;
-    }
-
-
-    if (valido){
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
-
-                    setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
+            if (partes[0].length < 3) {
+                erroEmail.innerHTML = "Poucos caracteres antes do @";
+                valido = false;
             }
 
-        }).catch(function (erro) {
-            console.log(erro);
-        })
+            if (partes[1].length < 4) {
+                erroEmail.innerHTML = "Domínio inválido";
+                valido = false;
+            }
+        }
 
-        return false;
+
+        if (valido) {
+            console.log("FORM LOGIN: ", emailVar);
+            console.log("FORM SENHA: ", senhaVar);
+
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    setTimeout(function () {
+                        window.location.href = "plano.html";
+                    }, 3000);
+
+                    limparFormulario();
+
+                    setTimeout(
+                        mensagem_aguardar.innerHTML = 'Cadastro realizado! <br> Redirecionando para a tela de login'
+                    )
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.ID_USUARIO = json.id;
+
+                    });
+
+
+                } else {
+
+                    console.log("Houve um erro ao tentar realizar o login!");
+
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                        finalizarAguardar(texto);
+                    });
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
+            })
+
+            return false;
+        }
     }
-    }
-        
+
 
 </script>
