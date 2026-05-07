@@ -23,8 +23,7 @@
                     <p class="descricao">Acesse seu plano personalizado</p>
                 </div>
 
-                <form id="formLogin" onsubmit="return validar (email.value,
-                    senha.value)">
+                <div id="formLogin">
                     <div class="campo">
                         <label for="email">E-MAIL</label>
                         <input id="ipt_email" type="text" placeholder="seu@email.com">
@@ -33,12 +32,12 @@
 
                     <div class="campo">
                         <label for="senha">Senha</label>
-                        <input id="ipt_senha" name="senha" type="password" placeholder="••••••" >
+                        <input id="ipt_senha"  type="password" placeholder="••••••" >
                         <p id="erroSenha" class="erro"></p>
                     </div>
 
                     <button class="btn-primary" onclick="entrar()">ENTRAR</button>
-                </form>
+                </div>
 
                 <p class="link-cadastro">Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
 

@@ -26,13 +26,19 @@
 
                     <div class="campo">
                         <label for="nome">NOME COMPLETO</label>
-                        <input class="ipt" id="ipt_nome" name="nome" type="text" placeholder="Seu nome">
+                        <input class="ipt" id="ipt_nome" type="text" placeholder="Seu nome">
                         <p id="erroNome" class="erro"></p>
                     </div>
 
                     <div class="campo">
+                        <label for="dt_nasc">DATA DE NASCIMENTO</label>
+                        <input id="ipt_dt_nasc" type="date">
+                        <p id="erroDtNasc" class="erro"></p>
+                    </div>
+
+                    <div class="campo">
                         <label for="email">E-MAIL</label>
-                        <input class="ipt" id="ipt_email" name="email" type="email" placeholder="seu@email.com">
+                        <input class="ipt" id="ipt_email" type="email" placeholder="seu@email.com">
                         <p id="erroEmail" class="erro"></p>
                     </div>
 
@@ -44,7 +50,7 @@
 
                     <div class="campo">
                         <label for="confirmarSenha">Confirmar senha</label>
-                        <input id="ipt_confirmar" name="confirmarSenha" type="password" placeholder="••••••">
+                        <input id="ipt_confirmar" type="password" placeholder="••••••">
                         <p id="erroConfirmar" class="erro"></p>
                     </div>
                     <button class="btn-primary" onclick="cadastrar()">CRIAR MEU PLANO →</button>
@@ -65,6 +71,7 @@
 function cadastrar(){
 
     var nomeVar = ipt_nome.value;
+    var dtNascVar = ipt_dt_nasc.value;
     var emailVar = ipt_email.value;
     var senhaVar = ipt_senha.value;
     var confirmarVar = ipt_confirmar.value;
@@ -72,6 +79,7 @@ function cadastrar(){
     let valido = true;
 
     erroNome.innerHTML = "";
+    erroDtNasc.innerHTML = "";
     erroEmail.innerHTML = "";
     erroSenha.innerHTML = "";
     erroConfirmar.innerHTML = "";
@@ -99,6 +107,28 @@ function cadastrar(){
         }
     }
 
+    if (dtNascVar == "") {
+        erroDtNasc.innerText = "Informe a data";
+        valido = false;
+    } else {
+        let partes = dtNascVar.split("-");
+        let ano = partes[0];
+        let mes = partes[1];
+        let dia = partes[2];
+
+        if (dia > 31 || mes > 12 || ano > 2026) {
+            erroDtNasc.innerHTML = "Data inválida";
+            valido = false;
+        }
+        else if (dia > 31 || mes > 12 || ano > 2011) {
+            erroDtNasc.innerHTML = "Você precisa ter mais de 14 anos";
+            valido = false;
+        }
+        else if (dia > 29 && mes == 2){
+            erroDtNasc.innerHTML = "Data inválida";
+            valido = false;
+        }
+
     if (senhaVar.length < 4) {
         erroSenha.innerHTML = "Senha muito curta";
         valido = false;
@@ -121,7 +151,7 @@ function cadastrar(){
       // Agora vá para o método fetch logo abaixo
 
     // Enviando o valor da nova input
-    fetch("/usuarios/cadastrarCompleto", {
+    fetch("/usuarios/cadastrar", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -129,8 +159,7 @@ function cadastrar(){
         body: JSON.stringify({
             nomeServer: nomeVar,
             emailServer: emailVar,
-            senhaServer: senhaVar,
-            confirmarServer: confirmarVar
+            senhaServer: senhaVar
         })
     })
     .then(function (resposta) {
@@ -149,5 +178,5 @@ function cadastrar(){
     // return false;
 }
 }
-
+}
 </script>

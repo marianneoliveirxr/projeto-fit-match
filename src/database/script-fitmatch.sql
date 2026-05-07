@@ -16,10 +16,8 @@ CREATE TABLE perfil(
 create table usuario(
 	id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(80),
-    dtNasc DATE,
     email VARCHAR(50),
     senha VARCHAR(50),
-    confirmarSenha VARCHAR(50),
     fkPerfil INT,
     FOREIGN KEY (fkPerfil) REFERENCES perfil(id)
 );
