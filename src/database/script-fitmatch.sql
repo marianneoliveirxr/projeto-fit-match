@@ -46,3 +46,53 @@ CREATE TABLE exercicios(
     fkTreino INT,
     FOREIGN KEY (fkTreino) REFERENCES treino(id)
 );
+
+desc perfil;
+INSERT INTO perfil (objetivo, nivelFisico, sexo) VALUES
+('emagrecer', 'iniciante', 'masculino'),
+('emagrecer', 'intermediário', 'masculino'),
+('emagrecer', 'avançado', 'masculino'),
+('emagrecer', 'iniciante', 'feminino'),
+('emagrecer', 'intermediário', 'feminino'),
+('emagrecer', 'avançado', 'feminino'),
+('hipertrofia', 'iniciante', 'masculino'),
+('hipertrofia', 'intermediário', 'masculino'),
+('hipertrofia', 'avançado', 'masculino'),
+('hipertrofia', 'iniciante', 'feminino'),
+('hipertrofia', 'intermediário', 'feminino'),
+('hipertrofia', 'avançado', 'feminino');
+
+desc treino;
+INSERT INTO treino (divisao, cardio, fkPerfil) VALUES
+('A', 'Escada ou Esteira', 1),
+('B', 'Escada ou Esteira', 2),
+('C', 'Escada ou Esteira', 3),
+('A', 'Escada ou Esteira', 4),
+('B', 'Escada ou Esteira', 5),
+('C', 'Escada ou Esteira', 6),
+('A', 'Esteira ou Bike', 7),
+('B', 'Esteira ou Bike', 8),
+('C', 'Esteira ou Bike', 9),
+('A', 'Esteira ou Bike', 10),
+('B', 'Esteira ou Bike', 11),
+('C', 'Esteira ou Bike', 12);
+
+desc exercicios;
+
+INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
+('Supino reto com halteres', 4, 8, 1),
+('Supino inclinado com halteres', 3, 10, 1),
+('Crucifixo', 3, 10, 1),
+('Desenvolvimento com halteres', 4, 10, 1),
+('Elevação Lateral', 3, 12, 1),
+('Tríceps Francês', 3, 10, 1),
+('Tríceps Corda', 3, 10, 1);
+
+INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
+('Supino reto com halteres', 4, 8, 7),
+('Supino inclinado com halteres', 3, 10, 7),
+('Crucifixo', 3, 10, 7),
+('Desenvolvimento com halteres', 4, 10, 7),
+('Elevação Lateral', 3, 12, 7),
+('Tríceps Francês', 3, 10, 7),
+('Tríceps Corda', 3, 10, 7);
