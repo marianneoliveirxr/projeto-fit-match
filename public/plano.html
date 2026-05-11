@@ -22,13 +22,13 @@
                 <div class="peso-altura">
                         <div class="campo">
                             <label for="peso">PESO (KG)</label>
-                            <input id="peso" name="peso" type="number" placeholder="70">
+                            <input id="peso" type="number" placeholder="70">
                             <p id="erroPeso" class="erro"></p>
                         </div>
 
                         <div class="campo">
                             <label for="altura">ALTURA (CM)</label>
-                            <input id="altura" name="altura" type="number" placeholder="170">
+                            <input id="altura" type="number" placeholder="170">
                             <p id="erroAltura" class="erro"></p>
                         </div>
                 </div>
@@ -36,73 +36,37 @@
                 <div class="campo-label">
                         <p class="titulo-campo">Qual o seu objetivo principal?</p>
                         
-                        <label class="option">
-                            <input id="objetivo1" type="radio" name="objetivo" value="emagrecimento">
-                            <span>Emagrecimento / Definição</span>
-                        </label>
-
-                        <label class="option">
-                            <input id="objetivo2" type="radio" name="objetivo" value="massa">
-                            <span>Ganho de massa muscular</span>
-                        </label>
+                        <select class="option" id="objetivo">
+                            <option value=""></option>
+                            <option value="emagrecer">Emagrecer</option>
+                            <option value="hipertrofia">Ganhar Massa Muscular</option>
+                        </select>
 
                         <p id="erroObjetivo" class="erro"></p>
                     </div>
 
                     <div class="campo-label">
-                        <p class="titulo-campo">Você treina há quanto tempo?</p>
+                        <p class="titulo-campo">Há quanto tempo você realiza exercício físico?</p>
 
-                        <label class="option">
-                            <input id="tempo1" type="radio" name="tempo" value="menos6">
-                            <span>Menos de 6 meses</span>
-                        </label>
-
-                        <label class="option">
-                            <input id="tempo2" type="radio" name="tempo" value="6a2anos">
-                            <span>Entre 6 meses e 2 anos</span>
-                        </label>
-
-                        <label class="option">
-                            <input id="tempo3" type="radio" name="tempo" value="mais2">
-                            <span>Mais de 2 anos</span>
-                        </label>
+                        <select class="option" id="tempo">
+                            <option value=""></option>
+                            <option value="iniciante">Menos de 6 meses</option>
+                            <option value="intermediario">Entre 6 meses e 2 anos</option>
+                            <option value="avancado">Mais de 2 anos</option>
+                        </select>
 
                         <p id="erroTempo" class="erro"></p>
                     </div>
 
-                    <div class="campo-label">
-                        <p class="titulo-campo">Com qual frequência você treina por semana?</p>
-
-                        <label class="option">
-                            <input id="freq1" type="radio" name="frequencia" value="2a3">
-                            <span>2 a 3 vezes</span>
-                        </label>
-
-                        <label class="option">
-                            <input id="freq2" type="radio" name="frequencia" value="4a5">
-                            <span>4 a 5 vezes</span>
-                        </label>
-
-                        <label class="option">
-                            <input id="freq3" type="radio" name="frequencia" value="todos">
-                            <span>6 a 7 vezes</span>
-                        </label>
-
-                        <p id="erroFrequencia" class="erro"></p>
-                    </div>
 
                     <div class="campo-label">
                         <p class="titulo-campo">Qual o seu sexo biológico?</p>
 
-                        <label class="option">
-                            <input id="fem" type="radio" name="sexo" value="feminino">
-                            <span>Feminino</span>
-                        </label>
-
-                        <label class="option">
-                            <input id="masc" type="radio" name="sexo" value="masculino">
-                            <span>Masculino</span>
-                        </label>
+                        <select class="option" id="sexo">
+                            <option value=""></option>
+                            <option value="feminino">Feminino</option>
+                            <option value="masculino">Masculino</option>
+                        </select>
 
                         <p id="erroSexo" class="erro"></p>
                     </div>
@@ -117,30 +81,57 @@
         erroPeso.innerHTML = "";
         erroAltura.innerHTML = "";
         erroObjetivo.innerHTML = "";
-        erroFrequencia.innerHTML = "";
         erroTempo.innerHTML = "";
         erroSexo.innerHTML = "";
 
-        let sexo = ipt
-        if (!obj1 && !obj2) {
-        erroObjetivo.innerHTML = "Escolha um objetivo";
+
+        let valido = true;
+
+        let pesoVar = Number(peso.value);
+        let alturaVar = Number(altura.value);
+
+        let selectObjetivo = document.getElementById("objetivo");
+        let objetivoVar = selectObjetivo.value;
+
+        let selectTempo = document.getElementById("tempo");
+        let tempoVar = selectTempo.value;
+
+        let selectSexo = document.getElementById("sexo");
+        let sexoVar = selectSexo.value;
+
+        if(pesoVar == ""){
+            erroPeso.innerHTML = "Informe um valor";
+            valido = false;
+        }
+        else if (pesoVar <= 0 || pesoVar < 40 || pesoVar > 150){
+            erroPeso.innerHTML = "Informe um peso válido";
+            valido = false;
+        }
+
+        if(alturaVar == ""){
+            erroAltura.innerHTML = "Informe um valor";
+            valido = false;
+        }
+        else if(alturaVar < 140 || alturaVar > 210){
+            erroAltura.innerHTML = "Informe uma altura válida";
+            valido = false;
+        }
+
+        if (objetivoVar == "") {
+        erroObjetivo.innerHTML = "Selecione uma opção";
         valido = false;
         }
 
-        else if (!t1 && !t2 && !t3) {
-        erroTempo.innerHTML = "Escolha o tempo de treino";
+        if (tempoVar == ""){
+            erroTempo.innerHTML = "Selecione uma opção";
             valido = false;
         }
 
-        else if (!f1 && !f2 && !f3) {
-            erroFrequencia.innerHTML = "Escolha a frequência";
+        if (sexoVar == ""){
+            erroSexo.innerHTML = "Selecione uma opção";
             valido = false;
         }
-
-        else if (!s1 && !s2) {
-            erroSexo.innerHTML = "Escolha o sexo";
-            valido = false;
-        }
+        
 
         return valido;
 

@@ -335,6 +335,7 @@ body {
 
 input[type="range"] {
     width: 100%;
+    color: #38bdf8
 }
 
 .range-labels {
