@@ -20,80 +20,33 @@
 </head>
 
 <body onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
+    
+    <aside>
+      <div class="top">
+        <div class="logo">
+          <img src="assets/img/fitmatch.png" alt="FitMatch Logo" />
+        </div>
+        <div class="links-container">
+          <div
+            class="link selected"
+            onclick="window.location.href = 'index.html'">
+            <p>Dashboard</p>
+          </div>
 
-    <div class="janela">
-        <div class="header-left">
-            <div class="logo">
-                <img src="assets/img/fitmatch.png" alt="FitMatch Logo">
-            </div>
+          <div class="link" onclick="window.location.href = 'treinos.html'">
+            <p>Meus Treinos</p>
+          </div>
 
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
+          <div class="link" onclick="window.location.href = 'perfil.html'">
+            <p>Meu Perfil</p>
+          </div>
 
-            <div class="btn-nav-white">
-                <a href="./cards.html">
-                    <h3>Dashboard</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav">
-
-                <h3>Meus Treinos</h3>
-
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./perfil.html">
-                    <h3>Perfil</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
+          <div class="btn-logout" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
-
         </div>
-
-        <div class="dash-right">
-
-
-            <div class="avisos">
-                <div id="alerta">
-                </div>
-                <div class="container">
-                    <h1>Publicar um aviso</h1>
-                    <div class="div-form">
-                        <form id="form_postagem" method="post" onsubmit="return publicar()">
-                            <label>
-                                Título:
-                                <br>
-                                <input name="titulo" id="titulo" maxlength="100" type="text">
-                            </label>
-                            <br>
-                            <br>
-                            <label>
-                                Descrição (máximo de 250 caracteres):
-                                <br>
-                                <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
-                            </label>
-                            <br>
-                            <br>
-                            <button>Enviar</button>
-                        </form>
-                    </div>
-                    <h1>Mural de Avisos</h1>
-                    <div class="div-results">
-                        <div id="feed_container" class="feed-container">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
+      </div>
+    </aside>
 
 </body>
 
