@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitMatch | Meu Perfil</title>
 
-    <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/estilo.css" />
+    <link rel="stylesheet" href="../css/meuperfil.css">
     <script src="../js/sessao.js"></script>
     <script src="./../js/alerta.js"></script>
 
@@ -21,33 +20,49 @@
 
 <body onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
     
-    <aside>
-      <div class="top">
-        <div class="logo">
-          <img src="assets/img/fitmatch.png" alt="FitMatch Logo" />
-        </div>
-        <div class="links-container">
-          <div
-            class="link selected"
-            onclick="window.location.href = 'index.html'">
-            <p>Dashboard</p>
-          </div>
-
-          <div class="link" onclick="window.location.href = 'treinos.html'">
-            <p>Meus Treinos</p>
-          </div>
-
-          <div class="link" onclick="window.location.href = 'perfil.html'">
-            <p>Meu Perfil</p>
-          </div>
-
-          <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
+    <div class="sidebar">
+      <div class="left">
+        <aside>
+          <div class="top">
+            <div class="logo">
+              <img src="../assets/img/fitmatch.png" alt="FitMatch Logo" />
             </div>
-        </div>
-      </div>
-    </aside>
 
+            <div class="content-sidebar">
+              <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+              </div>
+
+              <div class="links-container">
+                <div
+                  class="link"
+                  onclick="window.location.href = 'index.html'"
+                >
+                  <span>Dashboard</span>
+                </div>
+
+                <div
+                  class="link"
+                  onclick="window.location.href = 'treinos.html'"
+                >
+                  <span>Meus Treinos</span>
+                </div>
+
+                <div
+                  class="link-selected"
+                  onclick="window.location.href = 'meuperfil.html'">
+                  <span>Meu Perfil</span>
+                </div>
+
+                <div class="btn-logout" onclick="limparSessao()">
+                  <h3>Sair</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
 </body>
 
 </html>
