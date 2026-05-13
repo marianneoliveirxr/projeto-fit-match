@@ -197,7 +197,10 @@
                     },
                     body: JSON.stringify({
                         usuarioServer: sessionStorage.ID_USUARIO,
-                        perfilServer: perfilId
+                        pesoServer: pesoVar,
+                        alturaServer: alturaVar,
+                        perfilServer: perfilId,
+                        nomeServer: sessionStorage.NOME_USUARIO
                     
                     })
                 })
@@ -208,7 +211,7 @@
                             alert("Plano criado com sucesso!");
 
                             setTimeout(function () {
-                                window.location.href = "/dashboard/index.html";
+                                window.location.href = "dashboard/index.html";
                             }, 3000);
 
                             limparFormulario();

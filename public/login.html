@@ -1,141 +1,130 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/login.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/login.css" />
     <title>Login</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="conteudo">
+      <div class="logo">
+        <img src="assets/img/fitmatch.png" alt="FitMatch Logo" />
+        <p class="logo-titulo">FEITO PARA A SUA EVOLUÇÃO</p>
+      </div>
 
-        <div class="logo">
-            <img src="assets/img/fitmatch.png" alt="FitMatch Logo">
-            <p class="logo-titulo">FEITO PARA A SUA EVOLUÇÃO</p>
-        </div>
+      <div class="login-container">
+        <div class="card-login">
+          <div class="principalText">
+            <h1>Entrar na conta</h1>
+            <p class="descricao">Acesse seu plano personalizado</p>
+          </div>
 
-        <div class="login-container">
-
-            <div class="card-login">
-
-                <div class="principalText">
-                    <h1>Entrar na conta</h1>
-                    <p class="descricao">Acesse seu plano personalizado</p>
-                </div>
-
-                <div id="formLogin">
-                    <div class="campo">
-                        <label for="email">E-MAIL</label>
-                        <input id="ipt_email" type="text" placeholder="seu@email.com">
-                        <p id="erroEmail" class="erro"></p>
-                    </div>
-
-                    <div class="campo">
-                        <label for="senha">Senha</label>
-                        <input id="ipt_senha" type="password" placeholder="••••••">
-
-                    </div>
-
-                    <button class="btn-primary" onclick="entrar()">ENTRAR</button>
-                </div>
-
-                <p class="link-cadastro">Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
-
+          <div id="formLogin">
+            <div class="campo">
+              <label for="email">E-MAIL</label>
+              <input id="ipt_email" type="text" placeholder="seu@email.com" />
+              <p id="erroEmail" class="erro"></p>
             </div>
 
-            <p class="links"><a href="index.html">Voltar para o início</a></p>
-        </div>
-    </div>
-</body>
+            <div class="campo">
+              <label for="senha">Senha</label>
+              <input id="ipt_senha" type="password" placeholder="••••••" />
+            </div>
 
+            <button class="btn-primary" onclick="entrar()">ENTRAR</button>
+          </div>
+
+          <p class="link-cadastro">
+            Não tem conta? <a href="cadastro.html">Cadastre-se</a>
+          </p>
+        </div>
+
+        <p class="links"><a href="index.html">Voltar para o início</a></p>
+      </div>
+    </div>
+  </body>
 </html>
 <script>
+  function entrar() {
+    let valido = true;
 
-    function entrar() {
-        let valido = true;
+    var emailVar = ipt_email.value.trim();
+    var senhaVar = ipt_senha.value.trim();
 
-        var emailVar = ipt_email.value.trim();
-        var senhaVar = ipt_senha.value.trim();
+    erroEmail.innerHTML = "";
 
-        erroEmail.innerHTML = "";
+    if (!emailVar.includes("@") || !emailVar.includes(".com")) {
+      erroEmail.innerHTML = "Email inválido";
+      valido = false;
+    } else {
+      let partes = emailVar.split("@");
 
-        if (!emailVar.includes("@") || !emailVar.includes(".com")) {
-            erroEmail.innerHTML = "Email inválido";
-            valido = false;
-        }
-        else {
-            let partes = emailVar.split("@");
+      if (partes[0].length < 3) {
+        erroEmail.innerHTML = "Poucos caracteres antes do @";
+        valido = false;
+      }
 
-            if (partes[0].length < 3) {
-                erroEmail.innerHTML = "Poucos caracteres antes do @";
-                valido = false;
-            }
-
-            if (partes[1].length < 4) {
-                erroEmail.innerHTML = "Domínio inválido";
-                valido = false;
-            }
-        }
-
-
-        if (valido) {
-            console.log("FORM LOGIN: ", emailVar);
-            console.log("FORM SENHA: ", senhaVar);
-
-            fetch("/usuarios/autenticar", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    usuarioServer: sessionStorage.ID_USUARIO,
-                    emailServer: emailVar,
-                    senhaServer: senhaVar
-                })
-            }).then(function (resposta) {
-                console.log("ESTOU NO THEN DO entrar()!")
-
-                if (resposta.ok) {
-                    console.log(resposta);
-
-                    setTimeout(function () {
-                        window.location.href = "plano.html";
-                    }, 3000);
-
-                    limparFormulario();
-
-                    setTimeout(
-                        mensagem_aguardar.innerHTML = 'Cadastro realizado! <br> Redirecionando para a tela de login'
-                    )
-
-                    resposta.json().then(json => {
-                        console.log(json);
-                        console.log(JSON.stringify(json));
-                        sessionStorage.EMAIL_USUARIO = json.email;
-                        sessionStorage.NOME_USUARIO = json.nome;
-                        sessionStorage.ID_USUARIO = json.id_usuario;
-                    });
-
-
-                } else {
-
-                    console.log("Houve um erro ao tentar realizar o login!");
-
-                    resposta.text().then(texto => {
-                        console.error(texto);
-                        finalizarAguardar(texto);
-                    });
-                }
-
-            }).catch(function (erro) {
-                console.log(erro);
-            })
-
-            return false;
-        }
+      if (partes[1].length < 4) {
+        erroEmail.innerHTML = "Domínio inválido";
+        valido = false;
+      }
     }
 
+    if (valido) {
+      console.log("FORM LOGIN: ", emailVar);
+      console.log("FORM SENHA: ", senhaVar);
 
+      fetch("/usuarios/autenticar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          usuarioServer: sessionStorage.ID_USUARIO,
+          emailServer: emailVar,
+          senhaServer: senhaVar,
+        }),
+      })
+        .then(function (resposta) {
+          console.log("ESTOU NO THEN DO entrar()!");
+
+          if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then((json) => {
+              console.log(json);
+              console.log(JSON.stringify(json));
+              sessionStorage.EMAIL_USUARIO = json.email;
+              sessionStorage.NOME_USUARIO = json.nome;
+              sessionStorage.ID_USUARIO = json.id;
+            });
+
+            // limparFormulario();
+
+            setTimeout(function (){
+                mensagem_aguardar.innerHTML =
+                "Cadastro realizado! <br> Redirecionando para a tela de login"
+            }, 1000);
+
+            setTimeout(function () {
+              window.location.href = "plano.html";
+            }, 3000);
+          } else {
+            console.log("Houve um erro ao tentar realizar o login!");
+
+            resposta.text().then((texto) => {
+              console.error(texto);
+              finalizarAguardar(texto);
+            });
+          }
+        })
+        .catch(function (erro) {
+          console.log(erro);
+        });
+
+      return false;
+    }
+  }
 </script>
