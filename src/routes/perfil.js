@@ -4,12 +4,7 @@ var router = express.Router();
 var perfilController = require("../controllers/perfilController");
 
 //Recebendo os dados do html e direcionando para a função cadastrar de perfilController.js
-router.post("/cadastrar", function (req, res) {
-    perfilController.cadastrar(req, res);
+router.post("/adicionarPerfil", function (req, res) {
+    perfilController.adicionarPerfil(req, res);
 })
-
-router.post("/autenticar", function (req, res) {
-    perfilController.autenticar(req, res);
-});
-
 module.exports = router;

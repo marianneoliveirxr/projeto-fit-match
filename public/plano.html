@@ -82,15 +82,15 @@
   </body>
 </html>
 <script>
-    let perfilId;
+  let perfilId = 0;
 
-    function limparFormulario() {
-        ipt_peso.innerHTML = "";
-        ipt_altura.innerHTML = "";
-        objetivo.innerHTML = "";
-        tempo.innerHTML = "";
-        sexo.innerHTML = "";
-      }
+  function limparFormulario() {
+    ipt_peso.innerHTML = "";
+    ipt_altura.innerHTML = "";
+    objetivo.innerHTML = "";
+    tempo.innerHTML = "";
+    sexo.innerHTML = "";
+  }
 
   function criarPlano() {
     erroPeso.innerHTML = "";
@@ -145,90 +145,130 @@
     }
 
     if (valido) {
-        //Identificação do Perfil 
+      //Identificação do Perfil
 
-        if (objetivoVar == "emagrecer" && tempoVar == "iniciante" && sexoVar == "masculino"){
-            perfilId == 1;
-        }
-        else if (objetivoVar == "emagrecer" && tempoVar == "intermediario" && sexoVar == "masculino"){
-            perfilId = 2;
-        }
-        else if (objetivoVar == "emagrecer" && tempoVar == "avancado" && sexoVar == "masculino"){
-            perfilId = 3;
-        }
-        else if (objetivoVar == "hipertrofia" && tempoVar == "iniciante" && sexoVar == "masculino"){
-            perfilId = 4;
-        }
-        else if (objetivoVar == "hipertrofia" && tempoVar == "intermediario" && sexoVar == "masculino"){
-            perfilId = 5;
-        }
-        else if (objetivoVar == "hipertrofia" && tempoVar == "avancado" && sexoVar == "masculino"){
-            perfilId = 6;
-        }
-        else if (objetivoVar == "emagrecer" && tempoVar == "iniciante" && sexoVar == "feminino"){
-            perfilId == 7;
-        }
-        else if (objetivoVar == "emagrecer" && tempoVar == "intermediario" && sexoVar == "feminino"){
-            perfilId = 8;
-        }
-        else if (objetivoVar == "emagrecer" && tempoVar == "avancado" && sexoVar == "feminino"){
-            perfilId = 9;
-        }
-        else if (objetivoVar == "hipertrofia" && tempoVar == "iniciante" && sexoVar == "feminino"){
-            perfilId = 10;
-        }
-        else if (objetivoVar == "hipertrofia" && tempoVar == "intermediario" && sexoVar == "feminino"){
-            perfilId = 11;
-        }
-        else if (objetivoVar == "hipertrofia" && tempoVar == "avancado" && sexoVar == "feminino"){
-            perfilId = 12;
-        }
-        
+      if (
+        objetivoVar == "emagrecer" &&
+        tempoVar == "iniciante" &&
+        sexoVar == "masculino"
+      ) {
+        perfilId == 1;
+      } else if (
+        objetivoVar == "emagrecer" &&
+        tempoVar == "intermediario" &&
+        sexoVar == "masculino"
+      ) {
+        perfilId = 2;
+      } else if (
+        objetivoVar == "emagrecer" &&
+        tempoVar == "avancado" &&
+        sexoVar == "masculino"
+      ) {
+        perfilId = 3;
+      } else if (
+        objetivoVar == "hipertrofia" &&
+        tempoVar == "iniciante" &&
+        sexoVar == "masculino"
+      ) {
+        perfilId = 4;
+      } else if (
+        objetivoVar == "hipertrofia" &&
+        tempoVar == "intermediario" &&
+        sexoVar == "masculino"
+      ) {
+        perfilId = 5;
+      } else if (
+        objetivoVar == "hipertrofia" &&
+        tempoVar == "avancado" &&
+        sexoVar == "masculino"
+      ) {
+        perfilId = 6;
+      } else if (
+        objetivoVar == "emagrecer" &&
+        tempoVar == "iniciante" &&
+        sexoVar == "feminino"
+      ) {
+        perfilId == 7;
+      } else if (
+        objetivoVar == "emagrecer" &&
+        tempoVar == "intermediario" &&
+        sexoVar == "feminino"
+      ) {
+        perfilId = 8;
+      } else if (
+        objetivoVar == "emagrecer" &&
+        tempoVar == "avancado" &&
+        sexoVar == "feminino"
+      ) {
+        perfilId = 9;
+      } else if (
+        objetivoVar == "hipertrofia" &&
+        tempoVar == "iniciante" &&
+        sexoVar == "feminino"
+      ) {
+        perfilId = 10;
+      } else if (
+        objetivoVar == "hipertrofia" &&
+        tempoVar == "intermediario" &&
+        sexoVar == "feminino"
+      ) {
+        perfilId = 11;
+      } else if (
+        objetivoVar == "hipertrofia" &&
+        tempoVar == "avancado" &&
+        sexoVar == "feminino"
+      ) {
+        perfilId = 12;
+      }
+
       limparFormulario();
 
       //Recupere o valor da nova input pelo nome do id
-                // Agora vá para o método fetch logo abaixo
+      // Agora vá para o método fetch logo abaixo
 
-                // Enviando o valor da nova input
-                fetch("/perfil/cadastrar", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        usuarioServer: sessionStorage.ID_USUARIO,
-                        pesoServer: pesoVar,
-                        alturaServer: alturaVar,
-                        perfilServer: perfilId,
-                        nomeServer: sessionStorage.NOME_USUARIO
-                    
-                    })
-                })
-                    .then(function (resposta) {
-                        console.log("resposta: ", resposta);
+      // Enviando o valor da nova input
 
-                        if (resposta.ok) {
-                            alert("Plano criado com sucesso!");
 
-                            setTimeout(function () {
-                                window.location.href = "dashboard/index.html";
-                            }, 3000);
+    fetch("/perfil/adicionarPerfil", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        usuarioServer: sessionStorage.ID_USUARIO,
+        perfilServer: perfilId,
+        pesoServer: pesoVar,
+        alturaServer: alturaVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!");
 
-                            limparFormulario();
+        if (resposta.ok) {
+          console.log(resposta);
 
-                            setTimeout(
-                                mensagem_aguardar.innerHTML = 'Plano criado com sucesso! <br> Redirecionando para a dashboard'
-                            )
+          // limparFormulario();
 
-                        } else {
-                            throw ("Erro no cadastro");
-                        }
-                    })
-                    .catch(function (erro) {
-                        console.log(erro);
-                    });
+          setTimeout(function () {
+            mensagem_aguardar.innerHTML =
+              "Deu tudo certo graças ao Gustavo";
+          }, 1000);
 
-                // return false;
-            }
+          setTimeout(function () {
+            window.location.href = "/dashboard/";
+          }, 3000);
+        } else {
+          console.log("Houve um erro ao tentar realizar o login!");
+        }
+      })
+      .catch(function (erro) {
+        console.log(erro);
+      });
+
+
+
+      // return false;
+    }
   }
+
 </script>
