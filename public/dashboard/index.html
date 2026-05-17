@@ -37,7 +37,8 @@
 
                 <div
                   class="link"
-                  onclick="window.location.href = 'meuperfil.html'">
+                  onclick="window.location.href = 'meuperfil.html'"
+                >
                   <span>Meu Perfil</span>
                 </div>
 
@@ -51,6 +52,61 @@
       </div>
     </div>
 
-    <main></main>
+    <main>
+      <canvas id="myChart"></canvas>
+    </main>
   </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+  fetch(`/dash/buscarDadosGrafico/${sessionStorage.ID_USUARIO}`)
+    .then(function (resposta) {
+      return resposta.json();
+    })
+    .then(function (dados) {
+      console.log(dados);
+
+      let labels = [];
+      let dadosPeso = [];
+      let dadosImc = [];
+
+      for (let i = 0; i < dados.length; i++) {
+        labels.push(dados[i].dtRegistro);
+
+        dadosPeso.push(dados[i].peso);
+
+        dadosImc.push(dados[i].imc);
+      }
+
+      const ctx = document.getElementById("grafico").getContext("2d");
+
+      new Chart(ctx, {
+        type: "line",
+
+        data: {
+          labels: labels,
+
+          datasets: [
+            {
+              label: "Peso",
+              data: dadosPeso,
+              borderColor: "#00BFFF",
+              backgroundColor: "#00BFFF",
+            },
+
+            {
+              label: "IMC",
+              data: dadosImc,
+              borderColor: "#FFD700",
+              backgroundColor: "#FFD700",
+            },
+          ],
+        },
+      });
+    })
+    .catch(function (erro) {
+      console.log(erro);
+    });
+</script>

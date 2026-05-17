@@ -179,14 +179,15 @@
                             alert("Cadastro realizado com sucesso!");
 
                             setTimeout(function () {
+                                 mensagem_aguardar.innerHTML = 'Cadastro realizado! <br> Vamos criar seu plano!'
                                 login(emailVar, senhaVar);
                             }, 1000);
 
                             limparFormulario();
 
-                            setTimeout(
-                                mensagem_aguardar.innerHTML = 'Cadastro realizado! <br> Vamos criar seu plano!'
-                            )
+                            
+                               
+                            
 
                         } else {
                             throw ("Erro no cadastro");
