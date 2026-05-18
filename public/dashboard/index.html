@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../css/dashboard.css" />
     <title>FitMatch | Dashboard</title>
   </head>
-  <body>
+  <body onload="">
     <div class="sidebar">
       <div class="left">
         <aside>
@@ -60,6 +60,7 @@
     <main>
       <div class="welcome-header">
         <h2>Veja seu progresso e continue evoluindo.</h2>
+        <button onclick="registrarPeso()">Registrar Peso semanal</button>
       </div>
 
       <div class="kpis-container">
@@ -80,11 +81,11 @@
             <span>IMC ATUAL</span>
           </div>
           <div class="kpi-value">
-            <span id="kpi_imc_valor">25.8</span>
+            <span id="kpi_imc_valor"></span>
           </div>
           <div class="kpi-footer">
-            <span class="status-text alerta"
-              >Sobrepeso — continue focada no treino!</span
+            <span class="status-text-alerta" id="status_imc"
+              ></span
             >
           </div>
         </div>
@@ -112,8 +113,36 @@
         </div>
         
         <canvas id="myChart"></canvas>
-
       </div>
+
+      <div class="meta-container">
+  <div class="meta-header">
+    <span>METAS</span>
+    <button>Editar</button>
+  </div>
+
+  <div class="meta-content">
+    <div class="meta-info">
+      <h2>77 <span>kg</span></h2>
+      <p>Início: 82 kg</p>
+    </div>
+
+    <div class="progress-area">
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+
+      <div class="progress-labels">
+        <span>Peso inicial</span>
+        <span>Meta</span>
+      </div>
+    </div>
+
+    <div class="meta-alert">
+      🎯 Você já perdeu 3.0 kg! Continue assim.
+    </div>
+  </div>
+</div>
     </main>
   </body>
 </html>
@@ -121,6 +150,9 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+  let dadosPeso = [];
+  let dadosImc = [];
 
   fetch(`/dash/buscarDadosGrafico/${sessionStorage.ID_USUARIO}`)
     .then(function (resposta) {
@@ -130,15 +162,29 @@
       console.log(dados);
 
       let labels = [];
-      let dadosPeso = [];
-      let dadosImc = [];
-
+      
       for (let i = 0; i < dados.length; i++) {
         labels.push(dados[i].dtRegistro);
 
         dadosPeso.push(dados[i].peso);
 
         dadosImc.push(dados[i].imc);
+      }
+
+      kpi_peso_valor.innerText = dadosPeso[dadosPeso.length - 1];
+      kpi_imc_valor.innerText = (dadosImc[dadosImc.length - 1].toFixed(1));
+
+      if ((dadosImc[dadosImc.length - 1]) < 18.5){
+        status_imc.innerHTML = `Abaixo do Peso - Foque em ganho de massa muscular`;
+      }
+      else if ((dadosImc[dadosImc.length - 1]) < 24.9){
+        status_imc.innerHTML = `Peso Ideal - Continue assim!`;
+      }
+      else if ((dadosImc[dadosImc.length - 1]) < 29.9){
+        status_imc.innerHTML = `Sobrepeso — continue focada no treino!`;
+      }
+      else if ((dadosImc[dadosImc.length - 1]) > 29.9){
+        status_imc.innerHTML = `Obesidade — continue focada no treino!`;
       }
 
       const ctx = document.getElementById("myChart").getContext("2d");
@@ -171,11 +217,6 @@
       console.log(erro);
     });
 
-    fetch(`/dash/buscarPesoAtual/${sessionStorage.ID_USUARIO}`)
-    .then(function (resposta){
-      resposta.json()
-      .then(function (dados){
-        kpi_peso_valor.innerText = dados[0].peso;
-      })
-    })
+
+    
 </script>
