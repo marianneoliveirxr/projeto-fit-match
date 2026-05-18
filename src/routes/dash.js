@@ -3,7 +3,7 @@ var router = express.Router();
 
 var dashController = require("../controllers/dashController");
 
-router.get("/buscarDadosGrafico", function (req, res) {
+router.get("/buscarDadosGrafico/:id_usuario", function (req, res) {
     dashController.buscarDadosGrafico(req, res);
 });
 
