@@ -2,7 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="shortcut icon" href="../assets/img/icone.png" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="../assets/img/icone.png"
+      type="image/x-icon"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/dashboard.css" />
     <title>FitMatch | Dashboard</title>
@@ -54,10 +58,66 @@
     </div>
 
     <main>
-      <canvas id="myChart"></canvas>
+      <div class="welcome-header">
+        <h2>Veja seu progresso e continue evoluindo.</h2>
+      </div>
+
+      <div class="kpis-container">
+        <div class="card-kpi">
+          <div class="kpi-header">
+            <span>PESO ATUAL</span>
+          </div>
+          <div class="kpi-value">
+            <span id="kpi_peso_valor"></span><small>kg</small>
+          </div>
+          <div class="kpi-footer">
+            <span class="meta-text">Faltam 2.0 kg para sua meta (77 kg)</span>
+          </div>
+        </div>
+
+        <div class="card-kpi">
+          <div class="kpi-header">
+            <span>IMC ATUAL</span>
+          </div>
+          <div class="kpi-value">
+            <span id="kpi_imc_valor">25.8</span>
+          </div>
+          <div class="kpi-footer">
+            <span class="status-text alerta"
+              >Sobrepeso — continue focada no treino!</span
+            >
+          </div>
+        </div>
+
+        <div class="card-kpi">
+          <div class="kpi-header">
+            <span>TREINO DO DIA</span>
+          </div>
+          <div class="kpi-value">
+            <span id="kpi_treino_valor" class="treino-titulo"
+              >Membros Superiores</span
+            >
+          </div>
+          <div class="kpi-footer">
+            <span class="foco-text">Foco: Hipertrofia (A)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-container">
+
+        <div class="chart-header">
+          <span>EVOLUÇÃO SEMANAL</span>
+          <h4>Peso & IMC ao longo do tempo</h2>
+        </div>
+        
+        <canvas id="myChart"></canvas>
+
+      </div>
     </main>
   </body>
 </html>
+<script src="../js/sessao.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
@@ -110,4 +170,12 @@
     .catch(function (erro) {
       console.log(erro);
     });
+
+    fetch(`/dash/buscarPesoAtual/${sessionStorage.ID_USUARIO}`)
+    .then(function (resposta){
+      resposta.json()
+      .then(function (dados){
+        kpi_peso_valor.innerText = dados[0].peso;
+      })
+    })
 </script>

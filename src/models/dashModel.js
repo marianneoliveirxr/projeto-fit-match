@@ -1,8 +1,7 @@
 var database = require("../database/config");
 
 function buscarDadosGrafico(id_usuario) {
-
-    var instrucaoSql = `
+  var instrucaoSql = `
         SELECT 
             p.peso,
             ROUND(p.peso / POWER(p.altura / 100, 2), 1) AS imc,
@@ -12,11 +11,26 @@ function buscarDadosGrafico(id_usuario) {
         ORDER BY p.dtRegistro ASC;
     `;
 
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
 
-    return database.executar(instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function buscarPesoAtual(id_usuario) {
+  var instrucaoSql = `
+        SELECT peso 
+        FROM progresso 
+        WHERE fkUsuario = ${id_usuario}
+        ORDER BY dtRegistro DESC 
+        LIMIT 1;
+        `;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+
+  return database.executar(instrucaoSql);
 }
 
 module.exports = {
-    buscarDadosGrafico
+  buscarDadosGrafico,
+  buscarPesoAtual
 };

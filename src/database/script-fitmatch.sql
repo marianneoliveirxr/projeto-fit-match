@@ -1,6 +1,7 @@
 create database fitMatch;
 use fitMatch;
 
+
 CREATE TABLE perfil(
 	id INT PRIMARY KEY AUTO_INCREMENT,
     objetivo VARCHAR(45),

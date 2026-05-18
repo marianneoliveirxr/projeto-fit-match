@@ -7,4 +7,8 @@ router.get("/buscarDadosGrafico/:id_usuario", function (req, res) {
     dashController.buscarDadosGrafico(req, res);
 });
 
+router.get("/buscarPesoAtual/:id_usuario", function (req, res) {
+    dashController.buscarPesoAtual(req, res);
+});
+
 module.exports = router;
