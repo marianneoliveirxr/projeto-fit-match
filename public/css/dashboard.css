@@ -37,8 +37,6 @@ body{
     width: 150px;
 }
 
-/* TEXTO OLÁ */
-
 .hello{
     margin-top: 35px;
     margin-bottom: 30px;
@@ -54,16 +52,12 @@ body{
     color: #38bdf8;
 }
 
-/* LINKS */
-
 .links-container{
     display: flex;
     flex-direction: column;
     gap: 14px;
     color: #38bdf8
 }
-
-/* LINK PADRÃO */
 
 .link,
 .link-selected{
@@ -76,16 +70,12 @@ body{
     align-items: center;
 }
 
-/* TEXO DOS LINKS */
-
 .link p,
 .link-selected p{
     color: #38bdf8;
     font-size: 15px;
     font-weight: 500;
 }
-
-/* HOVER */
 
 .link:hover{
     background-color: #0f172a;
@@ -95,8 +85,6 @@ body{
     color: #38bdf8;
 }
 
-/* LINK SELECIONADO */
-
 .link-selected{
     background-color: #0f2238;
     border: 1px solid #1d4f72;
@@ -105,8 +93,6 @@ body{
 .link-selected p{
     color: #38bdf8;
 }
-
-/* BOTÃO SAIR */
 
 .btn-logout{
     margin-top: 37vh;
@@ -128,8 +114,6 @@ body{
     background-color: #0ea5e9;
     transform: translateY(-2px);
 }
-
-/* MAIN */
 
 main{
     margin-left: 260px;

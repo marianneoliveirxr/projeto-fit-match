@@ -37,42 +37,35 @@
 
           <div class="campo-label">
             <p class="titulo-campo">Qual o seu objetivo principal?</p>
-
             <select class="option" id="objetivo">
               <option value=""></option>
               <option value="emagrecer">Emagrecer</option>
               <option value="hipertrofia">Ganhar Massa Muscular</option>
             </select>
-
             <p id="erroObjetivo" class="erro"></p>
           </div>
 
           <div class="campo-label">
-            <p class="titulo-campo">
-              Há quanto tempo você realiza exercício físico?
-            </p>
-
+            <p class="titulo-campo">Há quanto tempo você realiza exercício físico?</p>
             <select class="option" id="tempo">
               <option value=""></option>
               <option value="iniciante">Menos de 6 meses</option>
               <option value="intermediario">Entre 6 meses e 2 anos</option>
               <option value="avancado">Mais de 2 anos</option>
             </select>
-
             <p id="erroTempo" class="erro"></p>
           </div>
 
           <div class="campo-label">
             <p class="titulo-campo">Qual o seu sexo biológico?</p>
-
             <select class="option" id="sexo">
               <option value=""></option>
               <option value="feminino">Feminino</option>
               <option value="masculino">Masculino</option>
             </select>
-
             <p id="erroSexo" class="erro"></p>
           </div>
+
           <button type="submit" class="btn-primary" onclick="criarPlano()">
             CRIAR MEU PLANO →
           </button>
@@ -85,11 +78,11 @@
   let perfilId = 0;
 
   function limparFormulario() {
-    ipt_peso.innerHTML = "";
-    ipt_altura.innerHTML = "";
-    objetivo.innerHTML = "";
-    tempo.innerHTML = "";
-    sexo.innerHTML = "";
+    ipt_peso.value = "";
+    ipt_altura.value = "";
+    objetivo.value = "";
+    tempo.value = "";
+    sexo.value = "";
   }
 
   function criarPlano() {
@@ -145,130 +138,61 @@
     }
 
     if (valido) {
-      //Identificação do Perfil
-
-      if (
-        objetivoVar == "emagrecer" &&
-        tempoVar == "iniciante" &&
-        sexoVar == "masculino"
-      ) {
-        perfilId == 1;
-      } else if (
-        objetivoVar == "emagrecer" &&
-        tempoVar == "intermediario" &&
-        sexoVar == "masculino"
-      ) {
+      if (objetivoVar == "emagrecer" && tempoVar == "iniciante" && sexoVar == "masculino") {
+        perfilId = 1;
+      } else if (objetivoVar == "emagrecer" && tempoVar == "intermediario" && sexoVar == "masculino") {
         perfilId = 2;
-      } else if (
-        objetivoVar == "emagrecer" &&
-        tempoVar == "avancado" &&
-        sexoVar == "masculino"
-      ) {
+      } else if (objetivoVar == "emagrecer" && tempoVar == "avancado" && sexoVar == "masculino") {
         perfilId = 3;
-      } else if (
-        objetivoVar == "hipertrofia" &&
-        tempoVar == "iniciante" &&
-        sexoVar == "masculino"
-      ) {
+      } else if (objetivoVar == "hipertrofia" && tempoVar == "iniciante" && sexoVar == "masculino") {
         perfilId = 4;
-      } else if (
-        objetivoVar == "hipertrofia" &&
-        tempoVar == "intermediario" &&
-        sexoVar == "masculino"
-      ) {
+      } else if (objetivoVar == "hipertrofia" && tempoVar == "intermediario" && sexoVar == "masculino") {
         perfilId = 5;
-      } else if (
-        objetivoVar == "hipertrofia" &&
-        tempoVar == "avancado" &&
-        sexoVar == "masculino"
-      ) {
+      } else if (objetivoVar == "hipertrofia" && tempoVar == "avancado" && sexoVar == "masculino") {
         perfilId = 6;
-      } else if (
-        objetivoVar == "emagrecer" &&
-        tempoVar == "iniciante" &&
-        sexoVar == "feminino"
-      ) {
-        perfilId == 7;
-      } else if (
-        objetivoVar == "emagrecer" &&
-        tempoVar == "intermediario" &&
-        sexoVar == "feminino"
-      ) {
+      } else if (objetivoVar == "emagrecer" && tempoVar == "iniciante" && sexoVar == "feminino") {
+        perfilId = 7;
+      } else if (objetivoVar == "emagrecer" && tempoVar == "intermediario" && sexoVar == "feminino") {
         perfilId = 8;
-      } else if (
-        objetivoVar == "emagrecer" &&
-        tempoVar == "avancado" &&
-        sexoVar == "feminino"
-      ) {
+      } else if (objetivoVar == "emagrecer" && tempoVar == "avancado" && sexoVar == "feminino") {
         perfilId = 9;
-      } else if (
-        objetivoVar == "hipertrofia" &&
-        tempoVar == "iniciante" &&
-        sexoVar == "feminino"
-      ) {
+      } else if (objetivoVar == "hipertrofia" && tempoVar == "iniciante" && sexoVar == "feminino") {
         perfilId = 10;
-      } else if (
-        objetivoVar == "hipertrofia" &&
-        tempoVar == "intermediario" &&
-        sexoVar == "feminino"
-      ) {
+      } else if (objetivoVar == "hipertrofia" && tempoVar == "intermediario" && sexoVar == "feminino") {
         perfilId = 11;
-      } else if (
-        objetivoVar == "hipertrofia" &&
-        tempoVar == "avancado" &&
-        sexoVar == "feminino"
-      ) {
+      } else if (objetivoVar == "hipertrofia" && tempoVar == "avancado" && sexoVar == "feminino") {
         perfilId = 12;
       }
 
-      limparFormulario();
-
-      //Recupere o valor da nova input pelo nome do id
-      // Agora vá para o método fetch logo abaixo
-
-      // Enviando o valor da nova input
-
-
-    fetch("/perfil/adicionarPerfil", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        usuarioServer: sessionStorage.ID_USUARIO,
-        perfilServer: perfilId,
-        pesoServer: pesoVar,
-        alturaServer: alturaVar
-      }),
-    })
-      .then(function (resposta) {
-        console.log("ESTOU NO THEN DO entrar()!");
-
-        if (resposta.ok) {
-          console.log(resposta);
-
-          // limparFormulario();
-
-          setTimeout(function () {
-            mensagem_aguardar.innerHTML =
-              "Deu tudo certo graças ao Gustavo";
-          }, 1000);
-
-          setTimeout(function () {
-            window.location.href = "/dashboard/";
-          }, 3000);
-        } else {
-          console.log("Houve um erro ao tentar realizar o login!");
-        }
+      fetch("/perfil/adicionarPerfil", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          usuarioServer: sessionStorage.ID_USUARIO,
+          perfilServer: perfilId,
+          pesoServer: pesoVar,
+          alturaServer: alturaVar
+        }),
       })
-      .catch(function (erro) {
-        console.log(erro);
-      });
+        .then(function (resposta) {
+          console.log("ESTOU NO THEN DO criarPlano()!");
 
+          if (resposta.ok) {
+            console.log(resposta);
+            limparFormulario();
 
-
-      // return false;
+            setTimeout(function () {
+              window.location.href = "/dashboard/";
+            }, 3000);
+          } else {
+            console.log("Houve um erro ao tentar criar o plano!");
+          }
+        })
+        .catch(function (erro) {
+          console.log(erro);
+        });
     }
   }
-
 </script>
