@@ -67,6 +67,12 @@
             <p id="erroSexo" class="erro"></p>
           </div>
 
+          <div class="campo">
+              <label for="meta">Qual a sua meta de peso?</label>
+              <input id="ipt_meta" type="number" placeholder="Ex: 50kg" />
+              <p id="erroMeta" class="erro"></p>
+            </div>
+
           <button type="submit" class="btn-primary" onclick="criarPlano()">
             CRIAR MEU PLANO →
           </button>
@@ -92,11 +98,13 @@
     erroObjetivo.innerHTML = "";
     erroTempo.innerHTML = "";
     erroSexo.innerHTML = "";
+    erroMeta.innerHTML = "";
 
     let valido = true;
 
     let pesoVar = Number(ipt_peso.value);
     let alturaVar = Number(ipt_altura.value);
+    let metaVar = Number(ipt_meta.value);
 
     let selectObjetivo = document.getElementById("objetivo");
     let objetivoVar = selectObjetivo.value;
@@ -138,6 +146,14 @@
       valido = false;
     }
 
+    if (metaVar == "") {
+      erroMeta.innerHTML = "Informe um valor";
+      valido = false;
+    } else if (metaVar <= 0 || metaVar < 40 || metaVar > 150) {
+      erroMeta.innerHTML = "Informe um peso válido";
+      valido = false;
+    }
+
     if (valido) {
       if (objetivoVar == "emagrecer" && tempoVar == "iniciante" && sexoVar == "masculino") {
         perfilId = 1;
@@ -174,7 +190,8 @@
           usuarioServer: sessionStorage.ID_USUARIO,
           perfilServer: perfilId,
           pesoServer: pesoVar,
-          alturaServer: alturaVar
+          alturaServer: alturaVar,
+          metaServer: metaVar
         }),
       })
         .then(function (resposta) {
@@ -185,7 +202,7 @@
             limparFormulario();
 
             setTimeout(function () {
-              window.location.href = "/dashboard/";
+              window.location.href = "login.html";
             }, 3000);
           } else {
             console.log("Houve um erro ao tentar criar o plano!");

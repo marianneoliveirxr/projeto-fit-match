@@ -29,17 +29,17 @@
 
       <div class="input-group">
         <label>PESO ATUAL (KG)</label>
-        <input type="number" placeholder="Ex: 62.5" />
+        <input type="number" id="ipt_peso" placeholder="Ex: 62.5" />
       </div>
 
       <div class="input-group">
         <label>ALTURA ATUAL (CM)</label>
-        <input type="number" placeholder="Ex: 165" />
+        <input type="number" id="ipt_altura" placeholder="Ex: 165" />
       </div>
 
       <div class="input-group">
         <label>META DE PESO</label>
-        <input type="text" placeholder="Ex: 50kg" />
+        <input type="text" placeholder="Ex: 50kg" id="ipt_meta"/>
       </div>
 
       <button onclick="atualizar()">ATUALIZAR</button>
@@ -48,6 +48,49 @@
 </body>
 </html>
 <script>
-  
+    function atualizar() {
+
+    var peso = Number(ipt_peso.value);
+    var altura = Number(ipt_altura.value);
+    var meta = Number(ipt_meta.value);
+
+    if (peso <= 0 || altura <= 0) {
+        alert("Preencha os campos corretamente");
+        return;
+    }
+
+    fetch("/dash/atualizarPeso", {
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+            id_usuario: sessionStorage.ID_USUARIO,
+            peso: peso,
+            altura: altura,
+            meta: meta
+        })
+    })
+
+    .then(function(resposta) {
+
+        if (resposta.ok) {
+
+            alert("Atualização realizada com sucesso!");
+
+            window.location = "index.html";
+        }
+        else {
+            throw "Erro ao atualizar";
+        }
+
+    })
+
+    .catch(function(erro) {
+        console.log(erro);
+    });
+}
 </script>
 

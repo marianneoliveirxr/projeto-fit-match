@@ -6,6 +6,7 @@ function adicionarPerfil(req, res) {
     var id_usuario = req.body.usuarioServer;
     var peso = req.body.pesoServer;
     var altura = req.body.alturaServer;
+    var pesoMeta = req.body.metaServer;
 
     // Faça as validações dos valores
     if (perfilId == undefined) {
@@ -13,7 +14,7 @@ function adicionarPerfil(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo perfilModel.js
-        perfilModel.adicionarPerfil(perfilId, id_usuario, peso, altura)
+        perfilModel.adicionarPerfil(perfilId, id_usuario, peso, altura, pesoMeta)
             .then(
                 function (resultado) {
                     res.json(resultado);
