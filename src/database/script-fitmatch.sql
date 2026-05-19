@@ -1,13 +1,11 @@
 create database fitMatch;
 use fitMatch;
 
-
 CREATE TABLE perfil(
 	id INT PRIMARY KEY AUTO_INCREMENT,
     objetivo VARCHAR(45),
     nivelFisico VARCHAR(45),
     sexo VARCHAR(45),
-    peso INT,
     CONSTRAINT chk_objetivo CHECK (objetivo IN ('emagrecer', 'hipertrofia')),
     CONSTRAINT chk_nivelFisico CHECK (nivelFisico IN ('iniciante', 'intermediario', 'avancado')),
     CONSTRAINT chk_sexo CHECK (sexo IN ('feminino', 'masculino'))
@@ -16,7 +14,7 @@ CREATE TABLE perfil(
 create table usuario(
 	id_usuario INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(80),
-    email VARCHAR(50),
+    email VARCHAR(50) UNIQUE,
     senha VARCHAR(50),
     fkPerfil INT,
     FOREIGN KEY (fkPerfil) REFERENCES perfil(id)
@@ -24,11 +22,19 @@ create table usuario(
 
 CREATE TABLE progresso(
 	id INT PRIMARY KEY AUTO_INCREMENT,
+    peso INT,
     altura INT,
     dtRegistro DATETIME DEFAULT CURRENT_TIMESTAMP,
     fkUsuario INT,
     FOREIGN KEY (fkUsuario) REFERENCES usuario(id_usuario)
 );	
+
+CREATE TABLE meta(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    pesoMeta INT,
+    fkUsuario INT,
+    FOREIGN KEY (fkUsuario) REFERENCES usuario(id_usuario)
+);
 
 CREATE TABLE treino(
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -441,3 +447,40 @@ INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Glute bridge com barra', 5, 10, 36),
 ('Cadeira abdutora', 5, 10, 36),
 ('Leg curl', 5, 10, 36);
+
+desc progresso;
+
+DELETE FROM usuario WHERE id_usuario = 1;
+
+INSERT INTO usuario (nome, email, senha) VALUES
+('Gustavo', 'gustavo@gmail.com', '123456#');
+
+-- GRÁFICO DASHBOARD
+SELECT 
+    p.peso,
+    ROUND(p.peso / POWER(p.altura / 100, 2), 1) AS imc,
+    DATE_FORMAT(p.dtRegistro, '%d/%m') AS dtRegistro
+FROM progresso p
+WHERE p.fkUsuario = 1
+ORDER BY p.dtRegistro ASC;
+
+-- KPI PESO ATUAL
+SELECT peso 
+FROM progresso 
+WHERE fkUsuario = 1
+ORDER BY dtRegistro DESC 
+LIMIT 1;
+
+-- KPI QUANTO FALTA PARA A META
+SELECT 
+p.peso AS pesoAtual,
+m.pesoMeta,
+ABS(p.peso - m.pesoMeta) AS diferencaPeso
+FROM progresso p
+JOIN meta m ON m.fkUsuario = p.fkUsuario
+WHERE p.fkUsuario = 1
+ORDER BY p.dtRegistro DESC
+LIMIT 1;
+
+
+
