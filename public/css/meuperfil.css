@@ -52,7 +52,6 @@ body{
     color: #38bdf8;
 }
 
-
 .links-container{
     display: flex;
     flex-direction: column;
@@ -117,7 +116,157 @@ body{
 }
 
 main{
-    margin-left: 260px;
-    padding: 40px;
+    margin-left: 250px;
+    padding: 30px;
+}
+
+.page-title h1{
     color: white;
+    font-size: 45px;
+}
+
+.page-title p{
+    color: #64748b;
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
+
+.profile-card{
+    background-color: #071120;
+    border: 1px solid #123252;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 25px;
+}
+
+.card-header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.card-header span{
+    color: #38bdf8;
+    font-weight: bold;
+}
+
+.profile-top{
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.avatar{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #0f2238;
+    border: 1px solid #1d4f72;
+    color: #38bdf8;
+    font-size: 32px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.profile-info h2{
+    color: white;
+    font-size: 30px;
+}
+
+.profile-info p{
+    color: #64748b;
+}
+
+.profile-grid{
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-box{
+    width: 45%;
+    margin-bottom: 30px;
+}
+
+.info-box span{
+    color: #64748b;
+    font-size: 13px;
+}
+
+.info-box h3{
+    color: white;
+    margin-top: 8px;
+}
+
+.meta-container{
+    background-color: #071120;
+    border: 1px solid #123252;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.meta-header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.meta-header span{
+    color: #38bdf8;
+    font-weight: bold;
+}
+
+.meta-title{
+    color: #64748b;
+    font-size: 14px;
+}
+
+.meta-info h2{
+    color: white;
+    font-size: 55px;
+    margin-top: 10px;
+}
+
+.meta-info h2 span{
+    color: #94a3b8;
+    font-size: 22px;
+}
+
+.meta-info p{
+    color: #64748b;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.progress-bar{
+    width: 100%;
+    height: 14px;
+    background-color: #1e293b;
+    border-radius: 20px;
+}
+
+.progress-fill{
+    width: 60%;
+    height: 14px;
+    border-radius: 20px;
+    background: linear-gradient(to right, #38bdf8, #4ade80);
+}
+
+.progress-labels{
+    display: flex;
+    justify-content: space-between;
+    color: #64748b;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.meta-alert{
+    margin-top: 30px;
+    background-color: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #4ade80;
+    padding: 15px;
+    border-radius: 12px;
 }

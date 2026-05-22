@@ -1,13 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="shortcut icon" href="../assets/img/icone.png" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="shortcut icon"
+      href="../assets/img/icone.png"
+      type="image/x-icon"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FitMatch | Meus Treinos</title>
-    <link rel="stylesheet" href="../css/treinos.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../css/treinos.css" />
+  </head>
+  <body>
     <div class="sidebar">
       <div class="left">
         <aside>
@@ -22,23 +26,18 @@
               </div>
 
               <div class="links-container">
-                <div
-                  class="link"
-                  onclick="window.location.href = 'index.html'"
-                >
+                <div class="link" onclick="window.location.href = 'index.html'">
                   <span>Dashboard</span>
                 </div>
 
-                <div
-                  class="link-selected"
-                  onclick="window.location.href = 'treinos.html'"
-                >
+                <div class="link-selected">
                   <span>Meus Treinos</span>
                 </div>
 
                 <div
                   class="link"
-                  onclick="window.location.href = 'meuperfil.html'">
+                  onclick="window.location.href = 'meuperfil.html'"
+                >
                   <span>Meu Perfil</span>
                 </div>
 
@@ -51,9 +50,96 @@
         </aside>
       </div>
     </div>
-</body>
+
+    <main>
+      <div class="page-title">
+        <h1>Meus Treinos</h1>
+        <p>Seu plano personalizado — Semana atual</p>
+      </div>
+
+      <div class="treino-card">
+        <div class="treino-header" onclick="abrirTreino('treinoA')">
+          <div class="treino-left">
+            <div class="letra-treino azul">A</div>
+
+            <div class="treino-info">
+              <h2>Treino A — Peito & Tríceps</h2>
+              <p>6 exercícios</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="treino-conteudo" id="treinoA">
+          <div class="tabela-header">
+            <span class="col-exercicio">EXERCÍCIO</span>
+            <span>SÉRIES</span>
+            <span>REPETIÇÕES</span>
+          </div>
+
+          <div class="linha-exercicio">
+            <p class="col-exercicio">Supino Reto</p>
+            <span>4</span>
+            <span>10</span>
+          </div>
+
+          <div class="linha-exercicio">
+            <p class="col-exercicio">Supino Inclinado</p>
+            <span>3</span>
+            <span>12</span>
+          </div>
+
+          <div class="cardio">
+            <p>Cardio: Bicicleta Ergométrica</p>
+            <span>30 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="treino-card">
+        <div class="treino-header verde" onclick="abrirTreino('treinoB')">
+          <div class="treino-left">
+            <div class="letra-treino verde-box">B</div>
+
+            <div class="treino-info">
+              <h2>Treino B — Costas & Bíceps</h2>
+              <p>6 exercícios</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="treino-conteudo" id="treinoB">
+          <div class="tabela-header">
+            <span class="col-exercicio">EXERCÍCIO</span>
+            <span>SÉRIES</span>
+            <span>REPETIÇÕES</span>
+          </div>
+
+          <div class="linha-exercicio">
+            <p class="col-exercicio">Puxada Frontal</p>
+            <span>4</span>
+            <span>12</span>
+          </div>
+
+          <div class="cardio">
+            <p>Cardio: Escada</p>
+            <span>20 min</span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
 <script src="../js/sessao.js"></script>
 <script>
-  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-</script>
+      b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+      function abrirTreino(id) {
+        let treino = document.getElementById(id);
+
+        if (treino.style.display == "block") {
+          treino.style.display = "none";
+        } else {
+          treino.style.display = "block";
+        }
+      }
+    </script>

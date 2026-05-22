@@ -1,25 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-
-<head>
-    <link rel="shortcut icon" href="../assets/img/icone.png" type="image/x-icon">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitMatch | Meu Perfil</title>
-
-    <link rel="stylesheet" href="../css/meuperfil.css">
-    <script src="../js/sessao.js"></script>
-    <script src="./../js/alerta.js"></script>
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+  <head>
     <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-</head>
-
-<body onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
-    
+      rel="shortcut icon"
+      href="../assets/img/icone.png"
+      type="image/x-icon"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FitMatch | Meu Perfil</title>
+    <link rel="stylesheet" href="../css/meuperfil.css" />
+    <script src="../js/sessao.js"></script>
+  </head>
+  <body>
     <div class="sidebar">
       <div class="left">
         <aside>
@@ -34,10 +28,7 @@
               </div>
 
               <div class="links-container">
-                <div
-                  class="link"
-                  onclick="window.location.href = 'index.html'"
-                >
+                <div class="link" onclick="window.location.href = 'index.html'">
                   <span>Dashboard</span>
                 </div>
 
@@ -50,7 +41,8 @@
 
                 <div
                   class="link-selected"
-                  onclick="window.location.href = 'meuperfil.html'">
+                  onclick="window.location.href = 'meuperfil.html'"
+                >
                   <span>Meu Perfil</span>
                 </div>
 
@@ -63,15 +55,84 @@
         </aside>
       </div>
     </div>
-</body>
 
+    <main>
+      <div class="page-title">
+        <h1>Meu Perfil</h1>
+        <p>Gerencie seus dados e acompanhe suas metas.</p>
+      </div>
+
+      <div class="profile-card">
+        <div class="card-header">
+          <span>PERFIL</span>
+        </div>
+
+        <div class="profile-top">
+          <div class="avatar">A</div>
+
+          <div class="profile-info">
+            <h2 id="b_nome"></h2>
+            <p>Emagrecimento / Definição</p>
+          </div>
+        </div>
+
+        <div class="profile-grid">
+          <div class="info-box">
+            <span>NOME</span>
+            <h3>Ana Silva</h3>
+          </div>
+
+          <div class="info-box">
+            <span>ALTURA (CM)</span>
+            <h3>165</h3>
+          </div>
+
+          <div class="info-box">
+            <span>PESO ATUAL (KG)</span>
+            <h3>82</h3>
+          </div>
+
+          <div class="info-box">
+            <span>OBJETIVO</span>
+            <h3>Emagrecimento / Definição</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="meta-container">
+        <div class="meta-header">
+          <span>METAS</span>
+        </div>
+
+        <div class="meta-info">
+          <span class="meta-title">META DE PESO</span>
+
+          <h2>77 <span>kg</span></h2>
+
+          <p>Início: 82 kg</p>
+        </div>
+
+        <div class="progress-area">
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+
+          <div class="progress-labels">
+            <span>Peso inicial</span>
+            <span>Meta</span>
+          </div>
+        </div>
+
+        <div class="meta-alert">
+          🎯 Você já perdeu <strong>3.0 kg!</strong> Continue assim.
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
 
 <script src="../js/sessao.js"></script>
 <script>
-    
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
-
-
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  b_nome.innerHTML = sessionStorage.NOME_USUARIO;
 </script>

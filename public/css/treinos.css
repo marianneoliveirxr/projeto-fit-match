@@ -9,6 +9,7 @@
 body{
     font-family: 'Poppins', sans-serif;
     background-color: #020817;
+    overflow-x: hidden;
 }
 
 .sidebar{
@@ -119,6 +120,133 @@ body{
 
 main{
     margin-left: 260px;
-    padding: 40px;
+    padding: 30px;
+}
+
+.page-title h1{
     color: white;
+    font-size: 45px;
+}
+
+.page-title p{
+    color: #64748b;
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
+
+.treino-card{
+    background-color: #071120;
+    border: 1px solid #123252;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.treino-header{
+    background-color: #0f2238;
+    padding: 25px;
+    cursor: pointer;
+}
+
+.verde{
+    background-color: #123126;
+}
+
+.roxo{
+    background-color: #2b1730;
+}
+
+.treino-left{
+    display: flex;
+    align-items: center;
+}
+
+.letra-treino{
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.azul{
+    background-color: #123252;
+    color: #38bdf8;
+}
+
+.verde-box{
+    background-color: #14532d;
+    color: #4ade80;
+}
+
+.roxo-box{
+    background-color: #581c87;
+    color: #e879f9;
+}
+
+.treino-info h2{
+    color: white;
+}
+
+.treino-info p{
+    color: #64748b;
+}
+
+.treino-conteudo{
+    display: none;
+}
+
+.tabela-header{
+    display: flex;
+    padding: 20px 30px;
+    border-bottom: 1px solid #132033;
+}
+
+.tabela-header span{
+    color: #64748b;
+    font-size: 13px;
+}
+
+.col-exercicio{
+    width: 60%;
+}
+
+.tabela-header span:nth-child(2),
+.tabela-header span:nth-child(3),
+.linha-exercicio span{
+    width: 20%;
+    text-align: center;
+}
+
+.linha-exercicio{
+    display: flex;
+    padding: 22px 30px;
+    border-bottom: 1px solid #132033;
+}
+
+.linha-exercicio p{
+    color: white;
+}
+
+.linha-exercicio span{
+    color: #38bdf8;
+}
+
+.cardio{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+    background-color: #0b1627;
+}
+
+.cardio p{
+    color: white;
+}
+
+.cardio span{
+    color: #38bdf8;
 }
