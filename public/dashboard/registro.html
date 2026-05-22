@@ -30,16 +30,19 @@
       <div class="input-group">
         <label>PESO ATUAL (KG)</label>
         <input type="number" id="ipt_peso" placeholder="Ex: 62.5" />
+        <div class="erro" id="erroPeso"></div>
       </div>
 
       <div class="input-group">
         <label>ALTURA ATUAL (CM)</label>
         <input type="number" id="ipt_altura" placeholder="Ex: 165" />
+        <div class="erro" id="erroAltura"></div>
       </div>
 
       <div class="input-group">
         <label>META DE PESO</label>
         <input type="text" placeholder="Ex: 50kg" id="ipt_meta"/>
+        <div class="erro" id="erroMeta"></div>
       </div>
 
       <button onclick="atualizar()">ATUALIZAR</button>
@@ -50,16 +53,28 @@
 <script>
     function atualizar() {
 
-    var peso = Number(ipt_peso.value);
-    var altura = Number(ipt_altura.value);
-    var meta = Number(ipt_meta.value);
+    let peso = Number(ipt_peso.value);
+    let altura = Number(ipt_altura.value);
+    let meta = Number(ipt_meta.value);
 
-    if (peso <= 0 || altura <= 0) {
-        alert("Preencha os campos corretamente");
-        return;
+    if (
+      peso == "" &&
+      altura == "" &&
+      meta == ""
+    ){
+      erroMeta.innerHTML = "Preencha todos os campos"
     }
-
-    fetch("/dash/atualizarPeso", {
+    else if(peso > 150 || peso < 40){
+      erroPeso.innerHTML = "Informe um peso válido"
+    }
+    else if(altura > 210 || altura < 140){
+      erroAltura.innerHTML = "Informe uma altura válida"
+    }
+    else if(meta > 150 || meta < 40){
+      erroMeta.innerHTML = "Informe uma meta de peso válida"
+    }
+    else {
+      fetch("/dash/atualizarPeso", {
         method: "POST",
 
         headers: {
@@ -91,6 +106,7 @@
     .catch(function(erro) {
         console.log(erro);
     });
+    }
 }
 </script>
 

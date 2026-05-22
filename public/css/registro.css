@@ -116,3 +116,9 @@ button:hover {
     font-size: 12px;
     color: #6b7c93;
 }
+
+.erro {
+    color: rgb(255, 0, 0);
+    font-size: 12px;
+    margin-top: 3px;
+}
