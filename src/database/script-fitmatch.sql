@@ -448,39 +448,54 @@ INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Cadeira abdutora', 5, 10, 36),
 ('Leg curl', 5, 10, 36);
 
-desc progresso;
-
-DELETE FROM usuario WHERE id_usuario = 1;
-
-INSERT INTO usuario (nome, email, senha) VALUES
-('Gustavo', 'gustavo@gmail.com', '123456#');
+-- VIEW DASHBOARD
+ALTER VIEW VW_dashboard AS
+SELECT 
+pg.peso,
+pg.altura,
+m.pesoMeta,
+pg.fkUsuario,
+pg.dtRegistro
+FROM usuario u
+JOIN perfil p ON u.fkPerfil = p.id
+JOIN progresso pg ON pg.fkUsuario = u.id_usuario
+LEFT JOIN meta m ON m.fkUsuario = u.id_usuario;
 
 -- GRÁFICO DASHBOARD
 SELECT 
-    p.peso,
-    ROUND(p.peso / POWER(p.altura / 100, 2), 1) AS imc,
-    DATE_FORMAT(p.dtRegistro, '%d/%m') AS dtRegistro
-FROM progresso p
-WHERE p.fkUsuario = 1
-ORDER BY p.dtRegistro ASC;
+    peso,
+    ROUND(peso / POWER(altura / 100, 2), 1) AS imc,
+    DATE_FORMAT(dtRegistro, '%d/%m') AS dtRegistro
+FROM VW_dashboard
+WHERE fkUsuario = 3
+ORDER BY dtRegistro ASC;
 
--- KPI PESO ATUAL
+-- KPI peso atual
 SELECT peso 
-FROM progresso 
+FROM VW_dashboard 
 WHERE fkUsuario = 1
 ORDER BY dtRegistro DESC 
 LIMIT 1;
 
 -- KPI QUANTO FALTA PARA A META
 SELECT 
-p.peso AS pesoAtual,
-m.pesoMeta,
-ABS(p.peso - m.pesoMeta) AS diferencaPeso
-FROM progresso p
-JOIN meta m ON m.fkUsuario = p.fkUsuario
-WHERE p.fkUsuario = 1
-ORDER BY p.dtRegistro DESC
+peso AS pesoAtual,
+pesoMeta,
+ABS(peso - pesoMeta) AS diferencaPeso
+FROM VW_dashboard
+WHERE fkUsuario = 3
+ORDER BY dtRegistro DESC
 LIMIT 1;
 
-
-
+-- TREINO DO DIA
+SELECT t.musculos
+FROM usuario u
+JOIN perfil p ON p.id = u.fkPerfil
+JOIN treino t ON t.fkPerfil = p.id
+WHERE u.id_usuario = 1
+AND divisao =
+CASE (DAYOFMONTH(CURDATE()) % 3)
+WHEN 1 THEN 'A'
+WHEN 2 THEN 'B'
+ELSE 'C'
+END;

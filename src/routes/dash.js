@@ -15,4 +15,8 @@ router.post("/atualizarPeso", function (req, res) {
     dashController.atualizarPeso(req, res);
 });
 
+router.get("/buscarTreinoDoDia/:id_usuario", function (req, res) {
+    dashController.buscarTreinoDoDia(req, res);
+});
+
 module.exports = router;

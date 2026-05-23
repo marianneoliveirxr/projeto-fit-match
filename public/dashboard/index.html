@@ -95,12 +95,10 @@
             <span>TREINO DO DIA</span>
           </div>
           <div class="kpi-value">
-            <span id="kpi_treino_valor" class="treino-titulo"
-              >Membros Superiores</span
-            >
+            <span id="kpi_treinoDia" class="treino-titulo"></span>
           </div>
           <div class="kpi-footer">
-            <span class="foco-text">Foco: Hipertrofia (A)</span>
+            <span class="status-text-alerta" id="texto">Foco e determinação!</span>
           </div>
         </div>
       </div>
@@ -158,6 +156,18 @@
       else if ((dadosImc[dadosImc.length - 1]) > 29.9){
         status_imc.innerHTML = `Obesidade — continue focada no treino!`;
       }
+
+      fetch (`/dash/buscarTreinoDoDia/${sessionStorage.ID_USUARIO}`)
+      .then(function (resposta){
+        return resposta.json()
+      }).then(function (dados){
+        console.log(dados);
+
+          kpi_treinoDia.innerHTML = dados[0].musculos;
+      })
+      .catch(function (erro){
+        console.log("Erro ao buscar treino do dia:", erro)
+      });
 
       const ctx = document.getElementById("myChart").getContext("2d");
 
