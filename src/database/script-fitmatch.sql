@@ -479,8 +479,6 @@ LIMIT 1;
 
 -- KPI QUANTO FALTA PARA A META
 SELECT 
-peso AS pesoAtual,
-pesoMeta,
 ABS(peso - pesoMeta) AS diferencaPeso
 FROM VW_dashboard
 WHERE fkUsuario = 3
@@ -531,11 +529,39 @@ u.nome,
 pG.peso,
 pg.altura,
 m.pesoMeta,
-p.objetivo
+p.objetivo,
+pg.dtRegistro,
+u.id_usuario
 FROM usuario u
 JOIN progresso pg ON pg.fkUsuario = u.id_usuario
 JOIN meta m ON m.fkUsuario = u.id_usuario
 JOIN perfil p ON p.id = u.fkPerfil;
 
+-- CARD PERFIL
+SELECT 
+peso,
+altura
+objetivo
+FROM VW_perfil
+WHERE id_usuario = 3
+ORDER BY dtRegistro DESC 
+LIMIT 1;
 
+-- CARD META 
+SELECT 
+pesoMeta,
+peso
+FROM VW_perfil
+WHERE id_usuario = 3
+ORDER BY dtRegistro ASC
+LIMIT 1;
 
+SELECT
+    pg.peso AS pesoAtual,
+    m.pesoMeta
+    FROM progresso pg
+    JOIN meta m
+    ON m.fkUsuario = pg.fkUsuario
+    WHERE pg.fkUsuario = 1
+    ORDER BY pg.dtRegistro DESC
+    LIMIT 1;
