@@ -19,4 +19,8 @@ router.get("/buscarTreinoDoDia/:id_usuario", function (req, res) {
     dashController.buscarTreinoDoDia(req, res);
 });
 
+router.get("/diferencaPesoMeta/:id_usuario", function (req, res) {
+    dashController.diferencaPesoMeta(req, res);
+});
+
 module.exports = router;

@@ -198,9 +198,19 @@
     .catch(function (erro) {
       console.log(erro);
     });
-  }
-  
 
+    fetch (`/dash/diferencaPesoMeta/${sessionStorage.ID_USUARIO}`)
+      .then(function (resposta){
+        return resposta.json()
+      }).then(function (dados){
+        console.log(dados);
+
+          faltaMeta.innerHTML = dados[0].diferencaPeso;
+      })
+      .catch(function (erro){
+        console.log("Erro ao buscar diferença de peso:", erro)
+      });
+  }
 
     
 </script>

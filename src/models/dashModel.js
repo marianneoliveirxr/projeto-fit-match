@@ -74,10 +74,26 @@ function buscarTreinoDoDia(id_usuario) {
   return database.executar(instrucaoSql);
 }
 
+function diferencaPesoMeta(id_usuario){
+
+  var instrucaoSql = `
+  SELECT 
+  ABS(peso - pesoMeta) AS diferencaPeso
+  FROM VW_dashboard
+  WHERE fkUsuario = ${id_usuario}
+  ORDER BY dtRegistro DESC
+  LIMIT 1;`;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+
+  return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
   buscarDadosGrafico,
   atualizarPeso,
   atualizarMeta,
-  buscarTreinoDoDia
+  buscarTreinoDoDia,
+  diferencaPesoMeta
 };

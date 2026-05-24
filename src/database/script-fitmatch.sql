@@ -449,7 +449,7 @@ INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Leg curl', 5, 10, 36);
 
 -- VIEW DASHBOARD
-ALTER VIEW VW_dashboard AS
+CREATE VIEW VW_dashboard AS
 SELECT 
 pg.peso,
 pg.altura,
@@ -499,3 +499,43 @@ WHEN 1 THEN 'A'
 WHEN 2 THEN 'B'
 ELSE 'C'
 END;
+
+-- VIEW MEUS TREINOS
+CREATE VIEW vw_treinos_usuario AS
+SELECT
+u.id_usuario,
+t.divisao,
+t.musculos,
+t.cardio,
+e.exercicio,
+e.series,
+e.repeticoes
+FROM usuario u
+JOIN perfil p
+ON p.id = u.fkPerfil
+JOIN treino t
+ON t.fkPerfil = p.id
+JOIN exercicios e
+ON e.fkTreino = t.id;
+
+-- VER CADA TREINO
+SELECT *
+FROM vw_treinos_usuario
+WHERE id_usuario = 3
+ORDER BY divisao;
+
+-- VIEW TELA PERFIL
+CREATE VIEW VW_perfil AS
+SELECT 
+u.nome,
+pG.peso,
+pg.altura,
+m.pesoMeta,
+p.objetivo
+FROM usuario u
+JOIN progresso pg ON pg.fkUsuario = u.id_usuario
+JOIN meta m ON m.fkUsuario = u.id_usuario
+JOIN perfil p ON p.id = u.fkPerfil;
+
+
+
