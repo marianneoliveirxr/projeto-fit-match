@@ -156,6 +156,10 @@ main{
     background-color: #2b1730;
 }
 
+.vermelho{
+    background-color: #1e1c2c;
+}
+
 .treino-left{
     display: flex;
     align-items: center;
@@ -186,6 +190,11 @@ main{
 .roxo-box{
     background-color: #581c87;
     color: #e879f9;
+}
+
+.vermelho-box{
+    background-color: #392634;
+    color: #fd7373;
 }
 
 .treino-info h2{
