@@ -11,7 +11,7 @@
     <title>FitMatch | Meus Treinos</title>
     <link rel="stylesheet" href="../css/treinos.css" />
   </head>
-  <body>
+  <body onload="buscarTreinos()">
     <div class="sidebar">
       <div class="left">
         <aside>
@@ -63,8 +63,8 @@
             <div class="letra-treino azul">A</div>
 
             <div class="treino-info">
-              <h2>Treino A — Peito & Tríceps</h2>
-              <p>6 exercícios</p>
+              <h2 id="tituloA">Treino A</h2>
+              <p id="qtdA">0 exercícios</p>
             </div>
           </div>
         </div>
@@ -76,20 +76,10 @@
             <span>REPETIÇÕES</span>
           </div>
 
-          <div class="linha-exercicio">
-            <p class="col-exercicio">Supino Reto</p>
-            <span>4</span>
-            <span>10</span>
-          </div>
-
-          <div class="linha-exercicio">
-            <p class="col-exercicio">Supino Inclinado</p>
-            <span>3</span>
-            <span>12</span>
-          </div>
+          <div id="listaTreinoA"></div>
 
           <div class="cardio">
-            <p>Cardio: Bicicleta Ergométrica</p>
+            <p id="cardioA"></p>
             <span>30 min</span>
           </div>
         </div>
@@ -101,8 +91,8 @@
             <div class="letra-treino verde-box">B</div>
 
             <div class="treino-info">
-              <h2>Treino B — Costas & Bíceps</h2>
-              <p>6 exercícios</p>
+              <h2 id="tituloB">Treino B</h2>
+              <p id="qtdB">0 exercícios</p>
             </div>
           </div>
         </div>
@@ -114,15 +104,11 @@
             <span>REPETIÇÕES</span>
           </div>
 
-          <div class="linha-exercicio">
-            <p class="col-exercicio">Puxada Frontal</p>
-            <span>4</span>
-            <span>12</span>
-          </div>
+          <div id="listaTreinoB"></div>
 
           <div class="cardio">
-            <p>Cardio: Escada</p>
-            <span>20 min</span>
+            <p id="cardioB"></p>
+            <span>30 min</span>
           </div>
         </div>
       </div>
@@ -133,8 +119,8 @@
             <div class="letra-treino vermelho-box">c</div>
 
             <div class="treino-info">
-              <h2>Treino B — Costas & Bíceps</h2>
-              <p>6 exercícios</p>
+              <h2 id="tituloC">Treino C</h2>
+              <p id="qtdC">0 exercícios</p>
             </div>
           </div>
         </div>
@@ -146,15 +132,11 @@
             <span>REPETIÇÕES</span>
           </div>
 
-          <div class="linha-exercicio">
-            <p class="col-exercicio">Puxada Frontal</p>
-            <span>4</span>
-            <span>12</span>
-          </div>
+          <div id="listaTreinoC"></div>
 
           <div class="cardio">
-            <p>Cardio: Escada</p>
-            <span>20 min</span>
+            <p id="cardioC"></p>
+            <span>30 min</span>
           </div>
         </div>
       </div>
@@ -163,15 +145,80 @@
 </html>
 <script src="../js/sessao.js"></script>
 <script>
-      b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-      function abrirTreino(id) {
-        let treino = document.getElementById(id);
+  buscarTreinos();
 
-        if (treino.style.display == "block") {
-          treino.style.display = "none";
-        } else {
-          treino.style.display = "block";
+  function buscarTreinos() {
+    console.log("ID USUARIO:", sessionStorage.ID_USUARIO);
+    
+    fetch(`/treinos/buscarTreinos/${sessionStorage.ID_USUARIO}`)
+      .then(function (resposta) {
+        return resposta.json();
+      })
+      .then(function (dados) {
+        console.log(dados);
+
+        let treinoA = [];
+        let treinoB = [];
+        let treinoC = [];
+
+        for (let i = 0; i < dados.length; i++) {
+          if (dados[i].divisao == "A") {
+            treinoA.push(dados[i]);
+          } else if (dados[i].divisao == "B") {
+            treinoB.push(dados[i]);
+          } else if (dados[i].divisao == "C") {
+            treinoC.push(dados[i]);
+          }
         }
-      }
-    </script>
+
+        preencherTreino("A", treinoA);
+        preencherTreino("B", treinoB);
+        preencherTreino("C", treinoC);
+      })
+
+      .catch(function (erro) {
+        console.log("Erro:", erro);
+      });
+  }
+
+  function preencherTreino(letra, treino) {
+    if (treino.length == 0) {
+      return;
+    }
+
+    document.getElementById(`titulo${letra}`).innerHTML =
+      `Treino ${letra} — ${treino[0].musculos}`;
+
+    document.getElementById(`qtd${letra}`).innerHTML =
+      `${treino.length} exercícios`;
+
+    document.getElementById(`cardio${letra}`).innerHTML =
+      `Cardio: ${treino[0].cardio}`;
+
+    let htmlExercicios = "";
+
+    for (let i = 0; i < treino.length; i++) {
+      htmlExercicios += `
+      <div class="linha-exercicio">
+        <p class="col-exercicio">${treino[i].exercicio}</p>
+        <span>${treino[i].series}</span>
+        <span>${treino[i].repeticoes}</span>
+      </div>
+    `;
+    }
+
+    document.getElementById(`listaTreino${letra}`).innerHTML = htmlExercicios;
+  }
+
+  function abrirTreino(id) {
+    let treino = document.getElementById(id);
+
+    if (treino.style.display == "block") {
+      treino.style.display = "none";
+    } else {
+      treino.style.display = "block";
+    }
+  }
+</script>

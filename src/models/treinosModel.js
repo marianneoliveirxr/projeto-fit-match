@@ -4,7 +4,7 @@ function buscarTreinos(id_usuario){
     var instrucaoSql = `
     SELECT *
     FROM vw_treinos_usuario
-    WHERE id_usuario = 3
+    WHERE id_usuario = ${id_usuario}
     ORDER BY divisao;`;
 
     console.log(instrucaoSql);
