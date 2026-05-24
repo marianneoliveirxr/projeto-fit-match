@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../css/meuperfil.css" />
     <script src="../js/sessao.js"></script>
   </head>
-  <body>
+  <body onload="recarregar()">
     <div class="sidebar">
       <div class="left">
         <aside>
@@ -78,17 +78,17 @@
         <div class="profile-grid">
           <div class="info-box">
             <span>ALTURA (CM)</span>
-            <h3>165</h3>
+            <h3 id="altura"></h3>
           </div>
 
           <div class="info-box">
             <span>PESO ATUAL (KG)</span>
-            <h3>82</h3>
+            <h3 id="peso"></h3>
           </div>
 
           <div class="info-box">
             <span>OBJETIVO</span>
-            <h3>Emagrecimento / Definição</h3>
+            <h3 id="objetivo"></h3>
           </div>
         </div>
       </div>
@@ -101,14 +101,14 @@
         <div class="meta-info">
           <span class="meta-title">META DE PESO</span>
 
-          <h2>77 <span>kg</span></h2>
+          <h2 id="metaPeso"><span>kg</span></h2>
 
-          <p>Início: 82 kg</p>
+          <p id="pesoInicial"></p>
         </div>
 
         <div class="progress-area">
           <div class="progress-bar">
-            <div class="progress-fill"></div>
+            <div class="progress-fill" id="barra"></div>
           </div>
 
           <div class="progress-labels">
@@ -117,8 +117,8 @@
           </div>
         </div>
 
-        <div class="meta-alert">
-          🎯 Você já perdeu <strong>3.0 kg!</strong> Continue assim.
+        <div class="meta-alert" id="mensagemMeta">
+          
         </div>
       </div>
     </main>
@@ -130,5 +130,62 @@
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
   b_nome.innerHTML = sessionStorage.NOME_USUARIO;
 
+  function recarregar(){
+    
+    fetch(`/dash/buscarDadosPerfil/${sessionStorage.ID_USUARIO}`)
+    .then(function (resposta){
+      return resposta.json()
+    })
+    .then(function (dados){
+      console.log(dados);
+
+      for(let i = 0; i < dados.length; i++){
+        peso.innerHTML = dados[0].peso;
+        altura.innerHTML = dados[0].altura;
+        objetivo.innerHTML = dados[0].objetivo;
+      }
+    })
+    .catch(function (erro){
+        console.log("Erro ao buscar treino do dia:", erro)
+      });
+
+
+    let pesoInicialBanco;
+    let pesoAtualBanco;
+    let metaBanco;
+
+    fetch(`/dash/buscarPesoInicial/${sessionStorage.ID_USUARIO}`)
+    .then(res=>res.json())
+    .then(dados=>{
+
+      pesoInicialBanco = dados[0].peso;
+
+      pesoInicial.innerHTML = `Início: ${pesoInicialBanco}kg`
+    })
+
+
+    fetch(`/dash/buscarMetaAtual/${sessionStorage.ID_USUARIO}`)
+    .then(res=>res.json())
+    .then(dados=>{
+      
+      pesoAtualBanco = dados[0].pesoAtual;
+      metaBanco = dados[0].pesoMeta;
+
+      metaPeso.innerHTML =
+        `${metaBanco}<span>kg</span>`;
+
+      let perdido = 
+      pesoInicialBanco - pesoAtualBanco;
+
+      mensagemMeta.innerHTML=
+      `🎯 Você já perdeu <strong>${perdido}kg!</strong> Continue assim`;
+
+      let porcentagem =
+      (perdido / (pesoInicialBanco - metaBanco))*100;
+
+      barra.style.width =
+      porcentagem + "%";
+    })
+  }
   
 </script>

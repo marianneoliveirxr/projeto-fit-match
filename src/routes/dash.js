@@ -23,4 +23,15 @@ router.get("/diferencaPesoMeta/:id_usuario", function (req, res) {
     dashController.diferencaPesoMeta(req, res);
 });
 
+router.get("/buscarDadosPerfil/:id_usuario", function (req, res) {
+    dashController.buscarDadosPerfil(req, res);
+});
+
+router.get("/buscarPesoInicial/:id_usuario", function (req, res) {
+    dashController.buscarPesoInicial(req, res);
+});
+router.get("/buscarMetaAtual/:id_usuario", function (req, res) {
+    dashController.buscarMetaAtual(req, res);
+});
+
 module.exports = router;

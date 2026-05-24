@@ -89,11 +89,62 @@ function diferencaPesoMeta(id_usuario){
   return database.executar(instrucaoSql);
 }
 
+function buscarDadosPerfil(id_usuario){
+
+  var instrucaoSql = `
+  SELECT 
+  peso,
+  altura,
+  objetivo
+  FROM VW_perfil
+  WHERE id_usuario = ${id_usuario}
+  ORDER BY dtRegistro DESC 
+  LIMIT 1;`;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+
+  return database.executar(instrucaoSql);
+}
+
+function buscarPesoInicial(id_usuario){
+  var instrucaoSql = `
+  SELECT 
+  pesoMeta,
+  peso
+  FROM VW_perfil
+  WHERE id_usuario = 3
+  ORDER BY dtRegistro ASC
+  LIMIT 1;`;
+
+  console.log("Executando SQL:\n" + instrucaoSql);
+
+  return database.executar(instrucaoSql);
+}
+
+function buscarMetaAtual(id_usuario){
+  var instrucaoSql =`
+  SELECT
+    pg.peso AS pesoAtual,
+    m.pesoMeta
+    FROM progresso pg
+    JOIN meta m
+    ON m.fkUsuario = pg.fkUsuario
+    WHERE pg.fkUsuario = 1
+    ORDER BY pg.dtRegistro DESC
+    LIMIT 1;`
+
+    console.log("Executando SQL:\n" + instrucaoSql);
+
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
   buscarDadosGrafico,
   atualizarPeso,
   atualizarMeta,
   buscarTreinoDoDia,
-  diferencaPesoMeta
+  diferencaPesoMeta,
+  buscarDadosPerfil,
+  buscarPesoInicial,
+  buscarMetaAtual
 };
