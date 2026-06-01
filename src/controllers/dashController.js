@@ -175,27 +175,11 @@ function buscarPesoInicial(req,res){
     });
 }
 
-function buscarMetaAtual(req,res){
-    var id_usuario = req.params.id_usuario;
-
-    dashModel.buscarMetaAtual(id_usuario)
-    .then(function (resultado){
-        
-        res.json(resultado);
-    })
-    .catch(function (erro){
-        console.log(erro);
-
-        res.status(500).json(erro.sqlMessage);
-    })
-}
-
 module.exports = {
     buscarDadosGrafico,
     atualizarPeso,
     buscarTreinoDoDia,
     diferencaPesoMeta,
     buscarDadosPerfil,
-    buscarPesoInicial,
-    buscarMetaAtual
+    buscarPesoInicial
 };

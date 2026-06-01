@@ -14,39 +14,39 @@
     <script src="../js/sessao.js"></script>
   </head>
   <body onload="recarregar()">
-    <div class="sidebar">
-      <div class="left">
+    <div class="barra-lateral">
+      <div class="esquerda">
         <aside>
-          <div class="top">
+          <div class="topo">
             <div class="logo">
               <img src="../assets/img/fitmatch.png" alt="FitMatch Logo" />
             </div>
 
-            <div class="content-sidebar">
-              <div class="hello">
+            <div class="conteudo-lateral">
+              <div class="saudacao">
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
               </div>
 
-              <div class="links-container">
-                <div class="link" onclick="window.location.href = 'index.html'">
+              <div class="container-links">
+                <div class="link-menu" onclick="window.location.href = 'index.html'">
                   <span>Dashboard</span>
                 </div>
 
                 <div
-                  class="link"
+                  class="link-menu"
                   onclick="window.location.href = 'treinos.html'"
                 >
                   <span>Meus Treinos</span>
                 </div>
 
                 <div
-                  class="link-selected"
+                  class="link-selecionado"
                   onclick="window.location.href = 'meuperfil.html'"
                 >
                   <span>Meu Perfil</span>
                 </div>
 
-                <div class="btn-logout" onclick="limparSessao()">
+                <div class="btn-sair" onclick="limparSessao()">
                   <h3>Sair</h3>
                 </div>
               </div>
@@ -57,70 +57,41 @@
     </div>
 
     <main>
-      <div class="page-title">
+      <div class="titulo-pagina">
         <h1>Meu Perfil</h1>
-        <p>Gerencie seus dados e acompanhe suas metas.</p>
       </div>
 
-      <div class="profile-card">
-        <div class="card-header">
+      <div class="cartao-perfil">
+        <div class="cabecalho-cartao">
           <span>PERFIL</span>
         </div>
 
-        <div class="profile-top">
-          <div class="avatar">A</div>
+        <div class="topo-perfil">
+          <div class="foto-perfil">A</div>
 
-          <div class="profile-info">
+          <div class="info-perfil">
             <h2 id="b_nome"></h2>
           </div>
         </div>
 
-        <div class="profile-grid">
-          <div class="info-box">
+        <div class="grade-perfil">
+          <div class="caixa-info">
             <span>ALTURA (CM)</span>
             <h3 id="altura"></h3>
           </div>
 
-          <div class="info-box">
+          <div class="caixa-info">
             <span>PESO ATUAL (KG)</span>
             <h3 id="peso"></h3>
           </div>
 
-          <div class="info-box">
+          <div class="caixa-info">
             <span>OBJETIVO</span>
             <h3 id="objetivo"></h3>
           </div>
         </div>
       </div>
 
-      <div class="meta-container">
-        <div class="meta-header">
-          <span>METAS</span>
-        </div>
-
-        <div class="meta-info">
-          <span class="meta-title">META DE PESO</span>
-
-          <h2 id="metaPeso"><span>kg</span></h2>
-
-          <p id="pesoInicial"></p>
-        </div>
-
-        <div class="progress-area">
-          <div class="progress-bar">
-            <div class="progress-fill" id="barra"></div>
-          </div>
-
-          <div class="progress-labels">
-            <span>Peso inicial</span>
-            <span>Meta</span>
-          </div>
-        </div>
-
-        <div class="meta-alert" id="mensagemMeta">
-          
-        </div>
-      </div>
     </main>
   </body>
 </html>
@@ -163,29 +134,6 @@
       pesoInicial.innerHTML = `Início: ${pesoInicialBanco}kg`
     })
 
-
-    fetch(`/dash/buscarMetaAtual/${sessionStorage.ID_USUARIO}`)
-    .then(res=>res.json())
-    .then(dados=>{
-      
-      pesoAtualBanco = dados[0].pesoAtual;
-      metaBanco = dados[0].pesoMeta;
-
-      metaPeso.innerHTML =
-        `${metaBanco}<span>kg</span>`;
-
-      let perdido = 
-      pesoInicialBanco - pesoAtualBanco;
-
-      mensagemMeta.innerHTML=
-      `🎯 Você já perdeu <strong>${perdido}kg!</strong> Continue assim`;
-
-      let porcentagem =
-      (perdido / (pesoInicialBanco - metaBanco))*100;
-
-      barra.style.width =
-      porcentagem + "%";
-    })
   }
   
 </script>

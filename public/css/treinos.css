@@ -1,18 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     font-family: 'Poppins', sans-serif;
     background-color: #020817;
     overflow-x: hidden;
 }
 
-.sidebar{
+.barra-lateral {
     width: 260px;
     height: 100vh;
     position: fixed;
@@ -22,47 +22,46 @@ body{
     border-right: 1px solid #132033;
 }
 
-.left{
+.esquerda {
     height: 100%;
     padding: 20px 18px;
     display: flex;
     flex-direction: column;
 }
 
-.logo{
+.logomarca {
     padding-bottom: 20px;
     border-bottom: 1px solid #132033;
 }
 
-.logo img{
+.logomarca img {
     width: 150px;
 }
 
-.hello{
+.saudacao {
     margin-top: 35px;
     margin-bottom: 30px;
 }
 
-.hello h3{
+.saudacao h3 {
     color: white;
     font-size: 22px;
     font-weight: 600;
 }
 
-.hello span{
+.saudacao span {
     color: #38bdf8;
 }
 
-
-.links-container{
+.conteiner-links {
     display: flex;
     flex-direction: column;
     gap: 14px;
-    color: #38bdf8
+    color: #38bdf8;
 }
 
 .link,
-.link-selected{
+.link-selecionado {
     width: 100%;
     padding: 14px 18px;
     border-radius: 14px;
@@ -73,31 +72,30 @@ body{
 }
 
 .link p,
-.link-selected p{
+.link-selecionado p {
     color: #38bdf8;
     font-size: 15px;
     font-weight: 500;
 }
 
-.link:hover{
+.link:hover {
     background-color: #0f172a;
 }
 
-.link:hover p{
+.link:hover p {
     color: #38bdf8;
 }
 
-
-.link-selected{
+.link-selecionado {
     background-color: #0f2238;
     border: 1px solid #1d4f72;
 }
 
-.link-selected p{
+.link-selecionado p {
     color: #38bdf8;
 }
 
-.btn-logout{
+.botao-sair {
     margin-top: 37vh;
     padding: 14px;
     border-radius: 14px;
@@ -107,34 +105,34 @@ body{
     transition: 0.3s;
 }
 
-.btn-logout h3{
+.botao-sair h3 {
     color: #071120;
     font-size: 16px;
     font-weight: 700;
 }
 
-.btn-logout:hover{
+.botao-sair:hover {
     background-color: #0ea5e9;
     transform: translateY(-2px);
 }
 
-main{
+main {
     margin-left: 260px;
     padding: 30px;
 }
 
-.page-title h1{
+.titulo-pagina h1 {
     color: white;
-    font-size: 45px;
+    font-size: 38px;
 }
 
-.page-title p{
+.titulo-pagina p {
     color: #64748b;
     margin-top: 5px;
     margin-bottom: 30px;
 }
 
-.treino-card{
+.cartao-treino {
     background-color: #071120;
     border: 1px solid #123252;
     border-radius: 20px;
@@ -142,30 +140,30 @@ main{
     overflow: hidden;
 }
 
-.treino-header{
+.cabecalho-treino {
     background-color: #0f2238;
     padding: 25px;
     cursor: pointer;
 }
 
-.verde{
+.verde {
     background-color: #123126;
 }
 
-.roxo{
+.roxo {
     background-color: #2b1730;
 }
 
-.vermelho{
+.vermelho {
     background-color: #1e1c2c;
 }
 
-.treino-left{
+.treino-esquerda {
     display: flex;
     align-items: center;
 }
 
-.letra-treino{
+.letra-treino {
     width: 60px;
     height: 60px;
     border-radius: 14px;
@@ -177,85 +175,85 @@ main{
     margin-right: 20px;
 }
 
-.azul{
+.azul {
     background-color: #123252;
     color: #38bdf8;
 }
 
-.verde-box{
+.caixa-verde {
     background-color: #14532d;
     color: #4ade80;
 }
 
-.roxo-box{
+.roxo-box {
     background-color: #581c87;
     color: #e879f9;
 }
 
-.vermelho-box{
+.caixa-vermelho {
     background-color: #392634;
     color: #fd7373;
 }
 
-.treino-info h2{
+.info-treino h2 {
     color: white;
 }
 
-.treino-info p{
+.info-treino p {
     color: #64748b;
 }
 
-.treino-conteudo{
+.conteudo-treino {
     display: none;
 }
 
-.tabela-header{
+.cabecalho-tabela {
     display: flex;
     padding: 20px 30px;
     border-bottom: 1px solid #132033;
 }
 
-.tabela-header span{
+.cabecalho-tabela span {
     color: #64748b;
     font-size: 13px;
 }
 
-.col-exercicio{
+.col-exercicio {
     width: 60%;
 }
 
-.tabela-header span:nth-child(2),
-.tabela-header span:nth-child(3),
-.linha-exercicio span{
+.cabecalho-tabela span:nth-child(2),
+.cabecalho-tabela span:nth-child(3),
+.linha-exercicio span {
     width: 20%;
     text-align: center;
 }
 
-.linha-exercicio{
+.linha-exercicio {
     display: flex;
     padding: 22px 30px;
     border-bottom: 1px solid #132033;
 }
 
-.linha-exercicio p{
+.linha-exercicio p {
     color: white;
 }
 
-.linha-exercicio span{
+.linha-exercicio span {
     color: #38bdf8;
 }
 
-.cardio{
+.cardio {
     display: flex;
     justify-content: space-between;
     padding: 20px 30px;
     background-color: #0b1627;
 }
 
-.cardio p{
+.cardio p {
     color: white;
 }
 
-.cardio span{
+.cardio span {
     color: #38bdf8;
 }

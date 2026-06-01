@@ -12,7 +12,7 @@ body {
     color: #fff;
 }
 
-.register-container {
+.container-registro {
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -35,7 +35,7 @@ body {
     letter-spacing: 1px;
 }
 
-.register-card {
+.cartao-registro {
     width: 350px;
     background: #071a2f;
     padding: 30px;
@@ -43,35 +43,35 @@ body {
     box-shadow: 0 0 30px #00000066;
 }
 
-.card-header {
+.cabecalho-cartao {
     text-align: left;
     margin-bottom: 20px;
 }
 
-.card-header h4 {
+.cabecalho-cartao h4 {
     font-size: 20px;
     font-weight: 600;
     color: #fff;
     margin-bottom: 4px;
 }
 
-.card-header p {
+.cabecalho-cartao p {
     font-size: 14px;
     color: #8aa0b8;
 }
 
-.input-group {
+.grupo-entrada {
     margin-bottom: 15px;
 }
 
-.input-group label {
+.grupo-entrada label {
     display: block;
     font-size: 12px;
     color: #8aa0b8;
     margin-bottom: 5px;
 }
 
-.input-group input {
+.grupo-entrada input {
     width: 100%;
     padding: 12px;
     border-radius: 8px;
@@ -83,11 +83,11 @@ body {
     transition: 0.3s;
 }
 
-.input-group input::placeholder {
+.grupo-entrada input::placeholder {
     color: #64748b;
 }
 
-.input-group input:focus {
+.grupo-entrada input:focus {
     border-color: #2f9fd6;
     box-shadow: 0 0 0 2px rgba(47, 159, 214, 0.2);
 }
@@ -110,7 +110,7 @@ button:hover {
     background: #45b7f0;
 }
 
-.register-info {
+.info-registro {
     margin-top: 15px;
     text-align: center;
     font-size: 12px;

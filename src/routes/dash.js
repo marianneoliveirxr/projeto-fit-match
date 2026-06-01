@@ -30,8 +30,5 @@ router.get("/buscarDadosPerfil/:id_usuario", function (req, res) {
 router.get("/buscarPesoInicial/:id_usuario", function (req, res) {
     dashController.buscarPesoInicial(req, res);
 });
-router.get("/buscarMetaAtual/:id_usuario", function (req, res) {
-    dashController.buscarMetaAtual(req, res);
-});
 
 module.exports = router;

@@ -121,23 +121,6 @@ function buscarPesoInicial(id_usuario){
   return database.executar(instrucaoSql);
 }
 
-function buscarMetaAtual(id_usuario){
-  var instrucaoSql =`
-  SELECT
-    pg.peso AS pesoAtual,
-    m.pesoMeta
-    FROM progresso pg
-    JOIN meta m
-    ON m.fkUsuario = pg.fkUsuario
-    WHERE pg.fkUsuario = 1
-    ORDER BY pg.dtRegistro DESC
-    LIMIT 1;`
-
-    console.log("Executando SQL:\n" + instrucaoSql);
-
-    return database.executar(instrucaoSql);
-}
-
 module.exports = {
   buscarDadosGrafico,
   atualizarPeso,
@@ -145,6 +128,5 @@ module.exports = {
   buscarTreinoDoDia,
   diferencaPesoMeta,
   buscarDadosPerfil,
-  buscarPesoInicial,
-  buscarMetaAtual
+  buscarPesoInicial
 };

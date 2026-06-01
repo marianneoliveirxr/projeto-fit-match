@@ -12,25 +12,25 @@
     <link rel="stylesheet" href="../css/treinos.css" />
   </head>
   <body onload="buscarTreinos()">
-    <div class="sidebar">
-      <div class="left">
+    <div class="barra-lateral">
+      <div class="esquerda">
         <aside>
-          <div class="top">
-            <div class="logo">
+          <div class="topo">
+            <div class="logomarca">
               <img src="../assets/img/fitmatch.png" alt="FitMatch Logo" />
             </div>
 
-            <div class="content-sidebar">
-              <div class="hello">
+            <div class="conteudo-lateral">
+              <div class="saudacao">
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
               </div>
 
-              <div class="links-container">
+              <div class="conteiner-links">
                 <div class="link" onclick="window.location.href = 'index.html'">
                   <span>Dashboard</span>
                 </div>
 
-                <div class="link-selected">
+                <div class="link-selecionado">
                   <span>Meus Treinos</span>
                 </div>
 
@@ -41,7 +41,7 @@
                   <span>Meu Perfil</span>
                 </div>
 
-                <div class="btn-logout" onclick="limparSessao()">
+                <div class="botao-sair" onclick="limparSessao()">
                   <h3>Sair</h3>
                 </div>
               </div>
@@ -52,25 +52,25 @@
     </div>
 
     <main>
-      <div class="page-title">
+      <div class="titulo-pagina">
         <h1>Meus Treinos</h1>
         <p>Seu plano personalizado — Semana atual</p>
       </div>
 
-      <div class="treino-card">
-        <div class="treino-header" onclick="abrirTreino('treinoA')">
-          <div class="treino-left">
+      <div class="cartao-treino">
+        <div class="cabecalho-treino" onclick="abrirTreino('treinoA')">
+          <div class="treino-esquerda">
             <div class="letra-treino azul">A</div>
 
-            <div class="treino-info">
+            <div class="info-treino">
               <h2 id="tituloA">Treino A</h2>
               <p id="qtdA">0 exercícios</p>
             </div>
           </div>
         </div>
 
-        <div class="treino-conteudo" id="treinoA">
-          <div class="tabela-header">
+        <div class="conteudo-treino" id="treinoA">
+          <div class="cabecalho-tabela">
             <span class="col-exercicio">EXERCÍCIO</span>
             <span>SÉRIES</span>
             <span>REPETIÇÕES</span>
@@ -85,20 +85,20 @@
         </div>
       </div>
 
-      <div class="treino-card">
-        <div class="treino-header verde" onclick="abrirTreino('treinoB')">
-          <div class="treino-left">
-            <div class="letra-treino verde-box">B</div>
+      <div class="cartao-treino">
+        <div class="cabecalho-treino verde" onclick="abrirTreino('treinoB')">
+          <div class="treino-esquerda">
+            <div class="letra-treino caixa-verde">B</div>
 
-            <div class="treino-info">
+            <div class="info-treino">
               <h2 id="tituloB">Treino B</h2>
               <p id="qtdB">0 exercícios</p>
             </div>
           </div>
         </div>
 
-        <div class="treino-conteudo" id="treinoB">
-          <div class="tabela-header">
+        <div class="conteudo-treino" id="treinoB">
+          <div class="cabecalho-tabela">
             <span class="col-exercicio">EXERCÍCIO</span>
             <span>SÉRIES</span>
             <span>REPETIÇÕES</span>
@@ -113,20 +113,20 @@
         </div>
       </div>
 
-      <div class="treino-card">
-        <div class="treino-header vermelho" onclick="abrirTreino('treinoC')">
-          <div class="treino-left">
-            <div class="letra-treino vermelho-box">c</div>
+      <div class="cartao-treino">
+        <div class="cabecalho-treino vermelho" onclick="abrirTreino('treinoC')">
+          <div class="treino-esquerda">
+            <div class="letra-treino caixa-vermelho">c</div>
 
-            <div class="treino-info">
+            <div class="info-treino">
               <h2 id="tituloC">Treino C</h2>
               <p id="qtdC">0 exercícios</p>
             </div>
           </div>
         </div>
 
-        <div class="treino-conteudo" id="treinoC">
-          <div class="tabela-header">
+        <div class="conteudo-treino" id="treinoC">
+          <div class="cabecalho-tabela">
             <span class="col-exercicio">EXERCÍCIO</span>
             <span>SÉRIES</span>
             <span>REPETIÇÕES</span>
