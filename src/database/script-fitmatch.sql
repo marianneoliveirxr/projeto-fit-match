@@ -3,10 +3,10 @@ use fitMatch;
 
 CREATE TABLE perfil(
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    objetivo VARCHAR(45),
+    objetivo VARCHAR(60),
     nivelFisico VARCHAR(45),
     sexo VARCHAR(45),
-    CONSTRAINT chk_objetivo CHECK (objetivo IN ('emagrecer', 'hipertrofia')),
+    CONSTRAINT chk_objetivo CHECK (objetivo IN ('Emagrecimento/Definição', 'Hipertrofia/Ganho de Massa Muscular')),
     CONSTRAINT chk_nivelFisico CHECK (nivelFisico IN ('iniciante', 'intermediario', 'avancado')),
     CONSTRAINT chk_sexo CHECK (sexo IN ('feminino', 'masculino'))
 );
@@ -56,18 +56,18 @@ CREATE TABLE exercicios(
 );
 
 INSERT INTO perfil (objetivo, nivelFisico, sexo) VALUES
-('emagrecer', 'iniciante', 'masculino'),
-('emagrecer', 'intermediário', 'masculino'),
-('emagrecer', 'avançado', 'masculino'),
-('hipertrofia', 'iniciante', 'masculino'),
-('hipertrofia', 'intermediário', 'masculino'),
-('hipertrofia', 'avançado', 'masculino'),
-('emagrecer', 'iniciante', 'feminino'),
-('emagrecer', 'intermediário', 'feminino'),
-('emagrecer', 'avançado', 'feminino'),
-('hipertrofia', 'iniciante', 'feminino'),
-('hipertrofia', 'intermediário', 'feminino'),
-('hipertrofia', 'avançado', 'feminino');
+('Emagrecimento/Definição', 'iniciante', 'masculino'),
+('Emagrecimento/Definição', 'intermediário', 'masculino'),
+('Emagrecimento/Definição', 'avançado', 'masculino'),
+('Hipertrofia/Ganho de Massa Muscular', 'iniciante', 'masculino'),
+('Hipertrofia/Ganho de Massa Muscular', 'intermediário', 'masculino'),
+('Hipertrofia/Ganho de Massa Muscular', 'avançado', 'masculino'),
+('Emagrecimento/Definição', 'iniciante', 'feminino'),
+('Emagrecimento/Definição', 'intermediário', 'feminino'),
+('Emagrecimento/Definição', 'avançado', 'feminino'),
+('Hipertrofia/Ganho de Massa Muscular', 'iniciante', 'feminino'),
+('Hipertrofia/Ganho de Massa Muscular', 'intermediário', 'feminino'),
+('Hipertrofia/Ganho de Massa Muscular', 'avançado', 'feminino');
 
 INSERT INTO treino (divisao, musculos, cardio, fkPerfil) VALUES
 ('A', 'Peito, Ombro e Triceps', 'Esteira', 1),
@@ -107,244 +107,206 @@ INSERT INTO treino (divisao, musculos, cardio, fkPerfil) VALUES
 ('B', 'Superiores Completo', 'Esteira', 12),
 ('C', 'Gluteo e Posterior', 'Esteira', 12);
 
--- PERFIL 1 - HOMEM EMAGRECER INICIANTE
--- TREINO A 
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Supino reto com barra', 3, 15, 1),
-('Supino inclinado com halteres', 3, 15, 1),
-('Desenvolvimento com halteres', 3, 15, 1),
+('Supino reto com barra', 4, 10, 1),
+('Supino inclinado com halteres', 3, 10, 1),
+('Desenvolvimento com halteres', 3, 12, 1),
 ('Crucifixo reto com halteres', 3, 15, 1),
-('Triceps testa com barra', 3, 15, 1),
-('Triceps pushdown na polia alta', 3, 15, 1);
+('Triceps testa com barra', 3, 12, 1),
+('Triceps pushdown na polia alta', 3, 10, 1);
 
--- TREINO B
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Puxada na frente com barra na polia alta', 3, 15, 2),
-('Remada curvada com barra', 3, 15, 2),
-('Remada unilateral com halteres', 3, 15, 2),
-('Remada baixa na maquina', 3, 15, 2),
-('Rosca direta com barra', 3, 15, 2),
+('Remada curvada com barra', 4, 8, 2),
+('Remada unilateral com halteres', 3, 10, 2),
+('Remada baixa na maquina', 3, 8, 2),
+('Rosca direta com barra', 3, 12, 2),
 ('Rosca alternada com halteres', 3, 15, 2);
 
--- TREINO C
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Agachamento com barra', 3, 15, 3),
-('Leg press 45', 3, 15, 3),
-('Avanco com halteres', 3, 15, 3),
-('Leg extension', 3, 15, 3),
-('Cadeira flexora', 3, 15, 3),
-('Peso morto romeno', 3, 15, 3);
+('Leg press 45', 3, 8, 3),
+('Avanco com halteres', 3, 10, 3),
+('Leg extension', 4, 10, 3),
+('Cadeira flexora', 3, 10, 3),
+('Cadeira abdutora', 3, 10, 3);
 
--- PERFIL 2 - HOMEM EMAGRECER INTERMEDIARIO
--- TREINO A 
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Supino reto com barra', 4, 12, 4),
-('Supino inclinado com halteres', 4, 12, 4),
+('Supino inclinado com halteres', 4, 10, 4),
 ('Desenvolvimento com halteres', 4, 12, 4),
-('Crucifixo inclinado com halteres', 4, 12, 4),
-('Triceps testa com barra', 4, 12, 4),
+('Crucifixo inclinado com halteres', 3, 10, 4),
+('Triceps testa com barra', 4, 8, 4),
 ('Triceps pushdown na polia alta', 4, 12, 4);
 
--- TREINO B 
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Puxada alta na polia', 4, 12, 5),
-('Remada curvada com barra', 4, 12, 5),
-('Remada unilateral com halteres', 4, 12, 5),
-('Remada baixa na maquina', 4, 12, 5),
-('Rosca direta com barra', 4, 12, 5),
-('Rosca alternada com halteres', 4, 12, 5);
+('Remada curvada com barra', 4, 10, 5),
+('Remada unilateral com halteres', 4, 8, 5),
+('Remada baixa na maquina', 3, 12, 5),
+('Rosca direta com barra', 4, 10, 5),
+('Rosca alternada com halteres', 4, 8, 5);
 
--- TREINO C 
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Agachamento com barra', 4, 12, 6),
-('Leg press 45', 4, 12, 6),
-('Avanco com halteres', 4, 12, 6),
+('Leg press 45', 4, 10, 6),
+('Avanco com halteres', 3, 10, 6),
 ('Leg extension', 4, 12, 6),
-('Cadeira flexora', 4, 12, 6),
-('Stiff deadlift com barra', 4, 12, 6);
+('Cadeira flexora', 3, 10, 6),
+('Levantamento Terra', 3, 12, 6);
 
-
--- PERFIL 3 - HOMEM EMAGRECER AVANCADO
--- TREINO A 
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Supino reto com barra', 4, 10, 7),
-('Supino inclinado com halteres', 4, 10, 7),
-('Desenvolvimento com halteres', 4, 10, 7),
-('Crucifixo com halteres', 4, 10, 7),
-('Triceps testa com barra', 4, 10, 7),
+('Supino reto com barra', 4, 12, 7),
+('Supino inclinado com halteres', 4, 8, 7),
+('Desenvolvimento com halteres', 3, 10, 7),
+('Crucifixo com halteres', 3, 10, 7),
+('Triceps testa com barra', 4, 12, 7),
 ('Triceps pushdown na polia alta', 4, 10, 7);
 
--- TREINO B
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Puxada na frente com barra', 4, 10, 8),
-('Remada curvada com barra', 4, 10, 8),
+('Puxada na frente com barra', 4, 12, 8),
+('Remada curvada com barra', 3, 12, 8),
 ('Remada unilateral com halteres', 4, 10, 8),
-('Remada baixa com polia', 4, 10, 8),
-('Rosca direta com barra', 4, 10, 8),
+('Remada baixa com polia', 3, 10, 8),
+('Rosca direta com barra', 4, 12, 8),
 ('Rosca alternada com halteres', 4, 10, 8);
 
--- TREINO C
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Agachamento com barra', 4, 10, 9),
-('Leg press 45', 4, 10, 9),
-('Avanco com halteres', 4, 10, 9),
-('Hack squat', 4, 10, 9),
-('Leg extension', 4, 10, 9),
-('Cadeira flexora', 4, 10, 9);
+('Agachamento com barra', 4, 12, 9),
+('Leg press 45', 4, 8, 9),
+('Avanco com halteres', 3, 10, 9),
+('Hack squat', 3, 12, 9),
+('Leg extension', 4, 12, 9),
+('Cadeira flexora', 3, 10, 9);
 
-
--- PERFIL 4 - HOMEM HIPERTROFIA INICIANTE
--- TREINO A
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Supino reto com barra', 3, 12, 10),
-('Supino inclinado com halteres', 3, 12, 10),
-('Desenvolvimento com halteres', 3, 12, 10),
-('Crucifixo reto com halteres', 3, 12, 10),
-('Triceps testa com barra', 3, 12, 10),
-('Triceps pushdown na polia alta', 3, 12, 10);
+('Supino reto com barra', 4, 12, 10),
+('Supino inclinado com halteres', 3, 10, 10),
+('Desenvolvimento com halteres', 4, 12, 10),
+('Crucifixo reto com halteres', 3, 8, 10),
+('Triceps testa com barra', 3, 10, 10),
+('Triceps pushdown na polia alta', 4, 12, 10);
 
--- TREINO B
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Puxada na polia alta', 3, 12, 11),
-('Remada curvada com barra', 3, 12, 11),
-('Remada unilateral com halteres', 3, 12, 11),
-('Remada baixa na maquina', 3, 12, 11),
-('Rosca direta com barra', 3, 12, 11),
-('Rosca alternada com halteres', 3, 12, 11);
+('Puxada na polia alta', 4, 12, 11),
+('Remada curvada com barra', 4, 12, 11),
+('Remada unilateral com halteres', 3, 10, 11),
+('Remada baixa na maquina', 4, 8, 11),
+('Rosca direta com barra', 3, 10, 11),
+('Rosca alternada com halteres', 4, 8, 11);
 
--- TREINO C
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Agachamento com barra', 3, 12, 12),
-('Leg press 45', 3, 12, 12),
-('Avanco com halteres', 3, 12, 12),
-('Leg extension', 3, 12, 12),
-('Cadeira flexora', 3, 12, 12),
-('Peso morto romeno', 3, 12, 12);
+('Agachamento com barra', 4, 12, 12),
+('Leg press 45', 3, 10, 12),
+('Avanco com halteres', 3, 10, 12),
+('Leg extension', 4, 10, 12),
+('Cadeira flexora', 3, 10, 12),
+('Cadeira Abdutora', 3, 12, 12);
 
-
--- PERFIL 5 - HOMEM HIPERTROFIA INTERMEDIARIO
--- TREINO A
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Supino reto com barra', 4, 10, 13),
-('Supino inclinado com halteres', 4, 10, 13),
+('Supino inclinado com halteres', 3, 10, 13),
 ('Desenvolvimento com halteres', 4, 10, 13),
-('Fly com halteres', 4, 10, 13),
-('Triceps testa com barra', 4, 10, 13),
-('Triceps pushdown na polia alta', 4, 10, 13);
+('Crucifixo com halteres', 4, 10, 13),
+('Triceps testa com barra', 4, 12, 13),
+('Triceps pushdown na polia alta', 3, 10, 13);
 
--- TREINO B
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Puxada alta na polia', 4, 10, 14),
-('Remada curvada com barra', 4, 10, 14),
-('Remada unilateral com halteres', 4, 10, 14),
-('Remada baixa com polia', 4, 10, 14),
-('Rosca direta com barra', 4, 10, 14),
+('Remada curvada com barra', 3, 10, 14),
+('Remada unilateral com halteres', 4, 12, 14),
+('Remada baixa com polia', 3, 10, 14),
+('Rosca direta com barra', 4, 8, 14),
 ('Rosca alternada com halteres', 4, 10, 14);
 
--- TREINO C
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Agachamento com barra', 4, 10, 15),
-('Leg press 45', 4, 10, 15),
+('Agachamento com barra', 4, 12, 15),
+('Leg press 45', 3, 10, 15),
 ('Avanco com halteres', 4, 10, 15),
-('Hack squat', 4, 10, 15),
-('Leg extension', 4, 10, 15),
-('Cadeira flexora', 4, 10, 15);
+('Hack squat', 3, 10, 15),
+('Leg extension', 3, 12, 15),
+('Cadeira flexora', 4, 12, 15);
 
--- PERFIL 6 - HOMEM HIPERTROFIA AVANCADO
--- TREINO A 
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Supino reto com barra', 4, 8, 16),
-('Supino inclinado com halteres', 4, 8, 16),
+('Supino reto com barra', 4, 10, 16),
+('Supino inclinado com halteres', 4, 12, 6),
 ('Desenvolvimento com halteres', 4, 8, 16),
-('Crucifixo com halteres', 4, 8, 16),
-('Triceps testa com barra', 4, 8, 16),
+('Crucifixo com halteres', 3, 10, 16),
+('Triceps testa com barra', 4, 10, 16),
 ('Triceps pushdown na polia alta', 4, 8, 16);
 
--- TREINO B
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Puxada alta na polia', 4, 8, 17),
+('Puxada alta na polia', 4, 10, 17),
 ('Remada curvada com barra', 4, 8, 17),
-('Remada unilateral com halteres', 4, 8, 17),
-('Remada baixa com polia', 4, 8, 17),
-('Rosca direta com barra', 4, 8, 17),
-('Rosca alternada com halteres', 4, 8, 17);
+('Remada unilateral com halteres', 3, 10, 17),
+('Remada baixa com polia', 4, 10, 17),
+('Rosca direta com barra', 3, 12, 17),
+('Rosca alternada com halteres', 3, 10, 17);
 
--- TREINO C
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Agachamento com barra', 4, 8, 18),
+('Agachamento com barra', 4, 10, 18),
 ('Leg press 45', 4, 8, 18),
-('Avanco com halteres', 4, 8, 18),
-('Hack squat', 4, 8, 18),
-('Leg extension', 4, 8, 18),
+('Avanco com halteres', 3, 12, 18),
+('Hack squat', 3, 12, 18),
+('Leg extension', 4, 10, 18),
 ('Cadeira flexora', 4, 8, 18);
 
--- PERFIL 7 - MULHER EMAGRECER INICIANTE
--- TREINO A
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Agachamento com barra', 3, 15, 19),
-('Leg press 45', 3, 15, 19),
-('Agachamento com halteres', 3, 15, 19),
+('Leg press 45', 4, 10, 19),
+('Agachamento com halteres', 3, 12, 19),
 ('Avanco com halteres', 3, 15, 19),
-('Hack squat', 3, 15, 19),
-('Leg extension', 3, 15, 19);
+('Hack squat', 3, 10, 19),
+('Leg extension', 3, 12, 19);
 
--- TREINO B
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Supino reto com barra', 3, 15, 20),
+('Supino reto com barra', 3, 10, 20),
 ('Puxada na polia alta', 3, 15, 20),
-('Remada unilateral com halteres', 3, 15, 20),
-('Desenvolvimento com halteres', 3, 15, 20),
-('Rosca direta com barra', 3, 15, 20),
+('Remada unilateral com halteres', 3, 12, 20),
+('Desenvolvimento com halteres', 3, 12, 20),
+('Rosca direta com barra', 3, 10, 20),
 ('Triceps na polia alta', 3, 15, 20);
 
--- TREINO C (fkTreino = 21)
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Hip thrust com barra', 3, 15, 21),
-('Levantamento terra romeno', 3, 15, 21),
+('Elevação Pélvica', 3, 15, 21),
+('Levantamento terra', 3, 10, 21),
 ('Avanco com halteres', 3, 15, 21),
-('Glute bridge', 3, 15, 21),
-('Cadeira abdutora', 3, 15, 21),
+('Coice na Polia', 3, 10, 21),
+('Cadeira abdutora', 3, 12, 21),
 ('Cadeira flexora', 3, 15, 21);
 
--- PERFIL 8 - MULHER EMAGRECER INTERMEDIARIO
--- TREINO A
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Agachamento com barra', 4, 12, 22),
+('Agachamento com barra', 4, 10, 22),
 ('Leg press 45', 4, 12, 22),
-('Agachamento com halteres', 4, 12, 22),
-('Avanco com halteres', 4, 12, 22),
-('Hack squat', 4, 12, 22),
+('Agachamento com halteres', 4, 8, 22),
+('Avanco com halteres', 3, 12, 22),
+('Hack squat', 3, 12, 22),
 ('Leg extension', 4, 12, 22);
 
--- TREINO B
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Supino reto com barra', 4, 12, 23),
-('Puxada na polia alta', 4, 12, 23),
-('Remada unilateral com halteres', 4, 12, 23),
-('Desenvolvimento com halteres', 4, 12, 23),
-('Rosca direta com barra', 4, 12, 23),
-('Triceps na polia alta', 4, 12, 23);
+('Supino reto com barra', 4, 10, 23),
+('Puxada na polia alta', 4, 10, 23),
+('Remada unilateral com halteres', 4, 8, 23),
+('Desenvolvimento com halteres', 3, 12, 23),
+('Rosca direta com barra', 3, 10, 23),
+('Triceps na polia alta', 4, 8, 23);
 
--- TREINO C
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Hip thrust com barra', 4, 12, 24),
-('Peso morto romeno', 4, 12, 24),
-('Avanco com halteres', 4, 12, 24),
-('Glute bridge com caneleiras', 4, 12, 24),
-('Abducao de quadril na maquina', 4, 12, 24),
+('Elevação Pélvica', 4, 12, 24),
+('Levantamento Terra Sumô', 4, 10, 24),
+('Búlgaro com halteres', 4, 8, 24),
+('Coice na polia', 3, 10, 24),
+('Abducao de quadril na maquina', 4, 8, 24),
 ('Cadeira flexora', 4, 12, 24);
 
--- PERFIL 9 - MULHER EMAGRECER AVANCADO
--- TREINO A
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Agachamento com barra', 4, 10, 25),
+('Agachamento com barra', 4, 12, 25),
 ('Leg press 45', 4, 10, 25),
-('Hack squat', 4, 10, 25),
-('Agachamento sumo com barra', 4, 10, 25),
+('Hack squat', 3, 10, 25),
+('Agachamento sumo com barra', 3, 10, 25),
 ('Leg extension', 4, 10, 25),
 ('Avanco com halteres', 4, 10, 25);
 
--- TREINO B
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Supino reto com barra', 4, 10, 26),
 ('Remada curvada com barra', 4, 10, 26),
@@ -353,18 +315,14 @@ INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Rosca direta com barra', 4, 10, 26),
 ('Triceps pushdown na polia alta', 4, 10, 26);
 
--- TREINO C
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Hip thrust com barra', 4, 10, 27),
-('Peso morto romeno', 4, 10, 27),
+('Elevação Pélvica', 4, 10, 27),
+('Levantamento Terra Sumô', 4, 10, 27),
 ('Avanco com halteres', 4, 10, 27),
-('Glute bridge', 4, 10, 27),
+('Coice na Polia', 4, 10, 27),
 ('Cadeira abdutora', 4, 10, 27),
-('Leg curl', 4, 10, 27);
+('Abdução na polia', 4, 10, 27);
 
-
--- PERFIL 10 - MULHER HIPERTROFIA INICIANTE
--- TREINO A
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Agachamento com barra', 3, 12, 28),
 ('Leg press 45', 3, 12, 28),
@@ -373,7 +331,6 @@ INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Hack squat', 3, 12, 28),
 ('Leg extension', 3, 12, 28);
 
--- TREINO B
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Supino reto com barra', 3, 12, 29),
 ('Remada unilateral com halteres', 3, 12, 29),
@@ -382,17 +339,14 @@ INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Rosca direta com barra', 3, 12, 29),
 ('Triceps na polia alta', 3, 12, 29);
 
--- TREINO C
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Hip thrust com barra', 3, 12, 30),
-('Peso morto romeno', 3, 12, 30),
+('Elevação Pélvica', 3, 12, 30),
+('Levantamento Terra Sumô', 3, 12, 30),
 ('Avanco com halteres', 3, 12, 30),
-('Glute bridge', 3, 12, 30),
+('Coice na Polia', 3, 12, 30),
 ('Cadeira abdutora', 3, 12, 30),
 ('Cadeira flexora', 3, 12, 30);
 
--- PERFIL 11 - MULHER HIPERTROFIA INTERMEDIARIO
--- TREINO A
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Agachamento com barra', 4, 10, 31),
 ('Leg press 45', 4, 10, 31),
@@ -401,7 +355,6 @@ INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Leg extension', 4, 10, 31),
 ('Avanco com halteres', 4, 10, 31);
 
--- TREINO B
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Supino reto com barra', 4, 10, 32),
 ('Puxada na polia alta', 4, 10, 32),
@@ -410,18 +363,14 @@ INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Rosca direta com barra', 4, 10, 32),
 ('Triceps na polia alta', 4, 10, 32);
 
--- TREINO C
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Hip thrust com barra', 4, 10, 33),
-('Peso morto romeno', 4, 10, 33),
-('Avanco com halteres', 4, 10, 33),
-('Glute bridge com peso', 4, 10, 33),
+('Elevação Pélvica', 4, 10, 33),
+('Levantamento Terra Sumô', 4, 10, 33),
+('Búlgaro com halteres', 4, 10, 33),
+('Coice na Polia', 4, 10, 33),
 ('Cadeira abdutora', 4, 10, 33),
-('Leg curl', 4, 10, 33);
+('Abdução na polia', 4, 10, 33);
 
-
--- PERFIL 12 - MULHER HIPERTROFIA AVANCADO
--- TREINO A
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Agachamento com barra', 5, 10, 34),
 ('Leg press 45', 5, 10, 34),
@@ -430,7 +379,6 @@ INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Leg extension', 5, 10, 34),
 ('Avanco com halteres', 5, 10, 34);
 
--- TREINO B
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Supino reto com barra', 5, 10, 35),
 ('Remada curvada com barra', 5, 10, 35),
@@ -439,14 +387,13 @@ INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
 ('Rosca direta com barra', 5, 10, 35),
 ('Triceps pushdown na polia alta', 5, 10, 35);
 
--- TREINO C
 INSERT INTO exercicios (exercicio, series, repeticoes, fkTreino) VALUES
-('Hip thrust com barra', 5, 10, 36),
-('Peso morto romeno', 5, 10, 36),
+('Elevação Pélvica', 5, 10, 36),
+('Levantamento Terra Sumô', 5, 10, 36),
 ('Avanco com halteres', 5, 10, 36),
-('Glute bridge com barra', 5, 10, 36),
+('Coice na Polia', 5, 10, 36),
 ('Cadeira abdutora', 5, 10, 36),
-('Leg curl', 5, 10, 36);
+('Abdução na Polia', 5, 10, 36);
 
 -- VIEW DASHBOARD
 CREATE VIEW VW_dashboard AS
