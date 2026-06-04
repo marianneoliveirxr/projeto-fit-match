@@ -67,7 +67,7 @@
         </div>
 
         <div class="topo-perfil">
-          <div class="foto-perfil">A</div>
+          <div class="foto-perfil" id="foto_perfil"></div>
 
           <div class="info-perfil">
             <h2 id="b_nome"></h2>
@@ -98,10 +98,19 @@
 
 <script src="../js/sessao.js"></script>
 <script>
-  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-  b_nome.innerHTML = sessionStorage.NOME_USUARIO;
+  let nomeUsuario = sessionStorage.NOME_USUARIO;
+
+  b_usuario.innerHTML = nomeUsuario;
+  b_nome.innerHTML = nomeUsuario;
 
   function recarregar(){
+
+    if(nomeUsuario && nomeUsuario.length > 0){
+      foto_perfil.innerHTML = nomeUsuario[0].toUpperCase();
+    }
+    else{
+      foto_perfil.innerHTML = "U";
+    }
     
     fetch(`/dash/buscarDadosPerfil/${sessionStorage.ID_USUARIO}`)
     .then(function (resposta){
